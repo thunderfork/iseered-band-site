@@ -2,52 +2,443 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Bandname — Official Site | Tour Dates, Merch, EPK</title>
   <meta name="description" content="Official site for Bandname. Tour dates, tickets, merch, music, press kit, and booking." />
+  <meta name="theme-color" content="#0b0b0c" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root, [data-theme="light"] {
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem); --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem); --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem); --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem); --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem); --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
-      --color-bg: #f2f0ed; --color-surface: #faf9f7; --color-surface-2: #ffffff; --color-surface-offset: #e9e6e1; --color-border: #d8d3cc; --color-divider: #d9d4cd; --color-text: #171513; --color-text-muted: #635f59; --color-text-faint: #96908b; --color-text-inverse: #f5f2ef; --color-primary: #8e1212; --color-primary-hover: #6f0e0e; --color-primary-active: #510909; --color-primary-highlight: #ead4d4; --color-success:#4a7a51;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.08); --shadow-md: 0 8px 24px rgba(0,0,0,.12); --shadow-lg: 0 20px 48px rgba(0,0,0,.18); --radius-sm: .375rem; --radius-md: .5rem; --radius-lg: .875rem; --radius-xl: 1.25rem; --radius-full: 9999px; --content-default: 1160px; --font-display: 'Cinzel', Georgia, serif; --font-body: 'Inter', system-ui, sans-serif; --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --color-bg: #f2f0ed;
+      --color-surface: #faf9f7;
+      --color-surface-2: #ffffff;
+      --color-surface-offset: #e9e6e1;
+      --color-border: #d8d3cc;
+      --color-divider: #d9d4cd;
+      --color-text: #171513;
+      --color-text-muted: #635f59;
+      --color-text-faint: #96908b;
+      --color-text-inverse: #f5f2ef;
+      --color-primary: #8e1212;
+      --color-primary-hover: #6f0e0e;
+      --color-primary-active: #510909;
+      --color-primary-highlight: #ead4d4;
+      --color-success: #4a7a51;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.08);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.12);
+      --shadow-lg: 0 20px 48px rgba(0,0,0,.18);
+      --radius-sm: .375rem;
+      --radius-md: .5rem;
+      --radius-lg: .875rem;
+      --radius-xl: 1.25rem;
+      --radius-full: 9999px;
+      --content-default: 1160px;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
     }
-    [data-theme="dark"] { --color-bg: #0b0b0c; --color-surface: #131315; --color-surface-2: #1a1a1d; --color-surface-offset: #202025; --color-border: #2c2c31; --color-divider: #2b2b2f; --color-text: #ece7e1; --color-text-muted: #aba39b; --color-text-faint: #756f69; --color-text-inverse: #110f0f; --color-primary: #b62222; --color-primary-hover: #d13636; --color-primary-active: #8d1919; --color-primary-highlight: #321717; --color-success:#7cb78a; --shadow-sm: 0 1px 2px rgba(0,0,0,.22); --shadow-md: 0 12px 32px rgba(0,0,0,.3); --shadow-lg: 0 24px 60px rgba(0,0,0,.45); }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:5rem}
-    body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:radial-gradient(circle at top, rgba(182,34,34,.16), transparent 24%),linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%),var(--color-bg)}
-    img,svg{display:block;max-width:100%;height:auto} a,button,input{transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),transform var(--transition-interactive),box-shadow var(--transition-interactive)} a{text-decoration:none;color:inherit} button{cursor:pointer;border:none;background:none;color:inherit} input{font:inherit;color:inherit}
-    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)} .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .skip-link{position:absolute;left:var(--space-4);top:-40px;background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);z-index:1000}.skip-link:focus{top:var(--space-3)}
-    .container{width:min(calc(100% - 2rem), var(--content-default));margin-inline:auto}.section{padding-block:clamp(var(--space-10),8vw,var(--space-24))}
-    .eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-full);background:rgba(255,255,255,.03);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--color-text-muted)} .eyebrow::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--color-primary);box-shadow:0 0 18px rgba(182,34,34,.65)}
-    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb, var(--color-bg) 82%, transparent);border-bottom:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)} .header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;min-height:4.75rem}
-    .brand{display:flex;align-items:center;gap:var(--space-3)} .brand-mark{width:2.7rem;height:2.7rem;color:var(--color-text)} .brand-name{font-family:var(--font-display);font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase} .brand-sub{font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.14em}
-    .nav{display:flex;align-items:center;gap:var(--space-4)} .nav-links{display:flex;align-items:center;gap:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted)} .nav-links a:hover{color:var(--color-text)}
-    .header-actions{display:flex;align-items:center;gap:var(--space-2)} .menu-toggle,.theme-toggle,.social-icon{display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);border-radius:var(--radius-full);background:var(--color-surface)} .social-row{display:flex;gap:var(--space-2)} .menu-toggle{display:none}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:44px;padding:0 var(--space-5);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:700;letter-spacing:.02em} .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)} .btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-1px)} .btn-secondary{background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)} .btn-secondary:hover{background:var(--color-surface-2)} .btn-ghost{border:1px dashed color-mix(in srgb, var(--color-text) 18%, transparent);background:transparent}
-    .hero{padding-top:clamp(var(--space-12),10vw,var(--space-24));padding-bottom:var(--space-16)} .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-8);align-items:stretch} .hero-copy h1{font-family:var(--font-display);font-size:var(--text-3xl);line-height:.95;letter-spacing:.05em;text-transform:uppercase;max-width:11ch;text-wrap:balance} .hero-copy p{margin-top:var(--space-5);max-width:60ch;color:var(--color-text-muted)} .hero-actions,.hero-meta{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)} .hero-meta{font-size:var(--text-sm);color:var(--color-text-muted)}
-    .hero-card,.panel,.show-item,.merch-item,.music-card,.contact-card,.proof-card,.epk-card,.signup-card{background:linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, white 8%), var(--color-surface));border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)} .hero-card{padding:var(--space-6);position:relative;overflow:hidden;min-height:100%} .hero-card::before{content:"";position:absolute;inset:auto -15% -30% auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(182,34,34,.3), transparent 65%)}
-    .hero-visual{aspect-ratio:4/5;border-radius:calc(var(--radius-xl) - var(--space-2));background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(182,34,34,.12)),radial-gradient(circle at 30% 25%, rgba(255,255,255,.16), transparent 18%),linear-gradient(135deg, #26262a, #0f1013 68%);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);position:relative;overflow:hidden}.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover}.media-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.34))}.media-fallback{position:absolute;left:1rem;bottom:1rem;z-index:2;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.74);padding:.5rem .75rem;border-radius:999px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.12)}
-    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-5)} .stat{padding:var(--space-4);border-radius:var(--radius-lg);background:color-mix(in srgb, var(--color-surface-offset) 75%, transparent);border:1px solid color-mix(in srgb, var(--color-text) 9%, transparent)} .stat strong{display:block;font-size:var(--text-lg);font-weight:800} .stat span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted)}
-    .section-head{display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;margin-bottom:var(--space-6)} .section-head h2{font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:.06em;text-transform:uppercase} .section-head p{max-width:56ch;color:var(--color-text-muted)} .panel{padding:var(--space-6)}
-    .quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-top:var(--space-8)} .quick-actions a{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);font-size:var(--text-sm);font-weight:700}
-    .shows-grid{display:grid;gap:var(--space-4)} .show-item{display:grid;grid-template-columns:110px 1.25fr .85fr auto;gap:var(--space-4);padding:var(--space-5);align-items:center} .show-date{display:grid;gap:2px;text-align:center;padding:var(--space-3);border-radius:var(--radius-lg);background:color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));border:1px solid color-mix(in srgb, var(--color-primary) 26%, transparent)} .show-date strong{font-size:var(--text-xl);line-height:1;font-weight:800} .show-date span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted)}
-    .show-venue strong,.merch-item strong,.music-card strong,.contact-card strong,.proof-card strong,.epk-card strong{display:block;font-size:var(--text-lg)} .muted,.show-venue p,.show-city{color:var(--color-text-muted)} .show-city{font-size:var(--text-sm)} .meta-line{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:.4rem;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint)}
-    .ticket-tag{display:inline-flex;align-items:center;justify-content:center;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)} .ticket-tag.low{color:#ffcf8a;border-color:rgba(255,207,138,.25);background:rgba(255,207,138,.06)} .ticket-tag.on{color:#a9dfb2;border-color:rgba(169,223,178,.2);background:rgba(169,223,178,.06)}
-    .archive{margin-top:var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-5);border-radius:var(--radius-xl);background:color-mix(in srgb, var(--color-surface-offset) 65%, transparent);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)}
-    .merch-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--space-6)} .merch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)} .merch-item{padding:var(--space-5)} .merch-thumb{aspect-ratio:4/3;border-radius:calc(var(--radius-lg) - var(--space-1));margin-bottom:var(--space-4);background:linear-gradient(135deg, rgba(182,34,34,.18), rgba(255,255,255,.02)),linear-gradient(180deg, #1d1d22, #111114);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);position:relative;overflow:hidden} .merch-thumb::after{content:attr(data-label);position:absolute;inset:auto var(--space-3) var(--space-3) auto;font-family:var(--font-display);font-size:1.35rem;letter-spacing:.08em;color:rgba(255,255,255,.68);text-transform:uppercase}
-    .price-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-4)} .price-row span{font-weight:800} .stock{display:inline-flex;margin-top:var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-success)}
-    .music-grid,.proof-grid,.epk-grid,.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)} .music-card,.proof-card,.epk-card,.contact-card{padding:var(--space-5)} .tracklist{margin-top:var(--space-4);display:grid;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-text-muted)}
-    .story{display:grid;grid-template-columns:.95fr 1.05fr;gap:var(--space-6)} .quote{padding:var(--space-6);background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));border:1px solid color-mix(in srgb, var(--color-primary) 16%, transparent);border-radius:var(--radius-lg)}
-    .signup-card{padding:var(--space-6);display:grid;grid-template-columns:1fr auto;gap:var(--space-4);align-items:center} .signup-form{display:flex;gap:var(--space-3);flex-wrap:wrap}.signup-form input{min-height:46px;flex:1 1 240px;padding:0 var(--space-4);border-radius:var(--radius-full);border:1px solid color-mix(in srgb, var(--color-text) 14%, transparent);background:var(--color-surface)}
-    .footer{padding:var(--space-8) 0 calc(var(--space-12) + 4rem);border-top:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);color:var(--color-text-muted)} .footer-inner{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
-    .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));background:color-mix(in srgb, var(--color-bg) 90%, transparent);backdrop-filter:blur(12px);border-top:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);display:none} .sticky-bar-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:720px;margin:0 auto}
-    @media (max-width: 1040px){.hero-grid,.merch-layout,.story,.signup-card{grid-template-columns:1fr}.music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions{grid-template-columns:repeat(2,1fr)}.show-item{grid-template-columns:1fr}.show-date{max-width:120px}.stat-grid{grid-template-columns:1fr 1fr 1fr}}
-    @media (max-width: 760px){.nav-links{display:none;position:absolute;left:1rem;right:1rem;top:calc(100% + .5rem);flex-direction:column;align-items:flex-start;background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);border-radius:var(--radius-xl);padding:var(--space-4);box-shadow:var(--shadow-lg)}.nav-links.open{display:flex}.menu-toggle{display:grid}.header-actions .btn,.header-actions .social-row{display:none}.music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions,.merch-grid,.stat-grid{grid-template-columns:1fr}.container{width:min(calc(100% - 1rem), var(--content-default))}.sticky-bar{display:block}}
-    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+
+    [data-theme="dark"] {
+      --color-bg: #0b0b0c;
+      --color-surface: #131315;
+      --color-surface-2: #1a1a1d;
+      --color-surface-offset: #202025;
+      --color-border: #2c2c31;
+      --color-divider: #2b2b2f;
+      --color-text: #ece7e1;
+      --color-text-muted: #aba39b;
+      --color-text-faint: #756f69;
+      --color-text-inverse: #110f0f;
+      --color-primary: #b62222;
+      --color-primary-hover: #d13636;
+      --color-primary-active: #8d1919;
+      --color-primary-highlight: #321717;
+      --color-success: #7cb78a;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.22);
+      --shadow-md: 0 12px 32px rgba(0,0,0,.3);
+      --shadow-lg: 0 24px 60px rgba(0,0,0,.45);
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+      scroll-padding-top:5rem
+    }
+    body{
+      min-height:100dvh;
+      line-height:1.6;
+      font-family:var(--font-body);
+      font-size:var(--text-base);
+      color:var(--color-text);
+      background:
+        radial-gradient(circle at top, rgba(182,34,34,.16), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%),
+        var(--color-bg);
+      overflow-x:hidden;
+    }
+    img,svg,video{display:block;max-width:100%;height:auto}
+    a,button,input{
+      transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),transform var(--transition-interactive),box-shadow var(--transition-interactive)
+    }
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;border:none;background:none;color:inherit}
+    input{font:inherit;color:inherit}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip-link{position:absolute;left:var(--space-4);top:-40px;background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);z-index:1000}
+    .skip-link:focus{top:var(--space-3)}
+    .container{width:min(calc(100% - 2rem), var(--content-default));margin-inline:auto}
+    .section{padding-block:clamp(var(--space-10),8vw,var(--space-24))}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:var(--space-2);
+      padding:var(--space-2) var(--space-3);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius-full);
+      background:rgba(255,255,255,.03);
+      font-size:var(--text-xs);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--color-text-muted)
+    }
+    .eyebrow::before{
+      content:"";
+      width:.5rem;height:.5rem;border-radius:50%;
+      background:var(--color-primary);
+      box-shadow:0 0 18px rgba(182,34,34,.65)
+    }
+
+    .site-header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(14px);
+      background:color-mix(in srgb, var(--color-bg) 82%, transparent);
+      border-bottom:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)
+    }
+    .header-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:var(--space-4);padding:var(--space-3) 0;min-height:4.75rem
+    }
+    .brand{display:flex;align-items:center;gap:var(--space-3);min-width:0}
+    .brand-mark{width:2.7rem;height:2.7rem;color:var(--color-text);flex:none}
+    .brand-name{
+      font-family:var(--font-display);font-size:1.05rem;
+      letter-spacing:.14em;text-transform:uppercase;display:block;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+    }
+    .brand-sub{
+      font-size:var(--text-xs);color:var(--color-text-muted);
+      text-transform:uppercase;letter-spacing:.14em;display:block
+    }
+    .nav{display:flex;align-items:center;gap:var(--space-4);position:relative}
+    .nav-links{
+      display:flex;align-items:center;gap:var(--space-4);
+      font-size:var(--text-sm);color:var(--color-text-muted)
+    }
+    .nav-links a:hover{color:var(--color-text)}
+
+    .header-actions{display:flex;align-items:center;gap:var(--space-2)}
+    .menu-toggle,.theme-toggle,.social-icon{
+      display:grid;place-items:center;width:44px;height:44px;
+      border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+      border-radius:var(--radius-full);background:var(--color-surface)
+    }
+    .social-row{display:flex;gap:var(--space-2)}
+    .menu-toggle{display:none}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
+      min-height:44px;padding:0 var(--space-5);border-radius:var(--radius-full);
+      font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;
+      white-space:nowrap
+    }
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)}
+    .btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-1px)}
+    .btn-secondary{background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)}
+    .btn-secondary:hover{background:var(--color-surface-2)}
+    .btn-ghost{border:1px dashed color-mix(in srgb, var(--color-text) 18%, transparent);background:transparent}
+
+    .hero{
+      padding-top:clamp(var(--space-10),8vw,var(--space-24));
+      padding-bottom:var(--space-16)
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+      gap:var(--space-8);
+      align-items:stretch
+    }
+    .hero-copy h1{
+      font-family:var(--font-display);
+      font-size:var(--text-3xl);
+      line-height:.95;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      max-width:11ch;
+      text-wrap:balance
+    }
+    .hero-copy p{
+      margin-top:var(--space-5);
+      max-width:60ch;
+      color:var(--color-text-muted)
+    }
+    .hero-actions,.hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:var(--space-3);
+      margin-top:var(--space-6)
+    }
+    .hero-meta{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .hero-meta span,.quick-actions a{overflow-wrap:anywhere}
+
+    .hero-card,.panel,.show-item,.merch-item,.music-card,.contact-card,.proof-card,.epk-card,.signup-card{
+      background:linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, white 8%), var(--color-surface));
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow-md)
+    }
+    .hero-card{
+      padding:var(--space-6);
+      position:relative;overflow:hidden;min-height:100%
+    }
+    .hero-card::before{
+      content:"";position:absolute;inset:auto -15% -30% auto;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(182,34,34,.3), transparent 65%)
+    }
+    .hero-visual{
+      aspect-ratio:4/5;
+      border-radius:calc(var(--radius-xl) - var(--space-2));
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(182,34,34,.12)),
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.16), transparent 18%),
+        linear-gradient(135deg, #26262a, #0f1013 68%);
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      position:relative;overflow:hidden
+    }
+    .media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover}
+    .media-hero::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.34))
+    }
+    .media-fallback{
+      position:absolute;left:1rem;bottom:1rem;z-index:2;
+      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;
+      color:rgba(255,255,255,.74);padding:.5rem .75rem;border-radius:999px;
+      background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.12)
+    }
+
+    .stat-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-5)
+    }
+    .stat{
+      padding:var(--space-4);border-radius:var(--radius-lg);
+      background:color-mix(in srgb, var(--color-surface-offset) 75%, transparent);
+      border:1px solid color-mix(in srgb, var(--color-text) 9%, transparent)
+    }
+    .stat strong{display:block;font-size:var(--text-lg);font-weight:800}
+    .stat span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted)}
+
+    .section-head{
+      display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;margin-bottom:var(--space-6)
+    }
+    .section-head h2{
+      font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:.06em;text-transform:uppercase
+    }
+    .section-head p{max-width:56ch;color:var(--color-text-muted)}
+    .panel{padding:var(--space-6)}
+
+    .quick-actions{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-top:var(--space-8)
+    }
+    .quick-actions a{
+      padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface);
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      font-size:var(--text-sm);font-weight:700;text-align:center
+    }
+
+    .shows-grid{display:grid;gap:var(--space-4)}
+    .show-item{
+      display:grid;grid-template-columns:110px minmax(0,1.25fr) minmax(0,.85fr) auto;
+      gap:var(--space-4);padding:var(--space-5);align-items:center
+    }
+    .show-date{
+      display:grid;gap:2px;text-align:center;padding:var(--space-3);
+      border-radius:var(--radius-lg);
+      background:color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
+      border:1px solid color-mix(in srgb, var(--color-primary) 26%, transparent)
+    }
+    .show-date strong{font-size:var(--text-xl);line-height:1;font-weight:800}
+    .show-date span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted)}
+    .show-venue strong,.merch-item strong,.music-card strong,.contact-card strong,.proof-card strong,.epk-card strong{display:block;font-size:var(--text-lg)}
+    .muted,.show-venue p,.show-city{color:var(--color-text-muted)}
+    .show-city{font-size:var(--text-sm)}
+    .meta-line{
+      display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:.4rem;
+      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint)
+    }
+    .ticket-tag{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);
+      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)
+    }
+    .ticket-tag.low{color:#ffcf8a;border-color:rgba(255,207,138,.25);background:rgba(255,207,138,.06)}
+    .ticket-tag.on{color:#a9dfb2;border-color:rgba(169,223,178,.2);background:rgba(169,223,178,.06)}
+    .archive{
+      margin-top:var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+      padding:var(--space-5);border-radius:var(--radius-xl);
+      background:color-mix(in srgb, var(--color-surface-offset) 65%, transparent);
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)
+    }
+
+    .merch-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--space-6)}
+    .merch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+    .merch-item{padding:var(--space-5)}
+    .merch-thumb{
+      aspect-ratio:4/3;border-radius:calc(var(--radius-lg) - var(--space-1));margin-bottom:var(--space-4);
+      background:linear-gradient(135deg, rgba(182,34,34,.18), rgba(255,255,255,.02)),linear-gradient(180deg, #1d1d22, #111114);
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      position:relative;overflow:hidden
+    }
+    .merch-thumb::after{
+      content:attr(data-label);position:absolute;inset:auto var(--space-3) var(--space-3) auto;
+      font-family:var(--font-display);font-size:1.35rem;letter-spacing:.08em;color:rgba(255,255,255,.68);
+      text-transform:uppercase
+    }
+    .price-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-4)}
+    .price-row span{font-weight:800}
+    .stock{display:inline-flex;margin-top:var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-success)}
+
+    .music-grid,.proof-grid,.epk-grid,.contact-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)
+    }
+    .music-card,.proof-card,.epk-card,.contact-card{padding:var(--space-5)}
+    .tracklist{margin-top:var(--space-4);display:grid;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-text-muted)}
+    .tracklist a{display:inline-flex;width:max-content}
+    .story{
+      display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:var(--space-6)
+    }
+    .quote{
+      padding:var(--space-6);
+      background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+      border:1px solid color-mix(in srgb, var(--color-primary) 16%, transparent);
+      border-radius:var(--radius-lg)
+    }
+    .signup-card{
+      padding:var(--space-6);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-4);align-items:center
+    }
+    .signup-form{display:flex;gap:var(--space-3);flex-wrap:wrap}
+    .signup-form input{
+      min-height:46px;flex:1 1 240px;padding:0 var(--space-4);border-radius:var(--radius-full);
+      border:1px solid color-mix(in srgb, var(--color-text) 14%, transparent);background:var(--color-surface)
+    }
+    .footer{
+      padding:var(--space-8) 0 calc(var(--space-12) + 4rem);
+      border-top:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      color:var(--color-text-muted)
+    }
+    .footer-inner{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+    .sticky-bar{
+      position:fixed;left:0;right:0;bottom:0;z-index:60;
+      padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+      background:color-mix(in srgb, var(--color-bg) 90%, transparent);
+      backdrop-filter:blur(12px);
+      border-top:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+      display:none
+    }
+    .sticky-bar-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:720px;margin:0 auto}
+
+    @media (max-width: 1040px){
+      .hero-grid,.merch-layout,.story,.signup-card{grid-template-columns:1fr}
+      .music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions{grid-template-columns:repeat(2,1fr)}
+      .show-item{grid-template-columns:1fr}
+      .show-date{max-width:120px}
+      .stat-grid{grid-template-columns:repeat(3,1fr)}
+      .hero-copy h1{max-width:13ch}
+      .hero-card{order:-1}
+    }
+
+    @media (max-width: 760px){
+      .container{width:min(calc(100% - 1rem), var(--content-default))}
+      .header-inner{gap:var(--space-2)}
+      .brand-sub{max-width:20ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .nav-links{
+        display:none;
+        position:absolute;
+        left:0;right:0;top:calc(100% + .5rem);
+        flex-direction:column;align-items:flex-start;
+        background:var(--color-surface);
+        border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+        border-radius:var(--radius-xl);
+        padding:var(--space-4);
+        box-shadow:var(--shadow-lg);
+        z-index:80
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{width:100%;padding:.35rem 0}
+      .menu-toggle{display:grid}
+      .header-actions .btn,.header-actions .social-row{display:none}
+      .hero{padding-top:var(--space-8)}
+      .hero-grid{gap:var(--space-6)}
+      .hero-copy h1{font-size:clamp(2.35rem, 12vw, 3.8rem);max-width:9.5ch}
+      .hero-copy p{margin-top:var(--space-4)}
+      .hero-actions,.hero-meta,.quick-actions{margin-top:var(--space-5)}
+      .hero-actions,.quick-actions,.signup-form{display:grid;grid-template-columns:1fr}
+      .btn{width:100%}
+      .stat-grid,.music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions,.merch-grid{grid-template-columns:1fr}
+      .archive,.footer-inner{flex-direction:column;align-items:flex-start}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .section-head p{max-width:none}
+      .show-item{gap:var(--space-3)}
+      .show-item > div:last-child{justify-items:stretch}
+      .show-item .btn{width:100%}
+      .show-item .ticket-tag{width:max-content}
+      .show-date{max-width:none;width:100%}
+      .hero-card{padding:var(--space-4)}
+      .hero-visual{aspect-ratio:16/10}
+      .sticky-bar{display:block}
+      body{padding-bottom:5.5rem}
+    }
+
+    @media (max-width: 480px){
+      .brand-name{font-size:.98rem}
+      .brand-sub{font-size:.68rem;letter-spacing:.1em}
+      .hero-copy h1{max-width:8.5ch}
+      .hero-actions,.quick-actions{gap:var(--space-2)}
+      .panel,.merch-item,.music-card,.proof-card,.epk-card,.contact-card,.show-item{padding:var(--space-4)}
+      .hero-card,.signup-card{padding:var(--space-4)}
+      .show-date strong{font-size:1.6rem}
+      .show-date span{font-size:.68rem}
+      .sticky-bar-inner{gap:.5rem}
+      .sticky-bar .btn{padding:0 .75rem}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    }
   </style>
 </head>
 <body>
@@ -55,24 +446,50 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="Bandname home">
-        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Band logo"><path d="M32 6L43 22L58 25L47 38L49 56L32 47L15 56L17 38L6 25L21 22L32 6Z" stroke="currentColor" stroke-width="2.6"/><path d="M20 31H44M32 14V48" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        <span><span class="brand-name">Bandname</span><span class="brand-sub">Athens, Greece • Modern Death Metal</span></span>
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Band logo">
+          <path d="M32 6L43 22L58 25L47 38L49 56L32 47L15 56L17 38L6 25L21 22L32 6Z" stroke="currentColor" stroke-width="2.6"/>
+          <path d="M20 31H44M32 14V48" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span>
+          <span class="brand-name">Bandname</span>
+          <span class="brand-sub">Athens, Greece • Modern Death Metal</span>
+        </span>
       </a>
+
       <nav class="nav" aria-label="Primary navigation">
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle><span class="sr-only">Toggle menu</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-        <div class="nav-links" id="nav-links"><a href="#shows">Tour</a><a href="#merch">Merch</a><a href="#music">Music</a><a href="#epk">EPK</a><a href="#contact">Contact</a></div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle>
+          <span class="sr-only">Toggle menu</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#shows">Tour</a>
+          <a href="#merch">Merch</a>
+          <a href="#music">Music</a>
+          <a href="#epk">EPK</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
+
       <div class="header-actions">
         <div class="social-row" aria-label="Social links">
-          <a class="social-icon" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
-          <a class="social-icon" href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58Z"/><path d="m9.75 15.02 5.5-3.02-5.5-3.02v6.04Z"/></svg></a>
-          <a class="social-icon" href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 11.5c2.8-1 5.9-.9 8.6.4"/><path d="M8.8 14c2.2-.7 4.5-.6 6.5.3"/><path d="M9.8 16.3c1.5-.4 3-.3 4.3.3"/></svg></a>
+          <a class="social-icon" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="social-icon" href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58Z"/><path d="m9.75 15.02 5.5-3.02-5.5-3.02v6.04Z"/></svg>
+          </a>
+          <a class="social-icon" href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 11.5c2.8-1 5.9-.9 8.6.4"/><path d="M8.8 14c2.2-.7 4.5-.6 6.5.3"/><path d="M9.8 16.3c1.5-.4 3-.3 4.3.3"/></svg>
+          </a>
         </div>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"></button>
         <a class="btn btn-primary" href="#shows">Buy tickets</a>
       </div>
     </div>
   </header>
+
   <main id="main">
     <section class="hero" id="top">
       <div class="container hero-grid">
@@ -80,45 +497,396 @@
           <span class="eyebrow">Current campaign</span>
           <h1>New tour. New drop. New release.</h1>
           <p>Bandname is a modern death metal band from Athens, Greece. Use this hero area for your real release cycle: new single or record title, live announcement, and one sharp line about the band’s sound and intent.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#shows">Buy tickets</a><a class="btn btn-secondary" href="#merch">Shop merch</a><a class="btn btn-secondary" href="#music">Stream now</a></div>
-          <div class="hero-meta"><span>Replace Bandname with your real name.</span><span>Add one live photo.</span><span>Link all CTAs to live pages.</span></div>
-          <div class="quick-actions"><a href="#epk">Download EPK</a><a href="#newsletter">Join mailing list</a><a href="#contact">Booking contact</a><a href="#proof">Band proof</a></div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#shows">Buy tickets</a>
+            <a class="btn btn-secondary" href="#merch">Shop merch</a>
+            <a class="btn btn-secondary" href="#music">Stream now</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>Replace Bandname with your real name.</span>
+            <span>Add one live photo.</span>
+            <span>Link all CTAs to live pages.</span>
+          </div>
+
+          <div class="quick-actions">
+            <a href="#epk">Download EPK</a>
+            <a href="#newsletter">Join mailing list</a>
+            <a href="#contact">Booking contact</a>
+            <a href="#proof">Band proof</a>
+          </div>
         </div>
-        <aside class="hero-card" aria-label="Band campaign overview"><div class="hero-visual media-hero">
+
+        <aside class="hero-card" aria-label="Band campaign overview">
+          <div class="hero-visual media-hero">
             <!-- Replace hero-poster.jpg and hero-video.mp4 with your real assets in ./assets/ -->
             <video autoplay muted loop playsinline preload="metadata" poster="./assets/hero-poster.jpg" aria-label="Band video teaser">
               <source src="./assets/hero-video.mp4" type="video/mp4" />
             </video>
             <div class="media-fallback" aria-hidden="true">Add ./assets/hero-video.mp4 and ./assets/hero-poster.jpg</div>
-          </div><div class="stat-grid"><div class="stat"><strong>12</strong><span>Upcoming shows</span></div><div class="stat"><strong>4</strong><span>Featured merch items</span></div><div class="stat"><strong>1</strong><span>New release campaign</span></div></div></aside>
+          </div>
+          <div class="stat-grid">
+            <div class="stat"><strong>12</strong><span>Upcoming shows</span></div>
+            <div class="stat"><strong>4</strong><span>Featured merch items</span></div>
+            <div class="stat"><strong>1</strong><span>New release campaign</span></div>
+          </div>
+        </aside>
       </div>
     </section>
-    <section class="section" id="shows"><div class="container"><div class="section-head"><div><span class="eyebrow">Tour dates</span><h2>Tickets need one click</h2></div><p>Every date below now uses a real outbound event-style link pattern so the section behaves more like a sellable live page and less like a mockup placeholder.</p></div><div class="shows-grid">
-      <article class="show-item"><div class="show-date"><span>Sep</span><strong>18</strong><span>2026</span></div><div class="show-venue"><strong>Temple</strong><p>Athens, Greece</p><div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>With local support</span></div></div><div class="show-city">Lead city show of the new cycle</div><div style="display:grid;gap:.75rem;justify-items:end"><span class="ticket-tag on">Tickets live</span><a class="btn btn-primary" href="https://example.com/tickets/athens-temple" target="_blank" rel="noopener noreferrer">Buy tickets</a></div></article>
-      <article class="show-item"><div class="show-date"><span>Sep</span><strong>26</strong><span>2026</span></div><div class="show-venue"><strong>Principal Club Theater</strong><p>Thessaloniki, Greece</p><div class="meta-line"><span>Doors 20:30</span><span>16+</span><span>Co-headline</span></div></div><div class="show-city">Northern Greece date</div><div style="display:grid;gap:.75rem;justify-items:end"><span class="ticket-tag low">Low tickets</span><a class="btn btn-primary" href="https://example.com/tickets/thessaloniki-principal" target="_blank" rel="noopener noreferrer">Buy tickets</a></div></article>
-      <article class="show-item"><div class="show-date"><span>Oct</span><strong>03</strong><span>2026</span></div><div class="show-venue"><strong>Fuzz Club</strong><p>Athens, Greece</p><div class="meta-line"><span>Doors 21:00</span><span>18+</span><span>Album cycle launch</span></div></div><div class="show-city">Release week headliner</div><div style="display:grid;gap:.75rem;justify-items:end"><span class="ticket-tag on">Presale</span><a class="btn btn-primary" href="https://example.com/tickets/athens-fuzz" target="_blank" rel="noopener noreferrer">Buy tickets</a></div></article>
-      <article class="show-item"><div class="show-date"><span>Oct</span><strong>11</strong><span>2026</span></div><div class="show-venue"><strong>An Club</strong><p>Athens, Greece</p><div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>Special guest</span></div></div><div class="show-city">Club support appearance</div><div style="display:grid;gap:.75rem;justify-items:end"><span class="ticket-tag on">On sale</span><a class="btn btn-secondary" href="https://example.com/event/an-club" target="_blank" rel="noopener noreferrer">Event page</a></div></article>
-    </div><div class="archive"><div><strong>Past shows archive</strong><p class="muted">Add previous support slots, festivals, and notable rooms here to show promoters you are active and bookable.</p></div><a class="btn btn-secondary" href="#proof">Show history</a></div></div></section>
-    <section class="section" id="merch"><div class="container merch-layout"><div><div class="section-head" style="margin-bottom:1.25rem"><div><span class="eyebrow">Official merch</span><h2>Real store behavior</h2></div></div><p class="muted" style="margin-bottom:1.5rem;max-width:58ch;">These product cards now read more like actual merch listings, with stronger purchase language, stock cues, and direct external store links.</p><div class="merch-grid">
-      <article class="merch-item"><div class="merch-thumb" data-label="Sigil"></div><strong>Ash Sigil Tour Shirt</strong><p class="muted">Heavyweight black cotton, front print, back-date layout. Sizes S–XXL.</p><span class="stock">Limited first run</span><div class="price-row"><span>€30</span><a class="btn btn-secondary" href="https://example.com/store/tour-shirt" target="_blank" rel="noopener noreferrer">Buy now</a></div></article>
-      <article class="merch-item"><div class="merch-thumb" data-label="Void"></div><strong>Void Rite Hoodie</strong><p class="muted">Oversized fit, sleeve print, crimson chest mark. EU shipping enabled.</p><span class="stock">Ships in 3–5 days</span><div class="price-row"><span>€55</span><a class="btn btn-secondary" href="https://example.com/store/hoodie" target="_blank" rel="noopener noreferrer">Buy now</a></div></article>
-      <article class="merch-item"><div class="merch-thumb" data-label="Bones"></div><strong>Logo Backpatch</strong><p class="muted">Embroidered patch for battle jackets and bags. One size.</p><span class="stock">In stock</span><div class="price-row"><span>€12</span><a class="btn btn-secondary" href="https://example.com/store/backpatch" target="_blank" rel="noopener noreferrer">Buy now</a></div></article>
-      <article class="merch-item"><div class="merch-thumb" data-label="Tour"></div><strong>Tour Poster</strong><p class="muted">Screen-style campaign poster. Signed variant available in-store.</p><span class="stock">Bundle with shirt</span><div class="price-row"><span>€18</span><a class="btn btn-secondary" href="https://example.com/store/poster" target="_blank" rel="noopener noreferrer">View item</a></div></article>
-    </div></div><aside class="panel"><span class="eyebrow">Merch notes</span><strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Use one store backend and keep it consistent.</strong><p class="muted" style="margin-top:1rem">When you replace the example links, point everything to the same real store, whether that is Bandcamp, Big Cartel, Shopify, or your merch partner.</p><div style="display:grid;gap:1rem;margin-top:1.5rem"><div class="panel" style="padding:1rem"><strong style="font-size:1rem">Recommended upgrade</strong><p class="muted">Add bundle pricing, shipping note, and sold-out states for each item.</p></div><div class="panel" style="padding:1rem"><strong style="font-size:1rem">Recommended CTA set</strong><p class="muted">Shop merch, View item, Pre-order, Bundle deal, Sold out.</p></div></div></aside></div></section>
-    <section class="section" id="music"><div class="container"><div class="section-head"><div><span class="eyebrow">Music</span><h2>Stream and convert</h2></div><p>This section now gives the band a clearer streaming path instead of acting only as descriptive filler.</p></div><div class="music-grid"><article class="music-card"><span class="eyebrow">New single</span><strong style="margin-top:1rem">Ashen Circuit</strong><p class="muted" style="margin-top:.6rem">Use this card for your real lead single, artwork, and release date.</p><div class="tracklist"><a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">YouTube Music</a><a href="https://bandcamp.com" target="_blank" rel="noopener noreferrer">Bandcamp</a></div></article><article class="music-card"><span class="eyebrow">Current release</span><strong style="margin-top:1rem">Ritual Collapse</strong><p class="muted" style="margin-top:.6rem">Swap in your real EP or album title and highlight the strongest track or video.</p><div class="tracklist"><span>01. The Furnace Mouth</span><span>02. Ritual Collapse</span><span>03. Ashen Circuit</span><span>04. Nerve Harvest</span><span>05. Carrion Bloom</span></div></article><article class="music-card"><span class="eyebrow">Watch / follow</span><strong style="margin-top:1rem">Keep the ecosystem visible</strong><p class="muted" style="margin-top:.6rem">Add links to Instagram, YouTube, Spotify, Bandcamp, and your store anywhere fans may stall.</p><div class="tracklist"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a></div></article></div></div></section>
-    <section class="section" id="proof"><div class="container"><div class="section-head"><div><span class="eyebrow">Proof</span><h2>Show promoters you are real</h2></div><p>This section is intentionally practical: replace these placeholders with the facts a promoter, manager, and press contact actually care about.</p></div><div class="proof-grid"><article class="proof-card"><strong>Recent support slots</strong><p class="muted" style="margin-top:.6rem">Add 3–5 bands you opened for, with venues and cities.</p></article><article class="proof-card"><strong>Festival / club history</strong><p class="muted" style="margin-top:.6rem">List festivals, club runs, sold-out nights, or notable rooms.</p></article><article class="proof-card"><strong>Press / reviews</strong><p class="muted" style="margin-top:.6rem">Add short pull quotes from blogs, zines, labels, or playlist editors.</p></article></div></div></section>
-    <section class="section" id="about"><div class="container story"><div><span class="eyebrow">About</span><h2 style="font-family:var(--font-display);font-size:var(--text-2xl);margin-top:1rem;letter-spacing:.06em;text-transform:uppercase;">Replace concept copy with a real band story.</h2></div><div><p class="muted">Write one short, usable bio here: where the band is from, what release is current, what the sound is, and what the last 12–18 months have looked like live.</p><div class="quote" style="margin-top:1.5rem">Good bios are short enough for promoters to quote, specific enough for press to use, and strong enough to support your poster copy.</div></div></div></section>
-    <section class="section" id="epk"><div class="container"><div class="section-head"><div><span class="eyebrow">EPK</span><h2>Press and promoter tools</h2></div><p>A real launch version should let press and promoters grab what they need without emailing you first.</p></div><div class="epk-grid"><article class="epk-card"><strong>Short & full bio</strong><p class="muted" style="margin-top:.6rem">Add one short bio and one expanded version as PDF or text download.</p><a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add download</a></article><article class="epk-card"><strong>Stage plot & input list</strong><p class="muted" style="margin-top:.6rem">Essential for promoters, venue techs, and festival production.</p><a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add PDF</a></article><article class="epk-card"><strong>Promo photos & logo pack</strong><p class="muted" style="margin-top:.6rem">Provide landscape and portrait press shots plus transparent logos.</p><a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add assets</a></article></div></div></section>
-    <section class="section" id="newsletter"><div class="container"><div class="signup-card"><div><span class="eyebrow">Mailing list</span><strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Get tour alerts, presales, and merch drops.</strong><p class="muted" style="margin-top:.75rem">A band site should capture fans, not just impress them once. Replace this form action with Mailchimp, ConvertKit, Buttondown, or your preferred email tool.</p></div><form class="signup-form" onsubmit="event.preventDefault(); alert('Connect this form to your email platform.');"><label class="sr-only" for="email">Email address</label><input id="email" type="email" placeholder="Email address" required><button class="btn btn-primary" type="submit">Join now</button></form></div></div></section>
-    <section class="section" id="contact"><div class="container"><div class="section-head"><div><span class="eyebrow">Contact</span><h2>Booking, merch, press</h2></div><p>This area is now clearer about role-based contact paths, but it still needs your real names, addresses, and territories before launch.</p></div><div class="contact-grid"><article class="contact-card"><strong>Booking</strong><p class="muted" style="margin-top:.6rem">booking@yourband.com</p><p class="muted">For Greece / EU club and festival inquiries.</p><a class="btn btn-secondary" style="margin-top:1rem" href="mailto:booking@yourband.com">Email booking</a></article><article class="contact-card"><strong>Merch support</strong><p class="muted" style="margin-top:.6rem">store@yourband.com</p><p class="muted">Order issues, sizing, shipping, replacements.</p><a class="btn btn-secondary" style="margin-top:1rem" href="mailto:store@yourband.com">Contact store</a></article><article class="contact-card"><strong>Press / EPK</strong><p class="muted" style="margin-top:.6rem">press@yourband.com</p><p class="muted">Press requests, interviews, promo assets, guest list.</p><a class="btn btn-primary" style="margin-top:1rem" href="mailto:press@yourband.com">Request EPK</a></article></div></div></section>
+
+    <section class="section" id="shows">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Tour dates</span>
+            <h2>Tickets need one click</h2>
+          </div>
+          <p>Every date below now uses a real outbound event-style link pattern so the section behaves more like a sellable live page and less like a mockup placeholder.</p>
+        </div>
+
+        <div class="shows-grid">
+          <article class="show-item">
+            <div class="show-date"><span>Sep</span><strong>18</strong><span>2026</span></div>
+            <div class="show-venue">
+              <strong>Temple</strong>
+              <p>Athens, Greece</p>
+              <div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>With local support</span></div>
+            </div>
+            <div class="show-city">Lead city show of the new cycle</div>
+            <div style="display:grid;gap:.75rem;justify-items:end">
+              <span class="ticket-tag on">Tickets live</span>
+              <a class="btn btn-primary" href="https://example.com/tickets/athens-temple" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+            </div>
+          </article>
+
+          <article class="show-item">
+            <div class="show-date"><span>Sep</span><strong>26</strong><span>2026</span></div>
+            <div class="show-venue">
+              <strong>Principal Club Theater</strong>
+              <p>Thessaloniki, Greece</p>
+              <div class="meta-line"><span>Doors 20:30</span><span>16+</span><span>Co-headline</span></div>
+            </div>
+            <div class="show-city">Northern Greece date</div>
+            <div style="display:grid;gap:.75rem;justify-items:end">
+              <span class="ticket-tag low">Low tickets</span>
+              <a class="btn btn-primary" href="https://example.com/tickets/thessaloniki-principal" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+            </div>
+          </article>
+
+          <article class="show-item">
+            <div class="show-date"><span>Oct</span><strong>03</strong><span>2026</span></div>
+            <div class="show-venue">
+              <strong>Fuzz Club</strong>
+              <p>Athens, Greece</p>
+              <div class="meta-line"><span>Doors 21:00</span><span>18+</span><span>Album cycle launch</span></div>
+            </div>
+            <div class="show-city">Release week headliner</div>
+            <div style="display:grid;gap:.75rem;justify-items:end">
+              <span class="ticket-tag on">Presale</span>
+              <a class="btn btn-primary" href="https://example.com/tickets/athens-fuzz" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+            </div>
+          </article>
+
+          <article class="show-item">
+            <div class="show-date"><span>Oct</span><strong>11</strong><span>2026</span></div>
+            <div class="show-venue">
+              <strong>An Club</strong>
+              <p>Athens, Greece</p>
+              <div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>Special guest</span></div>
+            </div>
+            <div class="show-city">Club support appearance</div>
+            <div style="display:grid;gap:.75rem;justify-items:end">
+              <span class="ticket-tag on">On sale</span>
+              <a class="btn btn-secondary" href="https://example.com/event/an-club" target="_blank" rel="noopener noreferrer">Event page</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="archive">
+          <div>
+            <strong>Past shows archive</strong>
+            <p class="muted">Add previous support slots, festivals, and notable rooms here to show promoters you are active and bookable.</p>
+          </div>
+          <a class="btn btn-secondary" href="#proof">Show history</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="merch">
+      <div class="container merch-layout">
+        <div>
+          <div class="section-head" style="margin-bottom:1.25rem">
+            <div>
+              <span class="eyebrow">Official merch</span>
+              <h2>Real store behavior</h2>
+            </div>
+          </div>
+          <p class="muted" style="margin-bottom:1.5rem;max-width:58ch;">These product cards now read more like actual merch listings, with stronger purchase language, stock cues, and direct external store links.</p>
+
+          <div class="merch-grid">
+            <article class="merch-item">
+              <div class="merch-thumb" data-label="Sigil"></div>
+              <strong>Ash Sigil Tour Shirt</strong>
+              <p class="muted">Heavyweight black cotton, front print, back-date layout. Sizes S–XXL.</p>
+              <span class="stock">Limited first run</span>
+              <div class="price-row">
+                <span>€30</span>
+                <a class="btn btn-secondary" href="https://example.com/store/tour-shirt" target="_blank" rel="noopener noreferrer">Buy now</a>
+              </div>
+            </article>
+
+            <article class="merch-item">
+              <div class="merch-thumb" data-label="Void"></div>
+              <strong>Void Rite Hoodie</strong>
+              <p class="muted">Oversized fit, sleeve print, crimson chest mark. EU shipping enabled.</p>
+              <span class="stock">Ships in 3–5 days</span>
+              <div class="price-row">
+                <span>€55</span>
+                <a class="btn btn-secondary" href="https://example.com/store/hoodie" target="_blank" rel="noopener noreferrer">Buy now</a>
+              </div>
+            </article>
+
+            <article class="merch-item">
+              <div class="merch-thumb" data-label="Bones"></div>
+              <strong>Logo Backpatch</strong>
+              <p class="muted">Embroidered patch for battle jackets and bags. One size.</p>
+              <span class="stock">In stock</span>
+              <div class="price-row">
+                <span>€12</span>
+                <a class="btn btn-secondary" href="https://example.com/store/backpatch" target="_blank" rel="noopener noreferrer">Buy now</a>
+              </div>
+            </article>
+
+            <article class="merch-item">
+              <div class="merch-thumb" data-label="Tour"></div>
+              <strong>Tour Poster</strong>
+              <p class="muted">Screen-style campaign poster. Signed variant available in-store.</p>
+              <span class="stock">Bundle with shirt</span>
+              <div class="price-row">
+                <span>€18</span>
+                <a class="btn btn-secondary" href="https://example.com/store/poster" target="_blank" rel="noopener noreferrer">View item</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <span class="eyebrow">Merch notes</span>
+          <strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Use one store backend and keep it consistent.</strong>
+          <p class="muted" style="margin-top:1rem">When you replace the example links, point everything to the same real store, whether that is Bandcamp, Big Cartel, Shopify, or your merch partner.</p>
+          <div style="display:grid;gap:1rem;margin-top:1.5rem">
+            <div class="panel" style="padding:1rem">
+              <strong style="font-size:1rem">Recommended upgrade</strong>
+              <p class="muted">Add bundle pricing, shipping note, and sold-out states for each item.</p>
+            </div>
+            <div class="panel" style="padding:1rem">
+              <strong style="font-size:1rem">Recommended CTA set</strong>
+              <p class="muted">Shop merch, View item, Pre-order, Bundle deal, Sold out.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="music">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Music</span>
+            <h2>Stream and convert</h2>
+          </div>
+          <p>This section now gives the band a clearer streaming path instead of acting only as descriptive filler.</p>
+        </div>
+
+        <div class="music-grid">
+          <article class="music-card">
+            <span class="eyebrow">New single</span>
+            <strong style="margin-top:1rem">Ashen Circuit</strong>
+            <p class="muted" style="margin-top:.6rem">Use this card for your real lead single, artwork, and release date.</p>
+            <div class="tracklist">
+              <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
+              <a href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+              <a href="https://bandcamp.com" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+            </div>
+          </article>
+
+          <article class="music-card">
+            <span class="eyebrow">Current release</span>
+            <strong style="margin-top:1rem">Ritual Collapse</strong>
+            <p class="muted" style="margin-top:.6rem">Swap in your real EP or album title and highlight the strongest track or video.</p>
+            <div class="tracklist">
+              <span>01. The Furnace Mouth</span>
+              <span>02. Ritual Collapse</span>
+              <span>03. Ashen Circuit</span>
+              <span>04. Nerve Harvest</span>
+              <span>05. Carrion Bloom</span>
+            </div>
+          </article>
+
+          <article class="music-card">
+            <span class="eyebrow">Watch / follow</span>
+            <strong style="margin-top:1rem">Keep the ecosystem visible</strong>
+            <p class="muted" style="margin-top:.6rem">Add links to Instagram, YouTube, Spotify, Bandcamp, and your store anywhere fans may stall.</p>
+            <div class="tracklist">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Proof</span>
+            <h2>Show promoters you are real</h2>
+          </div>
+          <p>This section is intentionally practical: replace these placeholders with the facts a promoter, manager, and press contact actually care about.</p>
+        </div>
+
+        <div class="proof-grid">
+          <article class="proof-card">
+            <strong>Recent support slots</strong>
+            <p class="muted" style="margin-top:.6rem">Add 3–5 bands you opened for, with venues and cities.</p>
+          </article>
+          <article class="proof-card">
+            <strong>Festival / club history</strong>
+            <p class="muted" style="margin-top:.6rem">List festivals, club runs, sold-out nights, or notable rooms.</p>
+          </article>
+          <article class="proof-card">
+            <strong>Press / reviews</strong>
+            <p class="muted" style="margin-top:.6rem">Add short pull quotes from blogs, zines, labels, or playlist editors.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container story">
+        <div>
+          <span class="eyebrow">About</span>
+          <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);margin-top:1rem;letter-spacing:.06em;text-transform:uppercase;">Replace concept copy with a real band story.</h2>
+        </div>
+        <div>
+          <p class="muted">Write one short, usable bio here: where the band is from, what release is current, what the sound is, and what the last 12–18 months have looked like live.</p>
+          <div class="quote" style="margin-top:1.5rem">Good bios are short enough for promoters to quote, specific enough for press to use, and strong enough to support your poster copy.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="epk">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">EPK</span>
+            <h2>Press and promoter tools</h2>
+          </div>
+          <p>A real launch version should let press and promoters grab what they need without emailing you first.</p>
+        </div>
+
+        <div class="epk-grid">
+          <article class="epk-card">
+            <strong>Short & full bio</strong>
+            <p class="muted" style="margin-top:.6rem">Add one short bio and one expanded version as PDF or text download.</p>
+            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add download</a>
+          </article>
+          <article class="epk-card">
+            <strong>Stage plot & input list</strong>
+            <p class="muted" style="margin-top:.6rem">Essential for promoters, venue techs, and festival production.</p>
+            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add PDF</a>
+          </article>
+          <article class="epk-card">
+            <strong>Promo photos & logo pack</strong>
+            <p class="muted" style="margin-top:.6rem">Provide landscape and portrait press shots plus transparent logos.</p>
+            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add assets</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="signup-card">
+          <div>
+            <span class="eyebrow">Mailing list</span>
+            <strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Get tour alerts, presales, and merch drops.</strong>
+            <p class="muted" style="margin-top:.75rem">A band site should capture fans, not just impress them once. Replace this form action with Mailchimp, ConvertKit, Buttondown, or your preferred email tool.</p>
+          </div>
+          <form class="signup-form" onsubmit="event.preventDefault(); alert('Connect this form to your email platform.');">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" type="email" placeholder="Email address" required>
+            <button class="btn btn-primary" type="submit">Join now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2>Booking, merch, press</h2>
+          </div>
+          <p>This area is now clearer about role-based contact paths, but it still needs your real names, addresses, and territories before launch.</p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <strong>Booking</strong>
+            <p class="muted" style="margin-top:.6rem">booking@yourband.com</p>
+            <p class="muted">For Greece / EU club and festival inquiries.</p>
+            <a class="btn btn-secondary" style="margin-top:1rem" href="mailto:booking@yourband.com">Email booking</a>
+          </article>
+
+          <article class="contact-card">
+            <strong>Merch support</strong>
+            <p class="muted" style="margin-top:.6rem">store@yourband.com</p>
+            <p class="muted">Order issues, sizing, shipping, replacements.</p>
+            <a class="btn btn-secondary" style="margin-top:1rem" href="mailto:store@yourband.com">Contact store</a>
+          </article>
+
+          <article class="contact-card">
+            <strong>Press / EPK</strong>
+            <p class="muted" style="margin-top:.6rem">press@yourband.com</p>
+            <p class="muted">Press requests, interviews, promo assets, guest list.</p>
+            <a class="btn btn-primary" style="margin-top:1rem" href="mailto:press@yourband.com">Request EPK</a>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="footer"><div class="container footer-inner"><p>© 2026 Bandname. Replace all placeholders before launch.</p><p>Best launch order: real band name, hero photo, ticket links, store links, EPK files, mailing list.</p></div></footer>
-  <div class="sticky-bar" aria-label="Quick actions"><div class="sticky-bar-inner"><a class="btn btn-primary" href="#shows">Tickets</a><a class="btn btn-secondary" href="#merch">Merch</a><a class="btn btn-secondary" href="#music">Stream</a></div></div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 Bandname. Replace all placeholders before launch.</p>
+      <p>Best launch order: real band name, hero photo, ticket links, store links, EPK files, mailing list.</p>
+    </div>
+  </footer>
+
+  <div class="sticky-bar" aria-label="Quick actions">
+    <div class="sticky-bar-inner">
+      <a class="btn btn-primary" href="#shows">Tickets</a>
+      <a class="btn btn-secondary" href="#merch">Merch</a>
+      <a class="btn btn-secondary" href="#music">Stream</a>
+    </div>
+  </div>
+
   <script>
     (() => {
-      const root = document.documentElement, toggle = document.querySelector('[data-theme-toggle]'), menuToggle = document.querySelector('[data-menu-toggle]'), navLinks = document.getElementById('nav-links');
-      let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const menuToggle = document.querySelector('[data-menu-toggle]');
+      const navLinks = document.getElementById('nav-links');
+
+      const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+      let theme = prefersDark ? 'dark' : 'light';
       root.setAttribute('data-theme', theme);
+
       const renderIcon = () => {
         if (!toggle) return;
         toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
@@ -126,10 +894,26 @@
           ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
           : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
       };
+
       renderIcon();
-      toggle?.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); renderIcon(); });
-      menuToggle?.addEventListener('click', () => { const isOpen = navLinks.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(isOpen)); });
-      navLinks?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { navLinks.classList.remove('open'); menuToggle?.setAttribute('aria-expanded', 'false'); }));
+
+      toggle?.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        renderIcon();
+      });
+
+      menuToggle?.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navLinks?.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          menuToggle?.setAttribute('aria-expanded', 'false');
+        })
+      );
     })();
   </script>
 </body>
