@@ -1,920 +1,773 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Bandname — Official Site | Tour Dates, Merch, EPK</title>
-  <meta name="description" content="Official site for Bandname. Tour dates, tickets, merch, music, press kit, and booking." />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root, [data-theme="light"] {
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-5: 1.25rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-10: 2.5rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --space-20: 5rem;
-      --space-24: 6rem;
-      --color-bg: #f2f0ed;
-      --color-surface: #faf9f7;
-      --color-surface-2: #ffffff;
-      --color-surface-offset: #e9e6e1;
-      --color-border: #d8d3cc;
-      --color-divider: #d9d4cd;
-      --color-text: #171513;
-      --color-text-muted: #635f59;
-      --color-text-faint: #96908b;
-      --color-text-inverse: #f5f2ef;
-      --color-primary: #8e1212;
-      --color-primary-hover: #6f0e0e;
-      --color-primary-active: #510909;
-      --color-primary-highlight: #ead4d4;
-      --color-success: #4a7a51;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.08);
-      --shadow-md: 0 8px 24px rgba(0,0,0,.12);
-      --shadow-lg: 0 20px 48px rgba(0,0,0,.18);
-      --radius-sm: .375rem;
-      --radius-md: .5rem;
-      --radius-lg: .875rem;
-      --radius-xl: 1.25rem;
-      --radius-full: 9999px;
-      --content-default: 1160px;
-      --font-display: 'Cinzel', Georgia, serif;
-      --font-body: 'Inter', system-ui, sans-serif;
-      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I See Red - Melodic Death Metal from Athens, Greece. Official website featuring tour dates, merch, new releases, and press assets.">
+    <meta name="keywords" content="I See Red, death metal, metal band, modern metal, metalcore, tour dates, merch">
+    <meta name="author" content="I See Red">
+    <meta property="og:title" content="I See Red | Melodic Death Metal from Athens, Greece">
+    <meta property="og:description" content="Official website of I See Red. Tour dates, merch, new releases, and press assets.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/og-image.jpg">
+    <meta property="og:url" content="/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#c41e3a">
+    <link rel="icon" href="/favicon.ico">
+    <title>I See Red | Melodic Death Metal from Athens, Greece</title>
+    <link rel="canonical" href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Metal+Mania&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
 
-    [data-theme="dark"] {
-      --color-bg: #0b0b0c;
-      --color-surface: #131315;
-      --color-surface-2: #1a1a1d;
-      --color-surface-offset: #202025;
-      --color-border: #2c2c31;
-      --color-divider: #2b2b2f;
-      --color-text: #ece7e1;
-      --color-text-muted: #aba39b;
-      --color-text-faint: #756f69;
-      --color-text-inverse: #110f0f;
-      --color-primary: #b62222;
-      --color-primary-hover: #d13636;
-      --color-primary-active: #8d1919;
-      --color-primary-highlight: #321717;
-      --color-success: #7cb78a;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.22);
-      --shadow-md: 0 12px 32px rgba(0,0,0,.3);
-      --shadow-lg: 0 24px 60px rgba(0,0,0,.45);
-    }
-
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      text-rendering:optimizeLegibility;
-      scroll-behavior:smooth;
-      scroll-padding-top:5rem
-    }
-    body{
-      min-height:100dvh;
-      line-height:1.6;
-      font-family:var(--font-body);
-      font-size:var(--text-base);
-      color:var(--color-text);
-      background:
-        radial-gradient(circle at top, rgba(182,34,34,.16), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%),
-        var(--color-bg);
-      overflow-x:hidden;
-    }
-    img,svg,video{display:block;max-width:100%;height:auto}
-    a,button,input{
-      transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),transform var(--transition-interactive),box-shadow var(--transition-interactive)
-    }
-    a{text-decoration:none;color:inherit}
-    button{cursor:pointer;border:none;background:none;color:inherit}
-    input{font:inherit;color:inherit}
-    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .skip-link{position:absolute;left:var(--space-4);top:-40px;background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);z-index:1000}
-    .skip-link:focus{top:var(--space-3)}
-    .container{width:min(calc(100% - 2rem), var(--content-default));margin-inline:auto}
-    .section{padding-block:clamp(var(--space-10),8vw,var(--space-24))}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:var(--space-2);
-      padding:var(--space-2) var(--space-3);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:var(--radius-full);
-      background:rgba(255,255,255,.03);
-      font-size:var(--text-xs);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--color-text-muted)
-    }
-    .eyebrow::before{
-      content:"";
-      width:.5rem;height:.5rem;border-radius:50%;
-      background:var(--color-primary);
-      box-shadow:0 0 18px rgba(182,34,34,.65)
-    }
-
-    .site-header{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:blur(14px);
-      background:color-mix(in srgb, var(--color-bg) 82%, transparent);
-      border-bottom:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)
-    }
-    .header-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:var(--space-4);padding:var(--space-3) 0;min-height:4.75rem
-    }
-    .brand{display:flex;align-items:center;gap:var(--space-3);min-width:0}
-    .brand-mark{width:2.7rem;height:2.7rem;color:var(--color-text);flex:none}
-    .brand-name{
-      font-family:var(--font-display);font-size:1.05rem;
-      letter-spacing:.14em;text-transform:uppercase;display:block;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis
-    }
-    .brand-sub{
-      font-size:var(--text-xs);color:var(--color-text-muted);
-      text-transform:uppercase;letter-spacing:.14em;display:block
-    }
-    .nav{display:flex;align-items:center;gap:var(--space-4);position:relative}
-    .nav-links{
-      display:flex;align-items:center;gap:var(--space-4);
-      font-size:var(--text-sm);color:var(--color-text-muted)
-    }
-    .nav-links a:hover{color:var(--color-text)}
-
-    .header-actions{display:flex;align-items:center;gap:var(--space-2)}
-    .menu-toggle,.theme-toggle,.social-icon{
-      display:grid;place-items:center;width:44px;height:44px;
-      border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
-      border-radius:var(--radius-full);background:var(--color-surface)
-    }
-    .social-row{display:flex;gap:var(--space-2)}
-    .menu-toggle{display:none}
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
-      min-height:44px;padding:0 var(--space-5);border-radius:var(--radius-full);
-      font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;
-      white-space:nowrap
-    }
-    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)}
-    .btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-1px)}
-    .btn-secondary{background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent)}
-    .btn-secondary:hover{background:var(--color-surface-2)}
-    .btn-ghost{border:1px dashed color-mix(in srgb, var(--color-text) 18%, transparent);background:transparent}
-
-    .hero{
-      padding-top:clamp(var(--space-10),8vw,var(--space-24));
-      padding-bottom:var(--space-16)
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-      gap:var(--space-8);
-      align-items:stretch
-    }
-    .hero-copy h1{
-      font-family:var(--font-display);
-      font-size:var(--text-3xl);
-      line-height:.95;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-      max-width:11ch;
-      text-wrap:balance
-    }
-    .hero-copy p{
-      margin-top:var(--space-5);
-      max-width:60ch;
-      color:var(--color-text-muted)
-    }
-    .hero-actions,.hero-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:var(--space-3);
-      margin-top:var(--space-6)
-    }
-    .hero-meta{font-size:var(--text-sm);color:var(--color-text-muted)}
-    .hero-meta span,.quick-actions a{overflow-wrap:anywhere}
-
-    .hero-card,.panel,.show-item,.merch-item,.music-card,.contact-card,.proof-card,.epk-card,.signup-card{
-      background:linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, white 8%), var(--color-surface));
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-      border-radius:var(--radius-xl);
-      box-shadow:var(--shadow-md)
-    }
-    .hero-card{
-      padding:var(--space-6);
-      position:relative;overflow:hidden;min-height:100%
-    }
-    .hero-card::before{
-      content:"";position:absolute;inset:auto -15% -30% auto;width:260px;height:260px;border-radius:50%;
-      background:radial-gradient(circle, rgba(182,34,34,.3), transparent 65%)
-    }
-    .hero-visual{
-      aspect-ratio:4/5;
-      border-radius:calc(var(--radius-xl) - var(--space-2));
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(182,34,34,.12)),
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,.16), transparent 18%),
-        linear-gradient(135deg, #26262a, #0f1013 68%);
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-      position:relative;overflow:hidden
-    }
-    .media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover}
-    .media-hero::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.34))
-    }
-    .media-fallback{
-      position:absolute;left:1rem;bottom:1rem;z-index:2;
-      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;
-      color:rgba(255,255,255,.74);padding:.5rem .75rem;border-radius:999px;
-      background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.12)
-    }
-
-    .stat-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-5)
-    }
-    .stat{
-      padding:var(--space-4);border-radius:var(--radius-lg);
-      background:color-mix(in srgb, var(--color-surface-offset) 75%, transparent);
-      border:1px solid color-mix(in srgb, var(--color-text) 9%, transparent)
-    }
-    .stat strong{display:block;font-size:var(--text-lg);font-weight:800}
-    .stat span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted)}
-
-    .section-head{
-      display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;margin-bottom:var(--space-6)
-    }
-    .section-head h2{
-      font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:.06em;text-transform:uppercase
-    }
-    .section-head p{max-width:56ch;color:var(--color-text-muted)}
-    .panel{padding:var(--space-6)}
-
-    .quick-actions{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-top:var(--space-8)
-    }
-    .quick-actions a{
-      padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface);
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-      font-size:var(--text-sm);font-weight:700;text-align:center
-    }
-
-    .shows-grid{display:grid;gap:var(--space-4)}
-    .show-item{
-      display:grid;grid-template-columns:110px minmax(0,1.25fr) minmax(0,.85fr) auto;
-      gap:var(--space-4);padding:var(--space-5);align-items:center
-    }
-    .show-date{
-      display:grid;gap:2px;text-align:center;padding:var(--space-3);
-      border-radius:var(--radius-lg);
-      background:color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
-      border:1px solid color-mix(in srgb, var(--color-primary) 26%, transparent)
-    }
-    .show-date strong{font-size:var(--text-xl);line-height:1;font-weight:800}
-    .show-date span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted)}
-    .show-venue strong,.merch-item strong,.music-card strong,.contact-card strong,.proof-card strong,.epk-card strong{display:block;font-size:var(--text-lg)}
-    .muted,.show-venue p,.show-city{color:var(--color-text-muted)}
-    .show-city{font-size:var(--text-sm)}
-    .meta-line{
-      display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:.4rem;
-      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint)
-    }
-    .ticket-tag{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);
-      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)
-    }
-    .ticket-tag.low{color:#ffcf8a;border-color:rgba(255,207,138,.25);background:rgba(255,207,138,.06)}
-    .ticket-tag.on{color:#a9dfb2;border-color:rgba(169,223,178,.2);background:rgba(169,223,178,.06)}
-    .archive{
-      margin-top:var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
-      padding:var(--space-5);border-radius:var(--radius-xl);
-      background:color-mix(in srgb, var(--color-surface-offset) 65%, transparent);
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent)
-    }
-
-    .merch-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--space-6)}
-    .merch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
-    .merch-item{padding:var(--space-5)}
-    .merch-thumb{
-      aspect-ratio:4/3;border-radius:calc(var(--radius-lg) - var(--space-1));margin-bottom:var(--space-4);
-      background:linear-gradient(135deg, rgba(182,34,34,.18), rgba(255,255,255,.02)),linear-gradient(180deg, #1d1d22, #111114);
-      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-      position:relative;overflow:hidden
-    }
-    .merch-thumb::after{
-      content:attr(data-label);position:absolute;inset:auto var(--space-3) var(--space-3) auto;
-      font-family:var(--font-display);font-size:1.35rem;letter-spacing:.08em;color:rgba(255,255,255,.68);
-      text-transform:uppercase
-    }
-    .price-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-4)}
-    .price-row span{font-weight:800}
-    .stock{display:inline-flex;margin-top:var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-success)}
-
-    .music-grid,.proof-grid,.epk-grid,.contact-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)
-    }
-    .music-card,.proof-card,.epk-card,.contact-card{padding:var(--space-5)}
-    .tracklist{margin-top:var(--space-4);display:grid;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-text-muted)}
-    .tracklist a{display:inline-flex;width:max-content}
-    .story{
-      display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:var(--space-6)
-    }
-    .quote{
-      padding:var(--space-6);
-      background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
-      border:1px solid color-mix(in srgb, var(--color-primary) 16%, transparent);
-      border-radius:var(--radius-lg)
-    }
-    .signup-card{
-      padding:var(--space-6);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-4);align-items:center
-    }
-    .signup-form{display:flex;gap:var(--space-3);flex-wrap:wrap}
-    .signup-form input{
-      min-height:46px;flex:1 1 240px;padding:0 var(--space-4);border-radius:var(--radius-full);
-      border:1px solid color-mix(in srgb, var(--color-text) 14%, transparent);background:var(--color-surface)
-    }
-    .footer{
-      padding:var(--space-8) 0 calc(var(--space-12) + 4rem);
-      border-top:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-      color:var(--color-text-muted)
-    }
-    .footer-inner{display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
-    .sticky-bar{
-      position:fixed;left:0;right:0;bottom:0;z-index:60;
-      padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
-      background:color-mix(in srgb, var(--color-bg) 90%, transparent);
-      backdrop-filter:blur(12px);
-      border-top:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
-      display:none
-    }
-    .sticky-bar-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:720px;margin:0 auto}
-
-    @media (max-width: 1040px){
-      .hero-grid,.merch-layout,.story,.signup-card{grid-template-columns:1fr}
-      .music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions{grid-template-columns:repeat(2,1fr)}
-      .show-item{grid-template-columns:1fr}
-      .show-date{max-width:120px}
-      .stat-grid{grid-template-columns:repeat(3,1fr)}
-      .hero-copy h1{max-width:13ch}
-      .hero-card{order:-1}
-    }
-
-    @media (max-width: 760px){
-      .container{width:min(calc(100% - 1rem), var(--content-default))}
-      .header-inner{gap:var(--space-2)}
-      .brand-sub{max-width:20ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .nav-links{
-        display:none;
-        position:absolute;
-        left:0;right:0;top:calc(100% + .5rem);
-        flex-direction:column;align-items:flex-start;
-        background:var(--color-surface);
-        border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-        border-radius:var(--radius-xl);
-        padding:var(--space-4);
-        box-shadow:var(--shadow-lg);
-        z-index:80
-      }
-      .nav-links.open{display:flex}
-      .nav-links a{width:100%;padding:.35rem 0}
-      .menu-toggle{display:grid}
-      .header-actions .btn,.header-actions .social-row{display:none}
-      .hero{padding-top:var(--space-8)}
-      .hero-grid{gap:var(--space-6)}
-      .hero-copy h1{font-size:clamp(2.35rem, 12vw, 3.8rem);max-width:9.5ch}
-      .hero-copy p{margin-top:var(--space-4)}
-      .hero-actions,.hero-meta,.quick-actions{margin-top:var(--space-5)}
-      .hero-actions,.quick-actions,.signup-form{display:grid;grid-template-columns:1fr}
-      .btn{width:100%}
-      .stat-grid,.music-grid,.proof-grid,.epk-grid,.contact-grid,.quick-actions,.merch-grid{grid-template-columns:1fr}
-      .archive,.footer-inner{flex-direction:column;align-items:flex-start}
-      .section-head{flex-direction:column;align-items:flex-start}
-      .section-head p{max-width:none}
-      .show-item{gap:var(--space-3)}
-      .show-item > div:last-child{justify-items:stretch}
-      .show-item .btn{width:100%}
-      .show-item .ticket-tag{width:max-content}
-      .show-date{max-width:none;width:100%}
-      .hero-card{padding:var(--space-4)}
-      .hero-visual{aspect-ratio:16/10}
-      .sticky-bar{display:block}
-      body{padding-bottom:5.5rem}
-    }
-
-    @media (max-width: 480px){
-      .brand-name{font-size:.98rem}
-      .brand-sub{font-size:.68rem;letter-spacing:.1em}
-      .hero-copy h1{max-width:8.5ch}
-      .hero-actions,.quick-actions{gap:var(--space-2)}
-      .panel,.merch-item,.music-card,.proof-card,.epk-card,.contact-card,.show-item{padding:var(--space-4)}
-      .hero-card,.signup-card{padding:var(--space-4)}
-      .show-date strong{font-size:1.6rem}
-      .show-date span{font-size:.68rem}
-      .sticky-bar-inner{gap:.5rem}
-      .sticky-bar .btn{padding:0 .75rem}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-    }
-  </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="Bandname home">
-        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Band logo">
-          <path d="M32 6L43 22L58 25L47 38L49 56L32 47L15 56L17 38L6 25L21 22L32 6Z" stroke="currentColor" stroke-width="2.6"/>
-          <path d="M20 31H44M32 14V48" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-        <span>
-          <span class="brand-name">Bandname</span>
-          <span class="brand-sub">Athens, Greece • Modern Death Metal</span>
-        </span>
-      </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-toggle>
-          <span class="sr-only">Toggle menu</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 6h18M3 12h18M3 18h18"/>
-          </svg>
-        </button>
-        <div class="nav-links" id="nav-links">
-          <a href="#shows">Tour</a>
-          <a href="#merch">Merch</a>
-          <a href="#music">Music</a>
-          <a href="#epk">EPK</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
 
-      <div class="header-actions">
-        <div class="social-row" aria-label="Social links">
-          <a class="social-icon" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
-          </a>
-          <a class="social-icon" href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58Z"/><path d="m9.75 15.02 5.5-3.02-5.5-3.02v6.04Z"/></svg>
-          </a>
-          <a class="social-icon" href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 11.5c2.8-1 5.9-.9 8.6.4"/><path d="M8.8 14c2.2-.7 4.5-.6 6.5.3"/><path d="M9.8 16.3c1.5-.4 3-.3 4.3.3"/></svg>
-          </a>
+        <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container nav-content">
+            <ul class="nav-menu nav-menu-left">
+                <li><a href="#release">Latest Release</a></li>
+                <li><a href="#tour">Tour Dates</a></li>
+                <li><a href="#merch">Merch</a></li>
+            </ul>
+           <a href="#" class="nav-brand" aria-label="I See Red home">
+  <img src="assets/images/logo_white.png" alt="I See Red" class="nav-brand-logo">
+</a>
+            <ul class="nav-menu nav-menu-right">
+                <li><a href="#about">About</a></li>
+                <li><a href="#press">Press</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"></button>
-        <a class="btn btn-primary" href="#shows">Buy tickets</a>
-      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+       <!-- Hero Section -->
+<section class="hero" aria-label="Hero">
+
+    <img class="hero-bg-image" src="assets/images/band-photo-red2.png" alt="" aria-hidden="true">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+       <h1 class="hero-title">
+  <img src="assets/images/logo_white.png" alt="I See Red" class="hero-logo">
+</h1>
+
+        <p class="hero-subtitle">
+            Melodic Death Metal from Athens, Greece
+        </p>
+
+        <div class="hero-cta">
+            <a href="#release" class="btn">Listen Now</a>
+            <a href="#tour" class="btn">Get Tickets</a>
+            <a href="#merch" class="btn">Merch</a>
+        </div>
     </div>
-  </header>
 
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Current campaign</span>
-          <h1>New tour. New drop. New release.</h1>
-          <p>Bandname is a modern death metal band from Athens, Greece. Use this hero area for your real release cycle: new single or record title, live announcement, and one sharp line about the band’s sound and intent.</p>
+</section>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#shows">Buy tickets</a>
-            <a class="btn btn-secondary" href="#merch">Shop merch</a>
-            <a class="btn btn-secondary" href="#music">Stream now</a>
-          </div>
-
-          <div class="hero-meta">
-            <span>Replace Bandname with your real name.</span>
-            <span>Add one live photo.</span>
-            <span>Link all CTAs to live pages.</span>
-          </div>
-
-          <div class="quick-actions">
-            <a href="#epk">Download EPK</a>
-            <a href="#newsletter">Join mailing list</a>
-            <a href="#contact">Booking contact</a>
-            <a href="#proof">Band proof</a>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="Band campaign overview">
-          <div class="hero-visual media-hero">
-            <!-- Replace hero-poster.jpg and hero-video.mp4 with your real assets in ./assets/ -->
-            <video autoplay muted loop playsinline preload="metadata" poster="./assets/hero-poster.jpg" aria-label="Band video teaser">
-              <source src="./assets/hero-video.mp4" type="video/mp4" />
-            </video>
-            <div class="media-fallback" aria-hidden="true">Add ./assets/hero-video.mp4 and ./assets/hero-poster.jpg</div>
-          </div>
-          <div class="stat-grid">
-            <div class="stat"><strong>12</strong><span>Upcoming shows</span></div>
-            <div class="stat"><strong>4</strong><span>Featured merch items</span></div>
-            <div class="stat"><strong>1</strong><span>New release campaign</span></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="shows">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Tour dates</span>
-            <h2>Tickets need one click</h2>
-          </div>
-          <p>Every date below now uses a real outbound event-style link pattern so the section behaves more like a sellable live page and less like a mockup placeholder.</p>
-        </div>
-
-        <div class="shows-grid">
-          <article class="show-item">
-            <div class="show-date"><span>Sep</span><strong>18</strong><span>2026</span></div>
-            <div class="show-venue">
-              <strong>Temple</strong>
-              <p>Athens, Greece</p>
-              <div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>With local support</span></div>
+        <!-- Current Release Section -->
+        <section class="section release" id="release" aria-label="Current Release">
+            <div class="container">
+                <h2 class="section-title">Latest Release</h2>
+                <div class="release-grid">
+                    <div class="release-media">
+                        <span class="release-badge">New Single</span>
+                        <div class="release-cover" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="90" stroke="#c41e3a" stroke-width="2"/>
+                                <path d="M100 30 L100 170 M60 70 L100 30 L140 70" stroke="#c41e3a" stroke-width="3" fill="none"/>
+                                <circle cx="100" cy="100" r="40" fill="#c41e3a" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <p class="release-label">Out Now</p>
+                        <h3 class="release-title">We, the Void</h3>
+                        <p class="release-meta">Single • 2026 • 4:23</p>
+                        <p class="release-description">
+                            The latest single from I See Red's upcoming album, Red is Dead. A crushing blend of modern death metal aggression and atmospheric depth.
+                        </p>
+                        <div class="release-links">
+                            <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" aria-label="Listen on Spotify">Spotify</a>
+                            <a href="https://music.apple.com/us/artist/i-see-red/1543452295" aria-label="Listen on Apple Music">Apple Music</a>
+                            <a href="https://music.youtube.com/channel/UC_uO7e_5PhX8T_izXsSDJhQ" aria-label="Listen on YouTube Music">YouTube</a>
+                            <a href="https://iseeredgr.bandcamp.com" aria-label="Listen on Bandcamp">Bandcamp</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="show-city">Lead city show of the new cycle</div>
-            <div style="display:grid;gap:.75rem;justify-items:end">
-              <span class="ticket-tag on">Tickets live</span>
-              <a class="btn btn-primary" href="https://example.com/tickets/athens-temple" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+        </section>
+
+        <!-- Tour Dates Section -->
+        <section class="section tour" id="tour" aria-label="Tour Dates">
+            <div class="container">
+                <h2 class="section-title">Tour Dates</h2>
+                <div class="tour-list">
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">15</span>
+                            <span class="tour-date-month">Aug</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">The Underworld</h3>
+                            <p class="tour-location">London, UK</p>
+                        </div>
+                        <div class="tour-actions">
+                            <a href="#" class="btn btn-primary">Tickets</a>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">22</span>
+                            <span class="tour-date-month">Aug</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">ProgPower Festival</h3>
+                            <p class="tour-location">Atlanta, GA, USA</p>
+                        </div>
+                        <div class="tour-actions">
+                            <a href="#" class="btn btn-primary">Tickets</a>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">05</span>
+                            <span class="tour-date-month">Sep</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">Fibuna</h3>
+                            <p class="tour-location">Athens, Greece</p>
+                        </div>
+                        <div class="tour-actions">
+                            <a href="#" class="btn btn-primary">Tickets</a>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">18</span>
+                            <span class="tour-date-month">Sep</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">Backstage</h3>
+                            <p class="tour-location">Munich, Germany</p>
+                        </div>
+                        <div class="tour-actions">
+                            <a href="#" class="btn btn-primary">Tickets</a>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">02</span>
+                            <span class="tour-date-month">Oct</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">Magasin 4</h3>
+                            <p class="tour-location">Brussels, Belgium</p>
+                        </div>
+                        <div class="tour-actions">
+                            <span class="tour-sold-out">Sold Out</span>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+
+                    <article class="tour-date">
+                        <div class="tour-date-info">
+                            <span class="tour-date-day">10</span>
+                            <span class="tour-date-month">Oct</span>
+                            <span class="tour-date-year">2026</span>
+                        </div>
+                        <div class="tour-venue-info">
+                            <h3 class="tour-venue">Kafenio Kemik</h3>
+                            <p class="tour-location">Thessaloniki, Greece</p>
+                        </div>
+                        <div class="tour-actions">
+                            <a href="#" class="btn btn-primary">Tickets</a>
+                            <a href="#" class="btn btn-secondary" aria-label="More info about this show">Info</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="tour-view-all">
+                    <a href="#" class="btn btn-secondary">View All Dates</a>
+                </div>
             </div>
-          </article>
+        </section>
 
-          <article class="show-item">
-            <div class="show-date"><span>Sep</span><strong>26</strong><span>2026</span></div>
-            <div class="show-venue">
-              <strong>Principal Club Theater</strong>
-              <p>Thessaloniki, Greece</p>
-              <div class="meta-line"><span>Doors 20:30</span><span>16+</span><span>Co-headline</span></div>
+        <!-- Merch Section -->
+        <section class="section merch" id="merch" aria-label="Merchandise">
+            <div class="container">
+                <h2 class="section-title">Merch</h2>
+                <div class="merch-grid">
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <span class="merch-item-badge">Limited</span>
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="40" y="30" width="70" height="90" fill="#1a1a1a"/>
+                                    <path d="M75 50 L75 100 M55 70 L75 50 L95 70" stroke="#c41e3a" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Eternal Darkness Tee</h3>
+                            <p class="merch-item-price">€35.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="35" y="25" width="80" height="100" fill="#1a1a1a"/>
+                                    <circle cx="75" cy="65" r="15" stroke="#c41e3a" stroke-width="2"/>
+                                    <path d="M55 95 L95 95" stroke="#c41e3a" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Band Logo Hoodie</h3>
+                            <p class="merch-item-price">€60.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <span class="merch-item-badge">New</span>
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="75" cy="75" r="60" fill="#1a1a1a"/>
+                                    <path d="M75 40 L75 110 M50 65 L75 40 L100 65" stroke="#c41e3a" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Vinyl - Eternal Darkness</h3>
+                            <p class="merch-item-price">€45.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="50" y="40" width="50" height="70" fill="#1a1a1a"/>
+                                    <rect x="55" y="45" width="40" height="60" fill="#2a2a2a"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Enamel Pin Set</h3>
+                            <p class="merch-item-price">€20.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="35" y="60" width="80" height="50" fill="#1a1a1a"/>
+                                    <path d="M45 75 L105 75 M45 85 L105 85 M45 95 L85 95" stroke="#c41e3a" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Tour Poster 2026</h3>
+                            <p class="merch-item-price">€25.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="merch-item">
+                        <div class="merch-item-image">
+                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="75" cy="75" r="50" fill="#1a1a1a"/>
+                                    <path d="M75 50 L75 100" stroke="#c41e3a" stroke-width="3"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="merch-item-info">
+                            <h3 class="merch-item-title">Logo Patch</h3>
+                            <p class="merch-item-price">€12.00</p>
+                            <div class="merch-item-actions">
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="tour-view-all">
+                    <a href="#" class="btn btn-secondary">View All Merch</a>
+                </div>
             </div>
-            <div class="show-city">Northern Greece date</div>
-            <div style="display:grid;gap:.75rem;justify-items:end">
-              <span class="ticket-tag low">Low tickets</span>
-              <a class="btn btn-primary" href="https://example.com/tickets/thessaloniki-principal" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about" aria-label="About">
+            <div class="container">
+                <h2 class="section-title">About</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <div class="about-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
+                            <svg width="200" height="150" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="20" width="160" height="110" fill="#1a1a1a"/>
+                                <circle cx="100" cy="75" r="30" stroke="#c41e3a" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="about-content">                      
+                        <h3 class="section-title" style="font-size: 2.5rem;">The Band</h3>
+                        <p class="about-text">
+                            Emerging from the depths of modern metal, I See Red delivers a sonic assault that blends the raw aggression of death metal with atmospheric textures and contemporary production. Formed with a vision to push boundaries while honoring the genre's roots, the band crafts crushing riffs, thunderous rhythms, and haunting melodies that resonate with both old-school metalheads and new generations.
+                        </p>
+                        <p class="about-text">
+                            Drawing inspiration from acts like At the Gates, In Flames, and xxx, I See Red has carved out a unique sonic identity that's equally comfortable in underground clubs and festival stages across Europe.
+                        </p>
+                        <div class="about-members">
+                            <div class="about-member">
+                                <p class="about-member-name">Chris S.</p>
+                                <p class="about-member-role">Vocals</p>
+                            </div>
+                            <div class="about-member">
+                                <p class="about-member-name">Dimitris K.</p>
+                                <p class="about-member-role">Guitar</p>
+                            </div>
+                            <div class="about-member">
+                                <p class="about-member-name">Akis Ch.</p>
+                                <p class="about-member-role">Guitar</p>
+                            </div>
+                            <div class="about-member">
+                                <p class="about-member-name">Nikos G.</p>
+                                <p class="about-member-role">Bass</p>
+                            </div>
+                            <div class="about-member">
+                                <p class="about-member-name">Ilias A.</p>
+                                <p class="about-member-role">Drums</p>
+                            </div>
+                        </div>
+                        <div class="about-social">
+                            <a href="#" aria-label="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Spotify">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </article>
+        </section>
 
-          <article class="show-item">
-            <div class="show-date"><span>Oct</span><strong>03</strong><span>2026</span></div>
-            <div class="show-venue">
-              <strong>Fuzz Club</strong>
-              <p>Athens, Greece</p>
-              <div class="meta-line"><span>Doors 21:00</span><span>18+</span><span>Album cycle launch</span></div>
+        <!-- Press Assets Section -->
+        <section class="section press" id="press" aria-label="Press Assets">
+            <div class="container">
+                <h2 class="section-title">Press Assets</h2>
+                <div class="press-grid">
+                    <div class="press-card">                        
+                        <h3 class="press-card-title">Press Photos</h3>
+                        <p class="press-card-description">High-resolution band photos for press and promotional use. Available in both color and black & white.</p>
+                        <ul class="press-card-list">
+                            <li>Band promo shots (2026)</li>
+                            <li>Live performance photos</li>
+                            <li>Individual member portraits</li>
+                            <li>Album artwork (3000x3000px)</li>
+                        </ul>
+                        <a href="assets/downloads/press.zip" class="btn btn-primary" style="width: 100%; text-align: center;">Download .ZIP (45MB)</a>
+                    </div>
+
+                    <div class="press-card">
+                        <h3 class="press-card-title">Music & EPK</h3>
+                        <p class="press-card-description">Electronic Press Kit with music samples, bio, and technical requirements for booking.</p>
+                        <ul class="press-card-list">
+                            <li>Full EPK (PDF)</li>
+                            <li>Music sampler (MP3/WAV)</li>
+                            <li>Official band bio</li>
+                            <li>Tech & stage plot</li>
+                        </ul>
+                        <a href="assets/downloads/epk.zip" class="btn btn-primary" style="width: 100%; text-align: center;">Download EPK</a>
+                    </div>
+
+                    <div class="press-card">
+                        <h3 class="press-card-title">Logo & Branding</h3>
+                        <p class="press-card-description">Official band logos and branding assets in various formats for press and promotional materials.</p>
+                        <ul class="press-card-list">
+                            <li>Primary logo (PNG/SVG/AI)</li>
+                            <li>Secondary logo variants</li>
+                            <li>Brand color palette</li>
+                            <li>Typography guidelines</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Download Assets</a>
+                    </div>
+
+                    <div class="press-card">
+                        <h3 class="press-card-title">Press Coverage</h3>
+                        <p class="press-card-description">Selected press quotes, reviews, and interviews from recognized metal publications.</p>
+                        <ul class="press-card-list">
+                            <li>Recent reviews & features</li>
+                            <li>Radio & podcast interviews</li>
+                            <li>Notable quotes</li>
+                            <li>Media contact info</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">View Press</a>
+                    </div>
+                </div>
+                <div class="tour-view-all" style="margin-top: var(--spacing-md);">
+                    <p style="color: var(--color-white-dim); font-size: 0.9rem; max-width: 600px; margin: 0 auto var(--spacing-sm);">
+                        For press inquiries, high-resolution assets, or interview requests, please contact the band directly.
+                    </p>
+                </div>
             </div>
-            <div class="show-city">Release week headliner</div>
-            <div style="display:grid;gap:.75rem;justify-items:end">
-              <span class="ticket-tag on">Presale</span>
-              <a class="btn btn-primary" href="https://example.com/tickets/athens-fuzz" target="_blank" rel="noopener noreferrer">Buy tickets</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contact" aria-label="Contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">                        
+                        <h3 class="contact-title">Booking & Inquiries</h3>
+                        <p class="contact-description">
+                            For booking inquiries, press requests, or general questions, please use the appropriate contact below. We typically respond within 48 hours.
+                        </p>
+                        <div class="contact-details">
+                            <div class="contact-item">                        
+                                <div class="contact-item-text">
+                                    <strong>Management & Booking:</strong><br>
+                                    <a href="mailto:booking@iseeredband.com">booking@iseeredband.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item-text">
+                                    <strong>Press & Media:</strong><br>
+                                    <a href="mailto:press@iseeredband.com">press@iseeredband.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item-text">
+                                    <strong>Merch & Web Store:</strong><br>
+                                    <a href="mailto:merch@iseeredband.com">merch@iseeredband.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-item-text">
+                                    <strong>General Inquiries:</strong><br>
+                                    <a href="mailto:info@iseeredband.com">info@iseeredband.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: var(--color-white-dim); font-size: 0.9rem; line-height: 1.7;">
+                            <strong>For booking inquiries, please include:</strong><br>
+                            • Date(s) & venue<br>
+                            • Location<br>
+                            • Expected capacity<br>
+                            • Budget range<br>
+                            • Support acts (if any)
+                        </p>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm" aria-label="Contact form">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Name *</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="inquiry-type">Inquiry Type *</label>
+                                <select id="inquiry-type" name="inquiry-type" class="form-select" required>
+                                    <option value="">Select an option</option>
+                                    <option value="booking">Booking / Tour Inquiry</option>
+                                    <option value="press">Press / Media</option>
+                                    <option value="merch">Merch / Store</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message *</label>
+                                <textarea id="message" name="message" class="form-textarea" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="consent" required>
+                                    <span>I agree to the storage of my data for the purpose of processing this inquiry. I understand that I can withdraw my consent at any time.</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </article>
+        </section>
+    </main>
 
-          <article class="show-item">
-            <div class="show-date"><span>Oct</span><strong>11</strong><span>2026</span></div>
-            <div class="show-venue">
-              <strong>An Club</strong>
-              <p>Athens, Greece</p>
-              <div class="meta-line"><span>Doors 20:00</span><span>18+</span><span>Special guest</span></div>
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-brand" aria-label="I See Red home">
+  <img src="assets/images/logo_white.png" alt="I See Red" class="footer-brand-logo">
+</a>
+                    <p class="footer-description">
+                        Modern melodic death metal pushing boundaries and crushing stages across Europe. Stay updated with the latest releases, tour dates, and exclusive merch drops.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/i.see.red/" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/iseeredofficial/" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://music.youtube.com/search?q=i+see+red" aria-label="YouTube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" aria-label="Spotify">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#release">Latest Release</a></li>
+                        <li><a href="#tour">Tour Dates</a></li>
+                        <li><a href="#merch">Merch Store</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#press">Press Assets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:booking@iseeredband.com">Booking</a></li>
+                        <li><a href="mailto:press@iseeredband.com">Press</a></li>
+                        <li><a href="mailto:merch@iseeredband.com">Merch Support</a></li>
+                        <li><a href="mailto:info@iseeredband.com">General</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p class="footer-newsletter-text">
+                        Subscribe for exclusive updates, early access to tickets, and special merch drops.
+                    </p>
+                    <form class="newsletter-form" aria-label="Newsletter signup">
+                        <input type="email" class="newsletter-input" placeholder="Your email" required>
+                        <button type="submit" class="newsletter-btn">→</button>
+                    </form>
+                </div>
             </div>
-            <div class="show-city">Club support appearance</div>
-            <div style="display:grid;gap:.75rem;justify-items:end">
-              <span class="ticket-tag on">On sale</span>
-              <a class="btn btn-secondary" href="https://example.com/event/an-club" target="_blank" rel="noopener noreferrer">Event page</a>
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 I See Red. All rights reserved.
+                </p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
             </div>
-          </article>
         </div>
+    </footer>
 
-        <div class="archive">
-          <div>
-            <strong>Past shows archive</strong>
-            <p class="muted">Add previous support slots, festivals, and notable rooms here to show promoters you are active and bookable.</p>
-          </div>
-          <a class="btn btn-secondary" href="#proof">Show history</a>
-        </div>
-      </div>
-    </section>
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
 
-    <section class="section" id="merch">
-      <div class="container merch-layout">
-        <div>
-          <div class="section-head" style="margin-bottom:1.25rem">
-            <div>
-              <span class="eyebrow">Official merch</span>
-              <h2>Real store behavior</h2>
-            </div>
-          </div>
-          <p class="muted" style="margin-bottom:1.5rem;max-width:58ch;">These product cards now read more like actual merch listings, with stronger purchase language, stock cues, and direct external store links.</p>
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
+});
 
-          <div class="merch-grid">
-            <article class="merch-item">
-              <div class="merch-thumb" data-label="Sigil"></div>
-              <strong>Ash Sigil Tour Shirt</strong>
-              <p class="muted">Heavyweight black cotton, front print, back-date layout. Sizes S–XXL.</p>
-              <span class="stock">Limited first run</span>
-              <div class="price-row">
-                <span>€30</span>
-                <a class="btn btn-secondary" href="https://example.com/store/tour-shirt" target="_blank" rel="noopener noreferrer">Buy now</a>
-              </div>
-            </article>
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.forEach(menu => menu.classList.remove('active'));
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
 
-            <article class="merch-item">
-              <div class="merch-thumb" data-label="Void"></div>
-              <strong>Void Rite Hoodie</strong>
-              <p class="muted">Oversized fit, sleeve print, crimson chest mark. EU shipping enabled.</p>
-              <span class="stock">Ships in 3–5 days</span>
-              <div class="price-row">
-                <span>€55</span>
-                <a class="btn btn-secondary" href="https://example.com/store/hoodie" target="_blank" rel="noopener noreferrer">Buy now</a>
-              </div>
-            </article>
+        // Navbar visibility on scroll - invisible until scrolling starts
+        const nav = document.querySelector('.nav');
 
-            <article class="merch-item">
-              <div class="merch-thumb" data-label="Bones"></div>
-              <strong>Logo Backpatch</strong>
-              <p class="muted">Embroidered patch for battle jackets and bags. One size.</p>
-              <span class="stock">In stock</span>
-              <div class="price-row">
-                <span>€12</span>
-                <a class="btn btn-secondary" href="https://example.com/store/backpatch" target="_blank" rel="noopener noreferrer">Buy now</a>
-              </div>
-            </article>
+function updateNavVisibility() {
+  if (window.scrollY > 50) {
+    nav.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+  }
+}
 
-            <article class="merch-item">
-              <div class="merch-thumb" data-label="Tour"></div>
-              <strong>Tour Poster</strong>
-              <p class="muted">Screen-style campaign poster. Signed variant available in-store.</p>
-              <span class="stock">Bundle with shirt</span>
-              <div class="price-row">
-                <span>€18</span>
-                <a class="btn btn-secondary" href="https://example.com/store/poster" target="_blank" rel="noopener noreferrer">View item</a>
-              </div>
-            </article>
-          </div>
-        </div>
+window.addEventListener('scroll', updateNavVisibility);
+window.addEventListener('load', updateNavVisibility);
 
-        <aside class="panel">
-          <span class="eyebrow">Merch notes</span>
-          <strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Use one store backend and keep it consistent.</strong>
-          <p class="muted" style="margin-top:1rem">When you replace the example links, point everything to the same real store, whether that is Bandcamp, Big Cartel, Shopify, or your merch partner.</p>
-          <div style="display:grid;gap:1rem;margin-top:1.5rem">
-            <div class="panel" style="padding:1rem">
-              <strong style="font-size:1rem">Recommended upgrade</strong>
-              <p class="muted">Add bundle pricing, shipping note, and sold-out states for each item.</p>
-            </div>
-            <div class="panel" style="padding:1rem">
-              <strong style="font-size:1rem">Recommended CTA set</strong>
-              <p class="muted">Shop merch, View item, Pre-order, Bundle deal, Sold out.</p>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
 
-    <section class="section" id="music">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Music</span>
-            <h2>Stream and convert</h2>
-          </div>
-          <p>This section now gives the band a clearer streaming path instead of acting only as descriptive filler.</p>
-        </div>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                
+                if (href === '#') {
+                    // If href is just #, scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const navHeight = nav.offsetHeight;
+                        const targetPosition = target.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
 
-        <div class="music-grid">
-          <article class="music-card">
-            <span class="eyebrow">New single</span>
-            <strong style="margin-top:1rem">Ashen Circuit</strong>
-            <p class="muted" style="margin-top:.6rem">Use this card for your real lead single, artwork, and release date.</p>
-            <div class="tracklist">
-              <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
-              <a href="https://music.youtube.com" target="_blank" rel="noopener noreferrer">YouTube Music</a>
-              <a href="https://bandcamp.com" target="_blank" rel="noopener noreferrer">Bandcamp</a>
-            </div>
-          </article>
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to your server
+            // For now, we'll just show a success message
+            alert('Thank you for your message! We will get back to you within 48 hours.');
+            contactForm.reset();
+        });
 
-          <article class="music-card">
-            <span class="eyebrow">Current release</span>
-            <strong style="margin-top:1rem">Ritual Collapse</strong>
-            <p class="muted" style="margin-top:.6rem">Swap in your real EP or album title and highlight the strongest track or video.</p>
-            <div class="tracklist">
-              <span>01. The Furnace Mouth</span>
-              <span>02. Ritual Collapse</span>
-              <span>03. Ashen Circuit</span>
-              <span>04. Nerve Harvest</span>
-              <span>05. Carrion Bloom</span>
-            </div>
-          </article>
+        // Newsletter form handling
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('.newsletter-input').value;
+            
+            // Here you would typically send the email to your mailing service
+            alert('Thank you for subscribing! You\'ll receive our next newsletter soon.');
+            newsletterForm.reset();
+        });
 
-          <article class="music-card">
-            <span class="eyebrow">Watch / follow</span>
-            <strong style="margin-top:1rem">Keep the ecosystem visible</strong>
-            <p class="muted" style="margin-top:.6rem">Add links to Instagram, YouTube, Spotify, Bandcamp, and your store anywhere fans may stall.</p>
-            <div class="tracklist">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-              <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">Spotify</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+        // Add active state to current nav link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a');
 
-    <section class="section" id="proof">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Proof</span>
-            <h2>Show promoters you are real</h2>
-          </div>
-          <p>This section is intentionally practical: replace these placeholders with the facts a promoter, manager, and press contact actually care about.</p>
-        </div>
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollPosition = window.scrollY + 200;
 
-        <div class="proof-grid">
-          <article class="proof-card">
-            <strong>Recent support slots</strong>
-            <p class="muted" style="margin-top:.6rem">Add 3–5 bands you opened for, with venues and cities.</p>
-          </article>
-          <article class="proof-card">
-            <strong>Festival / club history</strong>
-            <p class="muted" style="margin-top:.6rem">List festivals, club runs, sold-out nights, or notable rooms.</p>
-          </article>
-          <article class="proof-card">
-            <strong>Press / reviews</strong>
-            <p class="muted" style="margin-top:.6rem">Add short pull quotes from blogs, zines, labels, or playlist editors.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
 
-    <section class="section" id="about">
-      <div class="container story">
-        <div>
-          <span class="eyebrow">About</span>
-          <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);margin-top:1rem;letter-spacing:.06em;text-transform:uppercase;">Replace concept copy with a real band story.</h2>
-        </div>
-        <div>
-          <p class="muted">Write one short, usable bio here: where the band is from, what release is current, what the sound is, and what the last 12–18 months have looked like live.</p>
-          <div class="quote" style="margin-top:1.5rem">Good bios are short enough for promoters to quote, specific enough for press to use, and strong enough to support your poster copy.</div>
-        </div>
-      </div>
-    </section>
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-    <section class="section" id="epk">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">EPK</span>
-            <h2>Press and promoter tools</h2>
-          </div>
-          <p>A real launch version should let press and promoters grab what they need without emailing you first.</p>
-        </div>
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--color-red)';
+                }
+            });
+        });
 
-        <div class="epk-grid">
-          <article class="epk-card">
-            <strong>Short & full bio</strong>
-            <p class="muted" style="margin-top:.6rem">Add one short bio and one expanded version as PDF or text download.</p>
-            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add download</a>
-          </article>
-          <article class="epk-card">
-            <strong>Stage plot & input list</strong>
-            <p class="muted" style="margin-top:.6rem">Essential for promoters, venue techs, and festival production.</p>
-            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add PDF</a>
-          </article>
-          <article class="epk-card">
-            <strong>Promo photos & logo pack</strong>
-            <p class="muted" style="margin-top:.6rem">Provide landscape and portrait press shots plus transparent logos.</p>
-            <a class="btn btn-ghost" style="margin-top:1rem" href="#contact">Add assets</a>
-          </article>
-        </div>
-      </div>
-    </section>
+        // Add subtle animation to tour dates on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    <section class="section" id="newsletter">
-      <div class="container">
-        <div class="signup-card">
-          <div>
-            <span class="eyebrow">Mailing list</span>
-            <strong style="display:block;font-size:var(--text-xl);margin-top:1rem">Get tour alerts, presales, and merch drops.</strong>
-            <p class="muted" style="margin-top:.75rem">A band site should capture fans, not just impress them once. Replace this form action with Mailchimp, ConvertKit, Buttondown, or your preferred email tool.</p>
-          </div>
-          <form class="signup-form" onsubmit="event.preventDefault(); alert('Connect this form to your email platform.');">
-            <label class="sr-only" for="email">Email address</label>
-            <input id="email" type="email" placeholder="Email address" required>
-            <button class="btn btn-primary" type="submit">Join now</button>
-          </form>
-        </div>
-      </div>
-    </section>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Contact</span>
-            <h2>Booking, merch, press</h2>
-          </div>
-          <p>This area is now clearer about role-based contact paths, but it still needs your real names, addresses, and territories before launch.</p>
-        </div>
-
-        <div class="contact-grid">
-          <article class="contact-card">
-            <strong>Booking</strong>
-            <p class="muted" style="margin-top:.6rem">booking@yourband.com</p>
-            <p class="muted">For Greece / EU club and festival inquiries.</p>
-            <a class="btn btn-secondary" style="margin-top:1rem" href="mailto:booking@yourband.com">Email booking</a>
-          </article>
-
-          <article class="contact-card">
-            <strong>Merch support</strong>
-            <p class="muted" style="margin-top:.6rem">store@yourband.com</p>
-            <p class="muted">Order issues, sizing, shipping, replacements.</p>
-            <a class="btn btn-secondary" style="margin-top:1rem" href="mailto:store@yourband.com">Contact store</a>
-          </article>
-
-          <article class="contact-card">
-            <strong>Press / EPK</strong>
-            <p class="muted" style="margin-top:.6rem">press@yourband.com</p>
-            <p class="muted">Press requests, interviews, promo assets, guest list.</p>
-            <a class="btn btn-primary" style="margin-top:1rem" href="mailto:press@yourband.com">Request EPK</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© 2026 Bandname. Replace all placeholders before launch.</p>
-      <p>Best launch order: real band name, hero photo, ticket links, store links, EPK files, mailing list.</p>
-    </div>
-  </footer>
-
-  <div class="sticky-bar" aria-label="Quick actions">
-    <div class="sticky-bar-inner">
-      <a class="btn btn-primary" href="#shows">Tickets</a>
-      <a class="btn btn-secondary" href="#merch">Merch</a>
-      <a class="btn btn-secondary" href="#music">Stream</a>
-    </div>
-  </div>
-
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const toggle = document.querySelector('[data-theme-toggle]');
-      const menuToggle = document.querySelector('[data-menu-toggle]');
-      const navLinks = document.getElementById('nav-links');
-
-      const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-      let theme = prefersDark ? 'dark' : 'light';
-      root.setAttribute('data-theme', theme);
-
-      const renderIcon = () => {
-        if (!toggle) return;
-        toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
-        toggle.innerHTML = theme === 'dark'
-          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-      };
-
-      renderIcon();
-
-      toggle?.addEventListener('click', () => {
-        theme = theme === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', theme);
-        renderIcon();
-      });
-
-      menuToggle?.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      navLinks?.querySelectorAll('a').forEach(link =>
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('open');
-          menuToggle?.setAttribute('aria-expanded', 'false');
-        })
-      );
-    })();
-  </script>
+        document.querySelectorAll('.tour-date, .merch-item, .press-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
