@@ -7,6 +7,7 @@
     <meta name="keywords" content="I See Red, death metal, metal band, modern metal, metalcore, tour dates, merch">
     <meta name="author" content="I See Red">
 
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="I See Red | Melodic Death Metal from Athens, Greece">
     <meta property="og:description" content="Official website of I See Red. Tour dates, merch, new releases, and press assets.">
     <meta property="og:type" content="website">
@@ -15,42 +16,60 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="I See Red | Melodic Death Metal from Athens, Greece">
     <meta name="twitter:description" content="Official website of I See Red. Tour dates, merch, new releases, and press assets.">
     <meta name="twitter:image" content="https://thunderfork.github.io/iseered-band-site/assets/images/band-photo-red2.png">
 
     <meta name="theme-color" content="#c41e3a">
-    <link rel="icon" href="/favicon.ico">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/assets/icons/site.webmanifest">
+    
     <title>I See Red | Melodic Death Metal from Athens, Greece</title>
     <link rel="canonical" href="https://thunderfork.github.io/iseered-band-site/">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Metal+Mania&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- ===== BACKGROUND WRAPPER ===== -->
+    <div class="site-background" aria-hidden="true"></div>
+
+    <!-- ===== SKIP LINK ===== -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-        <!-- Navigation -->
+    <!-- ===== NAVIGATION ===== -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="container nav-content">
-            <ul class="nav-menu nav-menu-left">
+            <ul class="nav-menu nav-menu-left" id="main-menu">
                 <li><a href="#release">News</a></li>
                 <li><a href="#tour">Live</a></li>
                 <li><a href="#merch">Merch</a></li>
             </ul>
-                <a href="#" class="nav-brand" aria-label="I See Red home">
-                    <img src="assets/images/logo_white.png" alt="I See Red" class="nav-brand-logo">
-                </a>
+            <a href="#" class="nav-brand" aria-label="I See Red home">
+                <img src="assets/images/logo_white.png" alt="I See Red" class="nav-brand-logo">
+            </a>
             <ul class="nav-menu nav-menu-right">
                 <li><a href="#about">About</a></li>
                 <li><a href="#press">Press</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation menu</span>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -58,34 +77,26 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main id="main-content">
-       <!-- Hero Section -->
-<section class="hero" aria-label="Hero">
 
-    <img class="hero-bg-image" src="assets/images/band-photo-red2.png" alt="" aria-hidden="true">
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero" aria-label="Hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <img src="assets/images/logo_white.png" alt="I See Red" class="hero-logo">
+                </h1>
+                <p class="hero-subtitle">Melodic Death Metal from Athens, Greece</p>
+                <div class="hero-cta">
+                    <a href="#release" class="btn">Listen Now</a>
+                    <a href="#tour" class="btn">Get Tickets</a>
+                    <a href="#merch" class="btn">Merch</a>
+                </div>
+            </div>
+        </section>
 
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-       <h1 class="hero-title">
-  <img src="assets/images/logo_white.png" alt="I See Red" class="hero-logo">
-</h1>
-
-        <p class="hero-subtitle">
-            Melodic Death Metal from Athens, Greece
-        </p>
-
-        <div class="hero-cta">
-            <a href="#release" class="btn">Listen Now</a>
-            <a href="#tour" class="btn">Get Tickets</a>
-            <a href="#merch" class="btn">Merch</a>
-        </div>
-    </div>
-
-</section>
-
-        <!-- Current Release Section -->
+        <!-- ===== CURRENT RELEASE SECTION ===== -->
         <section class="section release" id="release" aria-label="Current Release">
             <div class="container">
                 <h2 class="section-title">Latest Release</h2>
@@ -93,331 +104,116 @@
                     <div class="release-media">
                         <span class="release-badge">New Single</span>
                         <div class="release-video">
+                            <div class="video-loader" aria-hidden="true">Loading video...</div>
                             <iframe
                                 src="https://www.youtube.com/embed/zuOUN-VSI40"
                                 title="I See Red - We, the Void (Official Video)"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen
-                                loading="lazy">
+                                loading="lazy"
+                                onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';">
                             </iframe>
                         </div>
                     </div>
                     <div class="release-info">
                         <p class="release-label">Out Now</p>
-                        <h3 class="release-title">We, the Void</h3>
+                        <h2 class="release-title">We, the Void</h2>
                         <p class="release-meta">Single • 2026 • 4:23</p>
                         <p class="release-description">
                             The latest single from I See Red's upcoming album, Red is Dead. A crushing blend of modern death metal aggression and atmospheric depth.
                         </p>
                         <div class="release-links">
-                            <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" aria-label="Listen on Spotify">Spotify</a>
-                            <a href="https://music.apple.com/us/artist/i-see-red/1543452295" aria-label="Listen on Apple Music">Apple Music</a>
-                            <a href="https://music.youtube.com/channel/UC_uO7e_5PhX8T_izXsSDJhQ" aria-label="Listen on YouTube Music">YouTube</a>
-                            <a href="https://iseeredgr.bandcamp.com" aria-label="Listen on Bandcamp">Bandcamp</a>
+                            <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">Spotify</a>
+                            <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Listen on Apple Music">Apple Music</a>
+                            <a href="https://music.youtube.com/channel/UC_uO7e_5PhX8T_izXsSDJhQ" target="_blank" rel="noopener noreferrer" aria-label="Listen on YouTube Music">YouTube</a>
+                            <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Listen on Bandcamp">Bandcamp</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tour Dates Section -->
+        <!-- ===== TOUR DATES SECTION ===== -->
 <section class="section tour" id="tour" aria-label="Live Shows">
     <div class="container">
         <h2 class="section-title">Live Shows</h2>
-
-        <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
-<a class="bit-widget-initializer"
-    data-artist-name="id_15655689"
-    data-app-id="7994d2f75603c8e88c1bb0cb1fe54b9e"
-    data-background-color="rgba(0,0,0,0)"
-    data-text-color="rgba(245,245,245,1)"
-    data-link-color="rgba(196,30,58,1)"
-    data-link-text-color="rgba(245,245,245,1)"
-    data-separator-color="rgba(61,61,61,1)"
-    data-display-local-dates="true"
-    data-display-past-dates="false"
-    data-display-details="true"
-    data-social-share-icon="false"
-    data-location-capitalization="capitalize"
-    data-display-start-time="false"
-    data-display-lineup="false"
-    data-date-format="MMMM DD YYYY"
-    data-date-capitalization="uppercase"
-    data-event-rsvp-position="right"
-    data-follow-section-position="hidden"
-    data-follow-section-alignment="left"
-    data-follow-section-cta-text="FOLLOW"
-    data-display-limit="5"
-    data-bit-logo-position="hidden"
-    data-event-ticket-cta-size="large"
-    data-event-ticket-text="TICKETS"
-    data-event-ticket-icon="true"
-    data-event-ticket-cta-bg-color="rgba(196,30,58,1)"
-    data-event-ticket-cta-text-color="rgba(245,245,245,1)"
-    data-event-ticket-cta-border-width="1px"
-    data-event-ticket-cta-border-radius="200px"
-    data-sold-out-button-background-color="rgba(42,42,42,1)"
-    data-sold-out-button-text-color="rgba(201,201,201,1)"
-    data-sold-out-button-clickable="false"
-    data-event-rsvp-cta-size="medium"
-    data-event-rsvp-text="RSVP"
-    data-event-rsvp-icon="true"
-    data-event-rsvp-cta-border-width="1px"
-    data-event-rsvp-cta-border-radius="200px"
-    data-play-my-city-position="hidden"
-    data-follow-section-cta-size="small"
-    data-play-my-city-cta-size="small"
-    data-play-my-city-cta-icon="true"
-    data-follow-section-cta-icon="true"
-></a>
+        <div class="tour-widget-container">
+            
+            <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js" async defer></script>
+            <a class="bit-widget-initializer"
+                data-artist-name="id_15655689"
+                data-app-id="7994d2f75603c8e88c1bb0cb1fe54b9e"
+                data-background-color="rgba(0,0,0,0)"
+                data-text-color="rgba(245,245,245,1)"
+                data-link-color="rgba(196,30,58,1)"
+                data-link-text-color="rgba(245,245,245,1)"
+                data-separator-color="rgba(61,61,61,1)"
+                data-display-local-dates="true"
+                data-display-past-dates="false"
+                data-display-details="true"
+                data-social-share-icon="false"
+                data-location-capitalization="capitalize"
+                data-display-start-time="false"
+                data-display-lineup="false"
+                data-date-format="MMMM DD YYYY"
+                data-date-capitalization="uppercase"
+                data-event-rsvp-position="right"
+                data-follow-section-position="hidden"
+                data-follow-section-alignment="left"
+                data-follow-section-cta-text="FOLLOW"
+                data-display-limit="5"
+                data-bit-logo-position="hidden"
+                data-event-ticket-cta-size="large"
+                data-event-ticket-text="TICKETS"
+                data-event-ticket-icon="true"
+                data-event-ticket-cta-bg-color="rgba(196,30,58,1)"
+                data-event-ticket-cta-text-color="rgba(245,245,245,1)"
+                data-event-ticket-cta-border-width="1px"
+                data-event-ticket-cta-border-radius="200px"
+                data-sold-out-button-background-color="rgba(42,42,42,1)"
+                data-sold-out-button-text-color="rgba(201,201,201,1)"
+                data-sold-out-button-clickable="false"
+                data-event-rsvp-cta-size="medium"
+                data-event-rsvp-text="RSVP"
+                data-event-rsvp-icon="true"
+                data-event-rsvp-cta-border-width="1px"
+                data-event-rsvp-cta-border-radius="200px"
+                data-play-my-city-position="hidden"
+                data-follow-section-cta-size="small"
+                data-play-my-city-cta-size="small"
+                data-play-my-city-cta-icon="true"
+                data-follow-section-cta-icon="true">
+            </a>
+        </div>
     </div>
 </section>
 
-        <!-- Merch Section -->
+        <!-- ===== MERCH SECTION ===== -->
         <section class="section merch" id="merch" aria-label="Merchandise">
             <div class="container">
                 <h2 class="section-title">Merch</h2>
-                <div class="merch-row">
-                    <h3 class="merch-row-title">Music (CDs & Vinyl)</h3>
-                    <div class="merch-carousel" data-row="music">
-                        <div class="merch-track">
-                            <article class="merch-item">
-                        <div class="merch-item-image">
-                            <span class="merch-item-badge">New</span>
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="75" cy="75" r="60" fill="#1a1a1a"/>
-                                    <path d="M75 40 L75 110 M50 65 L75 40 L100 65" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Vinyl - Eternal Darkness</h3>
-                            <p class="merch-item-price">€45.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <span class="merch-item-badge">New</span>
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="75" cy="75" r="60" fill="#1a1a1a"/>
-                                    <path d="M75 40 L75 110 M50 65 L75 40 L100 65" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Vinyl - Eternal Darkness</h3>
-                            <p class="merch-item-price">€45.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-                        </div>
+                <p style="text-align:center; color:var(--color-white-dim); margin-bottom:var(--spacing-lg);">
+                    Merch store coming soon! In the meantime, check out our music on <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a>.
+                </p>
+                <div class="merch-grid-placeholder">
+                    <div>
+                        <i class="fas fa-compact-disc"></i>
+                        <p>Visit our <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a> for music</p>
                     </div>
-                </div>
-
-<div class="merch-row">
-                    <h3 class="merch-row-title">Clothing</h3>
-                    <div class="merch-carousel" data-row="clothing">
-                        <div class="merch-track">
-                            <article class="merch-item">
-                        <div class="merch-item-image">
-                            <span class="merch-item-badge">Limited</span>
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="40" y="30" width="70" height="90" fill="#1a1a1a"/>
-                                    <path d="M75 50 L75 100 M55 70 L75 50 L95 70" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Eternal Darkness Tee</h3>
-                            <p class="merch-item-price">€35.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="35" y="25" width="80" height="100" fill="#1a1a1a"/>
-                                    <circle cx="75" cy="65" r="15" stroke="#c41e3a" stroke-width="2"/>
-                                    <path d="M55 95 L95 95" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Band Logo Hoodie</h3>
-                            <p class="merch-item-price">€60.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <span class="merch-item-badge">Limited</span>
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="40" y="30" width="70" height="90" fill="#1a1a1a"/>
-                                    <path d="M75 50 L75 100 M55 70 L75 50 L95 70" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Eternal Darkness Tee</h3>
-                            <p class="merch-item-price">€35.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="35" y="25" width="80" height="100" fill="#1a1a1a"/>
-                                    <circle cx="75" cy="65" r="15" stroke="#c41e3a" stroke-width="2"/>
-                                    <path d="M55 95 L95 95" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Band Logo Hoodie</h3>
-                            <p class="merch-item-price">€60.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-                        </div>
+                    <div>
+                        <i class="fas fa-tshirt"></i>
+                        <p>Merch store coming soon</p>
                     </div>
-                </div>
-
-<div class="merch-row">
-                    <h3 class="merch-row-title">Accessories</h3>
-                    <div class="merch-carousel" data-row="accessories">
-                        <div class="merch-track">
-                            <article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="50" y="40" width="50" height="70" fill="#1a1a1a"/>
-                                    <rect x="55" y="45" width="40" height="60" fill="#2a2a2a"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Enamel Pin Set</h3>
-                            <p class="merch-item-price">€20.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="35" y="60" width="80" height="50" fill="#1a1a1a"/>
-                                    <path d="M45 75 L105 75 M45 85 L105 85 M45 95 L85 95" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Tour Poster 2026</h3>
-                            <p class="merch-item-price">€25.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="75" cy="75" r="50" fill="#1a1a1a"/>
-                                    <path d="M75 50 L75 100" stroke="#c41e3a" stroke-width="3"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Logo Patch</h3>
-                            <p class="merch-item-price">€12.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="50" y="40" width="50" height="70" fill="#1a1a1a"/>
-                                    <rect x="55" y="45" width="40" height="60" fill="#2a2a2a"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Enamel Pin Set</h3>
-                            <p class="merch-item-price">€20.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="35" y="60" width="80" height="50" fill="#1a1a1a"/>
-                                    <path d="M45 75 L105 75 M45 85 L105 85 M45 95 L85 95" stroke="#c41e3a" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Tour Poster 2026</h3>
-                            <p class="merch-item-price">€25.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-<article class="merch-item">
-                        <div class="merch-item-image">
-                            <div class="merch-item-img" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);">
-                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="75" cy="75" r="50" fill="#1a1a1a"/>
-                                    <path d="M75 50 L75 100" stroke="#c41e3a" stroke-width="3"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="merch-item-info">
-                            <h3 class="merch-item-title">Logo Patch</h3>
-                            <p class="merch-item-price">€12.00</p>
-                            <div class="merch-item-actions">
-                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Add to Cart</a>
-                            </div>
-                        </div>
-                    </article>
-                        </div>
+                    <div>
+                        <i class="fas fa-ticket-alt"></i>
+                        <p>Check <a href="#tour" style="color:var(--color-red);">tour dates</a> for merch at shows</p>
                     </div>
-                </div>
-                <div class="tour-view-all">
-                    <a href="#" class="btn btn-secondary">View All Merch</a>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ===== ABOUT SECTION ===== -->
         <section class="section about" id="about" aria-label="About">
             <div class="container">
                 <h2 class="section-title">About</h2>
@@ -425,71 +221,67 @@
                     <div class="about-image">
                         <img class="about-img" src="assets/images/band-photo-red2.png" alt="I See Red band photo">
                     </div>
-                    <div class="about-content">                      
-                        <h3 class="section-title" style="font-size: 2.5rem;">The Band</h3>
+                    <div class="about-content">
+                        <h2 class="about-title">The Band</h2>
                         <p class="about-text">
                             Emerging from the depths of modern metal, I See Red delivers a sonic assault that blends the raw aggression of death metal and contemporary production. Formed with a vision to push boundaries while honoring the genre's roots, the band crafts crushing riffs, thunderous rhythms, and haunting melodies that resonate with both old-school metalheads and new generations.
                         </p>
                         <p class="about-text">
-                            <!-- TODO: replace "xxx" with your third reference band --> Drawing inspiration from acts like At the Gates, In Flames, and xxx, I See Red has carved out a unique sonic identity that's equally comfortable in underground clubs and festival stages across Europe.
+                            Drawing inspiration from acts like At the Gates, In Flames, and Gojira, I See Red has carved out a unique sonic identity that's equally comfortable in underground clubs and festival stages across Europe.
                         </p>
                         <div class="about-social">
-                            <a href="#" aria-label="Instagram">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
+                            <a href="https://www.instagram.com/i.see.red/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+                                <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" aria-label="Facebook">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
+                            <a href="https://www.facebook.com/iseeredofficial/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+                                <i class="fab fa-facebook"></i>
                             </a>
-                            <a href="#" aria-label="YouTube">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                </svg>
+                            <a href="https://www.youtube.com/@iseered-ls6zk" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-icon">
+                                <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="#" aria-label="Spotify">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                                </svg>
+                            <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Spotify" class="social-icon">
+                                <i class="fab fa-spotify"></i>
+                            </a>
+                            <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Apple Music" class="social-icon">
+                                <i class="fab fa-apple"></i>
+                            </a>
+                            <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp" class="social-icon">
+                                <i class="fab fa-bandcamp"></i>
                             </a>
                         </div>
-                        
                     </div>
                     <div class="about-members">
-                            <div class="about-member">
-                                <p class="about-member-name">Chris S.</p>
-                                <p class="about-member-role">Vocals</p>
-                            </div>
-                            <div class="about-member">
-                                <p class="about-member-name">Dimitris K.</p>
-                                <p class="about-member-role">Guitar</p>
-                            </div>
-                            <div class="about-member">
-                                <p class="about-member-name">Akis Ch.</p>
-                                <p class="about-member-role">Guitar</p>
-                            </div>
-                            <div class="about-member">
-                                <p class="about-member-name">Nick G.</p>
-                                <p class="about-member-role">Bass</p>
-                            </div>
-                            <div class="about-member">
-                                <p class="about-member-name">Ilias K.</p>
-                                <p class="about-member-role">Drums</p>
-                            </div>
+                        <div class="about-member member-hover" data-photo="assets/images/chris-portrait.jpg">
+                            <p class="about-member-name">Chris S.</p>
+                            <p class="about-member-role">Vocals</p>
                         </div>
-                        
+                        <div class="about-member member-hover" data-photo="assets/images/dimitris-portrait.jpg">
+                            <p class="about-member-name">Dimitris K.</p>
+                            <p class="about-member-role">Guitar</p>
+                        </div>
+                        <div class="about-member member-hover" data-photo="assets/images/akis-portrait.jpg">
+                            <p class="about-member-name">Akis Ch.</p>
+                            <p class="about-member-role">Guitar</p>
+                        </div>
+                        <div class="about-member member-hover" data-photo="assets/images/nikos-portrait.jpg">
+                            <p class="about-member-name">Nikos G.</p>
+                            <p class="about-member-role">Bass</p>
+                        </div>
+                        <div class="about-member member-hover" data-photo="assets/images/ilias-portrait.jpg">
+                            <p class="about-member-name">Ilias K.</p>
+                            <p class="about-member-role">Drums</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Press Assets Section -->
+        <!-- ===== PRESS ASSETS SECTION ===== -->
         <section class="section press" id="press" aria-label="Press Assets">
             <div class="container">
                 <h2 class="section-title">Press Assets</h2>
                 <div class="press-grid">
-                    <div class="press-card">                        
+                    <div class="press-card">
                         <h3 class="press-card-title">Press Photos</h3>
                         <p class="press-card-description">High-resolution band photos for press and promotional use. Available in both color and black & white.</p>
                         <ul class="press-card-list">
@@ -498,7 +290,7 @@
                             <li>Individual member portraits</li>
                             <li>Album artwork (3000x3000px)</li>
                         </ul>
-                        <a href="assets/downloads/press.zip" class="btn btn-primary" style="width: 100%; text-align: center;">Download .ZIP (45MB)</a>
+                        <a href="assets/downloads/press.zip" class="btn btn-primary">Download .ZIP (45MB)</a>
                     </div>
 
                     <div class="press-card">
@@ -510,7 +302,7 @@
                             <li>Official band bio</li>
                             <li>Tech & stage plot</li>
                         </ul>
-                        <a href="assets/downloads/epk.zip" class="btn btn-primary" style="width: 100%; text-align: center;">Download EPK</a>
+                        <a href="assets/downloads/epk.zip" class="btn btn-primary">Download EPK</a>
                     </div>
 
                     <div class="press-card">
@@ -522,7 +314,7 @@
                             <li>Brand color palette</li>
                             <li>Typography guidelines</li>
                         </ul>
-                        <a href="assets/downloads/branding.zip" class="btn btn-primary" style="width: 100%; text-align: center;">Download Assets</a>
+                        <a href="assets/downloads/branding.zip" class="btn btn-primary">Download Assets</a>
                     </div>
 
                     <div class="press-card">
@@ -534,10 +326,10 @@
                             <li>Notable quotes</li>
                             <li>Media contact info</li>
                         </ul>
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">View Press</a>
+                        <a href="#" class="btn btn-primary">View Press</a>
                     </div>
                 </div>
-                <div class="tour-view-all" style="margin-top: var(--spacing-md);">
+                <div class="tour-view-all">
                     <p style="color: var(--color-white-dim); font-size: 0.9rem; max-width: 600px; margin: 0 auto var(--spacing-sm);">
                         For press inquiries, high-resolution assets, or interview requests, please contact the band directly.
                     </p>
@@ -545,66 +337,71 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- ===== CONTACT SECTION ===== -->
         <section class="section contact" id="contact" aria-label="Contact">
             <div class="container">
                 <h2 class="section-title">Contact</h2>
                 <div class="contact-grid">
-                    <div class="contact-info">                        
-                        <h3 class="contact-title">Booking & Inquiries</h3>
+                    <div class="contact-info">
                         <p class="contact-description">
-                            For booking inquiries, press requests, or general questions, please use the appropriate contact below. We typically respond within 48 hours.
+                            Have a question about booking, press, merch, or just want to say hello? 
+                            We'd love to hear from you. Drop us a message and we'll get back to you 
+                            within 48 hours.
                         </p>
-                        <div class="contact-details">
-                            <div class="contact-item">                        
-                                <div class="contact-item-text">
-                                    <strong>Management & Booking:</strong><br>
-                                    <a href="mailto:booking@iseeredband.com">booking@iseeredband.com</a>
-                                </div>
+                        
+                        <div class="contact-email-card">
+                            <div class="contact-email-icon">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="contact-item">
-                                <div class="contact-item-text">
-                                    <strong>Press & Media:</strong><br>
-                                    <a href="mailto:press@iseeredband.com">press@iseeredband.com</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-item-text">
-                                    <strong>Merch & Web Store:</strong><br>
-                                    <a href="mailto:merch@iseeredband.com">merch@iseeredband.com</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-item-text">
-                                    <strong>General Inquiries:</strong><br>
-                                    <a href="mailto:info@iseeredband.com">info@iseeredband.com</a>
-                                </div>
+                            <div class="contact-email-content">
+                                <p class="contact-email-label">Email Us</p>
+                                <a href="mailto:iseeredgr@gmail.com" class="contact-email-address">
+                                    iseeredgr@gmail.com
+                                </a>
+                                <p class="contact-email-note">We typically respond within 48 hours</p>
                             </div>
                         </div>
-                        <p style="color: var(--color-white-dim); font-size: 0.9rem; line-height: 1.7;">
-                            <strong>For booking inquiries, please include:</strong><br>
-                            • Date(s) & venue<br>
-                            • Location<br>
-                            • Expected capacity<br>
-                            • Budget range<br>
-                            • Support acts (if any)
-                        </p>
+
+                        <div class="contact-tips">
+                            <h4 class="contact-tips-title">For booking inquiries, please include:</h4>
+                            <ul class="contact-tips-list">
+                                <li>• Date(s) & venue</li>
+                                <li>• Location</li>
+                                <li>• Expected capacity</li>
+                                <li>• Budget range</li>
+                                <li>• Support acts (if any)</li>
+                            </ul>
+                        </div>
+
+                        <div class="contact-alternatives">
+                            <p class="contact-alternatives-text">You can also reach us on social media:</p>
+                            <div class="contact-social">
+                                <a href="https://www.instagram.com/i.see.red/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="contact-social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.facebook.com/iseeredofficial/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="contact-social-link">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="contact-form">
-                        <form id="contactForm" aria-label="Contact form">
+                        <h3 class="contact-form-title">Get in Touch</h3>
+                        <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
                             <div class="form-group">
-                                <label class="form-label" for="name">Name *</label>
-                                <input type="text" id="name" name="name" class="form-input" required>
+                                <label class="form-label" for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="e.g. John Doe" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="email">Email *</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
+                                <label class="form-label" for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. john@example.com" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="inquiry-type">Inquiry Type *</label>
                                 <select id="inquiry-type" name="inquiry-type" class="form-select" required>
                                     <option value="">Select an option</option>
-                                    <option value="booking">Booking / Tour Inquiry</option>
+                                    <option value="booking">Booking / Tour</option>
                                     <option value="press">Press / Media</option>
                                     <option value="merch">Merch / Store</option>
                                     <option value="general">General Inquiry</option>
@@ -613,16 +410,16 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="subject">Subject *</label>
-                                <input type="text" id="subject" name="subject" class="form-input" required>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="Brief subject line" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="message">Message *</label>
-                                <textarea id="message" name="message" class="form-textarea" required></textarea>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your inquiry..." required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-checkbox">
                                     <input type="checkbox" name="consent" required>
-                                    <span>I agree to the storage of my data for the purpose of processing this inquiry. I understand that I can withdraw my consent at any time.</span>
+                                    <span>I agree to the storage of my data for the purpose of processing this inquiry.</span>
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-primary form-submit">Send Message</button>
@@ -633,37 +430,35 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <a href="#" class="footer-brand" aria-label="I See Red home">
-  <img src="assets/images/logo_white.png" alt="I See Red" class="footer-brand-logo">
-</a>
+                        <img src="assets/images/logo_white.png" alt="I See Red" class="footer-brand-logo">
+                    </a>
                     <p class="footer-description">
                         Modern melodic death metal pushing boundaries and crushing stages across Europe. Stay updated with the latest releases, tour dates, and exclusive merch drops.
                     </p>
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/i.see.red/" aria-label="Instagram">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
+                        <a href="https://www.instagram.com/i.see.red/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/iseeredofficial/" aria-label="Facebook">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
+                        <a href="https://www.facebook.com/iseeredofficial/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://music.youtube.com/search?q=i+see+red" aria-label="YouTube">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
+                        <a href="https://www.youtube.com/@iseered-ls6zk" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" aria-label="Spotify">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                            </svg>
+                        <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                        <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Apple Music">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                        <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">
+                            <i class="fab fa-bandcamp"></i>
                         </a>
                     </div>
                 </div>
@@ -680,10 +475,8 @@
                 <div>
                     <h4 class="footer-title">Contact</h4>
                     <ul class="footer-links">
-                        <li><a href="mailto:booking@iseeredband.com">Booking</a></li>
-                        <li><a href="mailto:press@iseeredband.com">Press</a></li>
-                        <li><a href="mailto:merch@iseeredband.com">Merch Support</a></li>
-                        <li><a href="mailto:info@iseeredband.com">General</a></li>
+                        <li><a href="mailto:iseeredgr@gmail.com">Email Us</a></li>
+                        <li><a href="#contact">Contact Form</a></li>
                     </ul>
                 </div>
                 <div>
@@ -702,218 +495,15 @@
                     © 2026 I See Red. All rights reserved.
                 </p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/terms-of-service">Terms of Service</a>
+                    <a href="/cookie-policy">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.querySelector('.nav-toggle');
-const navMenus = document.querySelectorAll('.nav-menu'); // there are two menus (left + right)
-
-navToggle.addEventListener('click', () => {
-  const isActive = navToggle.classList.toggle('active');
-  navMenus.forEach(menu => menu.classList.toggle('active', isActive));
-  navToggle.setAttribute('aria-expanded', isActive);
-});
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenus.forEach(menu => menu.classList.remove('active'));
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Navbar visibility on scroll - invisible until scrolling starts
-        const nav = document.querySelector('.nav');
-
-function updateNavVisibility() {
-  if (window.scrollY > 50) {
-    nav.classList.add('visible');
-  } else {
-    nav.classList.remove('visible');
-  }
-}
-
-window.addEventListener('scroll', updateNavVisibility);
-window.addEventListener('load', updateNavVisibility);
-
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                
-                if (href === '#') {
-                    // If href is just #, scroll to top
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const navHeight = nav.offsetHeight;
-                        const targetPosition = target.offsetTop - navHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Contact form handling
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send the data to your server
-            // For now, we'll just show a success message
-            alert('Thank you for your message! We will get back to you within 48 hours.');
-            contactForm.reset();
-        });
-
-        // Newsletter form handling
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = newsletterForm.querySelector('.newsletter-input').value;
-            
-            // Here you would typically send the email to your mailing service
-            alert('Thank you for subscribing! You\'ll receive our next newsletter soon.');
-            newsletterForm.reset();
-        });
-
-        // Add active state to current nav link based on scroll position
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollPosition = window.scrollY + 200;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.style.color = 'var(--color-red)';
-                }
-            });
-        });
-
-        // Add subtle animation to tour dates on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.tour-date, .merch-item, .press-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
-        });
-    
-        // ===== Merch Carousel: auto-scroll + drag/swipe =====
-        document.querySelectorAll('.merch-carousel').forEach((carousel) => {
-            const track = carousel.querySelector('.merch-track');
-            let isDown = false;
-            let startX = 0;
-            let scrollStart = 0;
-            let autoScroll = true;
-            const speed = 0.4; // px per frame
-
-            function resetIfNeeded() {
-                const half = track.scrollWidth / 2;
-                if (carousel.scrollLeft >= half) {
-                    carousel.scrollLeft -= half;
-                } else if (carousel.scrollLeft <= 0) {
-                    carousel.scrollLeft += half;
-                }
-            }
-
-            function tick() {
-                if (autoScroll && !isDown) {
-                    carousel.scrollLeft += speed;
-                    resetIfNeeded();
-                }
-                requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-
-            // Pause on hover (desktop)
-            carousel.addEventListener('mouseenter', () => { autoScroll = false; });
-            carousel.addEventListener('mouseleave', () => { autoScroll = true; });
-
-            // Mouse drag
-            carousel.addEventListener('mousedown', (e) => {
-                isDown = true;
-                autoScroll = false;
-                startX = e.pageX;
-                scrollStart = carousel.scrollLeft;
-                carousel.classList.add('dragging');
-            });
-            window.addEventListener('mouseup', () => {
-                isDown = false;
-                carousel.classList.remove('dragging');
-            });
-            window.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const dx = e.pageX - startX;
-                carousel.scrollLeft = scrollStart - dx;
-                resetIfNeeded();
-            });
-
-            // Touch drag (thumb swipe)
-            carousel.addEventListener('touchstart', (e) => {
-                isDown = true;
-                autoScroll = false;
-                startX = e.touches[0].pageX;
-                scrollStart = carousel.scrollLeft;
-            }, { passive: true });
-            carousel.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                const dx = e.touches[0].pageX - startX;
-                carousel.scrollLeft = scrollStart - dx;
-                resetIfNeeded();
-            }, { passive: true });
-            carousel.addEventListener('touchend', () => {
-                isDown = false;
-                setTimeout(() => { autoScroll = true; }, 1500);
-            });
-        });
-    </script>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script src="script.js"></script>
 </body>
 </html>
