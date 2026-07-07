@@ -72,10 +72,12 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 var(--spacing-md);
+            
         }
 
         .section {
-            padding: var(--spacing-xl) 0;
+            padding: var(--spacing-md) 0;
+            
         }
 
         .section-title {
@@ -520,120 +522,29 @@
         }
 
         /* ===== Tour Dates Section ===== */
-        .tour {
-            background: var(--color-black);
-        }
+      .tour {
+    background: var(--color-black);
+}
 
-        .tour-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-        }
+.tour-view-all {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
 
-        .tour-date {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: var(--spacing-md);
-            align-items: center;
-            padding: var(--spacing-md);
-            background: var(--color-black-light);
-            border-left: 4px solid var(--color-red);
-            transition: var(--transition);
-        }
+.bandsintown-wrap {
+    margin-top: var(--spacing-md);
+    background: var(--color-black-light);
+    border: 1px solid var(--color-gray);
+    padding: var(--spacing-sm);
+}
 
-        .tour-date:hover {
-            background: var(--color-gray);
-            transform: translateX(10px);
-        }
-
-        .tour-date-info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xs);
-        }
-
-        .tour-date-day {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            line-height: 1;
-            color: var(--color-red);
-        }
-
-        .tour-date-month {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-white-dim);
-        }
-
-        .tour-date-year {
-            font-size: 0.9rem;
-            color: var(--color-white-dim);
-        }
-
-        .tour-venue-info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xs);
-        }
-
-        .tour-venue {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .tour-location {
-            font-size: 1rem;
-            color: var(--color-white-dim);
-        }
-
-        .tour-location::before {
-            content: '📍 ';
-        }
-
-        .tour-actions {
-            display: flex;
-            gap: var(--spacing-sm);
-            align-items: center;
-        }
-
-        .tour-sold-out {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-white-dim);
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--color-gray-light);
-        }
-
-        .tour-status {
-            font-size: 0.85rem;
-            color: var(--color-white-dim);
-            margin-top: var(--spacing-xs);
-        }
-
-        .tour-status.sold-out {
-            color: var(--color-red);
-        }
-
-        .tour-view-all {
-            text-align: center;
-            margin-top: var(--spacing-lg);
-        }
+.bandsintown-wrap .bit-widget-initializer {
+    width: 100%;
+}
 
         /* ===== Merch Section ===== */
         .merch {
             background: var(--color-black-light);
-        }
-
-        .merch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-md);
         }
 
         .merch-item {
@@ -699,14 +610,14 @@
 
         .merch-item-title {
             font-family: var(--font-display);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: var(--spacing-xs);
         }
 
         .merch-item-price {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--color-red);
             font-weight: 600;
             margin-bottom: var(--spacing-sm);
@@ -723,6 +634,58 @@
             display: flex;
             gap: var(--spacing-sm);
         }
+
+        /* ===== Merch Carousel Rows ===== */
+        .merch-row {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .merch-row:last-of-type {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .merch-row-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-white-dim);
+            margin-bottom: var(--spacing-sm);
+            border-left: 3px solid var(--color-red);
+            padding-left: var(--spacing-sm);
+        }
+
+        .merch-carousel {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            cursor: grab;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            user-select: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .merch-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .merch-carousel.dragging {
+            cursor: grabbing;
+        }
+
+        .merch-track {
+            display: flex;
+            gap: var(--spacing-md);
+            width: max-content;
+        }
+
+        .merch-item {
+            flex: 0 0 260px;
+            width: 260px;
+        }
+
+        
 
         /* ===== About Section ===== */
         .about {
@@ -763,12 +726,12 @@
         }
 
         .about-image:hover .about-img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        .about-content {
-            padding: var(--spacing-md);
-        }
+      .about-content {
+    padding: 0 var(--spacing-md) 0 0;
+}
 
         .about-label {
             font-size: 0.9rem;
@@ -834,12 +797,66 @@
             color: var(--color-white);
         }
 
+        .about-grid {
+    align-items: start;
+    gap: var(--spacing-sm);
+}
+
+.about-content {
+    padding: 0 var(--spacing-md) 0 0;
+}
+
+.about-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-xs);
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-white-dim);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-members {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-sm);
+    margin-top: 0;
+}
+
+.about-member {
+    padding: 0.75rem;
+}
+
+.about-member-name {
+    font-size: 1rem;
+}
+
+.about-member-role {
+    font-size: 0.85rem;
+}
+
+.about-social {
+    grid-column: 1 / -1;
+    margin-top: var(--spacing-sm);
+}
         /* ===== Press Assets Section ===== */
         .press-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-md);
   align-items: stretch;
+}
+
+@media (min-width: 1025px) {
+  .press-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .press-card {
@@ -1329,8 +1346,9 @@
                 font-size: 1.2rem;
             }
 
-            .merch-grid {
-                grid-template-columns: 1fr;
+            .merch-item {
+                flex: 0 0 220px;
+                width: 220px;
             }
 
             .newsletter-form {
