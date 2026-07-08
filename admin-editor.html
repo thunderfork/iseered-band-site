@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I See Red - Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== ADMIN STYLES ===== */
+        :root {
+            --color-black: #0a0a0a;
+            --color-black-light: #141414;
+            --color-black-dark: #050505;
+            --color-red: #c41e3a;
+            --color-red-dark: #8b0000;
+            --color-red-bright: #ff2d4a;
+            --color-gray: #2a2a2a;
+            --color-white: #f5f5f5;
+            --color-white-dim: #c9c9c9;
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-red: 0 4px 30px rgba(196, 30, 58, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-black);
+            color: var(--color-white);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Header */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gray);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-header h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-white);
+        }
+        .admin-header h1 span { color: var(--color-red); }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--color-red);
+            background: transparent;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--color-red);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before { left: 0; }
+        .btn:hover { color: var(--color-white); box-shadow: var(--shadow-red); }
+
+        .btn-primary { background: var(--color-red); color: var(--color-white); }
+        .btn-primary:hover { background: var(--color-red-dark); border-color: var(--color-red-dark); }
+        .btn-success { border-color: #28a745; }
+        .btn-success::before { background: #28a745; }
+        .btn-danger { border-color: #dc3545; }
+        .btn-danger::before { background: #dc3545; }
+        .btn-warning { border-color: #ffc107; }
+        .btn-warning::before { background: #ffc107; }
+        .btn-warning:hover { color: var(--color-black); }
+        .btn-info { border-color: #17a2b8; }
+        .btn-info::before { background: #17a2b8; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+        /* Status Bar */
+        .status-bar {
+            padding: 1rem 1.5rem;
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gray);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .status-bar .status-text { color: var(--color-white-dim); font-size: 0.9rem; }
+        .status-bar .status-text strong { color: var(--color-white); }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-badge.loaded { background: rgba(40, 167, 69, 0.2); color: #28a745; border: 1px solid rgba(40, 167, 69, 0.3); }
+        .status-badge.empty { background: rgba(255, 193, 7, 0.2); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.3); }
+        .status-badge.changed { background: rgba(255, 193, 7, 0.2); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.3); }
+
+        /* Drop Zone */
+        .drop-zone {
+            border: 3px dashed var(--color-gray);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            background: var(--color-black-light);
+        }
+
+        .drop-zone:hover,
+        .drop-zone.dragover {
+            border-color: var(--color-red);
+            background: rgba(196, 30, 58, 0.05);
+        }
+
+        .drop-zone i { font-size: 3rem; color: var(--color-red); margin-bottom: 1rem; display: block; }
+        .drop-zone p { color: var(--color-white-dim); font-size: 1.1rem; }
+        .drop-zone .sub-text { font-size: 0.85rem; color: var(--color-white-dim); opacity: 0.6; margin-top: 0.5rem; }
+
+        /* Editor */
+        .editor-section {
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gray);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .editor-section.visible { display: block; }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .editor-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .editor-header .item-count { color: var(--color-white-dim); font-size: 0.9rem; }
+
+        /* News List */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-item-card {
+            background: var(--color-black);
+            border: 1px solid var(--color-gray);
+            border-radius: 6px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .news-item-card:hover {
+            border-color: var(--color-red);
+            transform: translateX(4px);
+        }
+
+        .news-item-card.dragging {
+            opacity: 0.5;
+            border-color: var(--color-red);
+        }
+
+        .news-item-card .drag-handle {
+            color: var(--color-gray);
+            margin-right: 1rem;
+            cursor: grab;
+        }
+
+        .news-item-card .item-info { flex: 1; }
+        .news-item-card .item-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+        }
+
+        .news-item-card .item-meta {
+            font-size: 0.85rem;
+            color: var(--color-white-dim);
+            opacity: 0.7;
+        }
+
+        .news-item-card .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .news-item-card .item-actions button {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--color-white-dim);
+        }
+        .empty-state i { font-size: 4rem; color: var(--color-gray); margin-bottom: 1rem; display: block; }
+
+        /* Form */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--color-white-dim);
+        }
+        .form-label .required { color: var(--color-red); }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-black);
+            border: 1px solid var(--color-gray);
+            color: var(--color-white);
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-red);
+            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+        }
+
+        .form-textarea { min-height: 120px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        /* Links Manager */
+        .links-manager {
+            background: var(--color-black);
+            border: 1px solid var(--color-gray);
+            border-radius: 4px;
+            padding: 1rem;
+        }
+
+        .link-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .link-item input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gray);
+            color: var(--color-white);
+            border-radius: 4px;
+        }
+
+        .link-item input:focus {
+            outline: none;
+            border-color: var(--color-red);
+        }
+
+        .link-item .remove-link {
+            color: var(--color-red);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-item .remove-link:hover { transform: scale(1.2); }
+
+        .add-link-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            background: transparent;
+            border: 1px dashed var(--color-gray);
+            color: var(--color-white-dim);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-link-btn:hover {
+            border-color: var(--color-red);
+            color: var(--color-white);
+        }
+
+        /* Media Type Toggle */
+        .media-type-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .media-type-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            background: var(--color-black);
+            border: 1px solid var(--color-gray);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .media-type-toggle label:hover { border-color: var(--color-white-dim); }
+        .media-type-toggle input[type="radio"] { accent-color: var(--color-red); }
+        .media-type-toggle input[type="radio"]:checked + span { color: var(--color-red); }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Preview */
+        .preview-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--color-black);
+            border: 1px solid var(--color-gray);
+            border-radius: 8px;
+        }
+
+        .preview-section h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--color-white-dim);
+        }
+
+        .preview-card {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 500px;
+        }
+
+        .preview-card .preview-media {
+            aspect-ratio: 16/9;
+            background: var(--color-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white-dim);
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--color-red);
+        }
+
+        .preview-card .preview-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-card .preview-media iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .preview-card .preview-info { padding: 1rem; }
+        .preview-card .preview-badge {
+            display: inline-block;
+            background: var(--color-red);
+            color: var(--color-white);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-card .preview-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .preview-card .preview-meta {
+            font-size: 0.85rem;
+            color: var(--color-white-dim);
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-card .preview-desc {
+            font-size: 0.9rem;
+            color: var(--color-white-dim);
+            line-height: 1.6;
+        }
+
+        .preview-card .preview-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+
+        .preview-card .preview-links a {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-white-dim);
+            padding: 0.25rem 0.5rem;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .preview-card .preview-links a:hover {
+            color: var(--color-red);
+            border-bottom-color: var(--color-red);
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-width: 400px;
+        }
+
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gray);
+            color: var(--color-white);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success { border-left: 4px solid #28a745; }
+        .toast.error { border-left: 4px solid #dc3545; }
+        .toast.warning { border-left: 4px solid #ffc107; }
+        .toast.info { border-left: 4px solid #17a2b8; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Auto-save indicator */
+        .auto-save-indicator {
+            display: none;
+            font-size: 0.8rem;
+            color: #28a745;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .auto-save-indicator.visible { display: flex; }
+        .auto-save-indicator .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .admin-header { padding: 1rem; }
+            .admin-header h1 { font-size: 1.5rem; }
+            .editor-section { padding: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .media-type-toggle { flex-direction: column; }
+            .news-item-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .news-item-card .item-actions { width: 100%; justify-content: flex-end; }
+            .toast-container { top: 1rem; right: 1rem; left: 1rem; max-width: none; }
+            .toast { min-width: auto; width: 100%; }
+            .form-actions { flex-direction: column; }
+            .form-actions .btn { width: 100%; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-black); }
+        ::-webkit-scrollbar-thumb { background: var(--color-gray); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-red); }
+
+        .hidden { display: none !important; }
+        .mt-1 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-1 { gap: 1rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="admin-header">
+            <h1>I See Red <span>Admin</span></h1>
+            <div class="header-actions">
+                <span class="auto-save-indicator" id="autoSaveIndicator">
+                    <i class="fas fa-check-circle pulse"></i>
+                    Auto-saved
+                </span>
+                <button class="btn btn-success" onclick="downloadJSON()" id="downloadBtn" disabled>
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn btn-info" onclick="copyJSON()" id="copyBtn" disabled>
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-folder-open"></i> Load
+                </button>
+                <input type="file" id="fileInput" accept=".json" style="display:none" onchange="loadJSONFile(event)">
+            </div>
+        </header>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span class="status-text" id="statusText">
+                <i class="fas fa-circle" style="color:var(--color-gray);"></i>
+                No file loaded. Click "Load" to begin.
+            </span>
+            <span class="status-badge empty" id="statusBadge">Empty</span>
+        </div>
+
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p><strong>Drop your news.json here</strong> or click to browse</p>
+            <p class="sub-text">Supports the standard I See Red news.json format</p>
+        </div>
+
+        <!-- Editor -->
+        <div class="editor-section" id="editorSection">
+            <div class="editor-header">
+                <div>
+                    <h2>News Items</h2>
+                    <span class="item-count" id="itemCount">0 items</span>
+                </div>
+                <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="addNewItem()">
+                        <i class="fas fa-plus"></i> Add New
+                    </button>
+                </div>
+            </div>
+
+            <!-- News List -->
+            <div class="news-list" id="newsList">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Edit Form -->
+            <div id="editForm" style="display:none;">
+                <hr style="border-color:var(--color-gray); margin: 2rem 0;">
+                <h3 style="font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1.5rem; color:var(--color-white-dim);">
+                    <i class="fas fa-edit"></i> Edit News Item
+                </h3>
+
+                <form id="newsForm" onsubmit="saveItem(event)">
+                    <input type="hidden" id="editIndex" value="-1">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="editBadge">Badge <span class="required">*</span></label>
+                            <input type="text" id="editBadge" class="form-input" placeholder="e.g. New Single, Live Show" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="editLabel">Label <span class="required">*</span></label>
+                            <input type="text" id="editLabel" class="form-input" placeholder="e.g. Out Now, Wacken, Germany" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editTitle">Title <span class="required">*</span></label>
+                        <input type="text" id="editTitle" class="form-input" placeholder="e.g. We, the Void" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editMeta">Meta <span class="required">*</span></label>
+                        <input type="text" id="editMeta" class="form-input" placeholder="e.g. Single • 2026 • 4:23" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editDescription">Description <span class="required">*</span></label>
+                        <textarea id="editDescription" class="form-textarea" placeholder="Full description of the news item" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Media Type</label>
+                        <div class="media-type-toggle">
+                            <label>
+                                <input type="radio" name="mediaType" value="youtube" onchange="toggleMediaFields()">
+                                <span><i class="fab fa-youtube"></i> YouTube</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="mediaType" value="image" onchange="toggleMediaFields()">
+                                <span><i class="fas fa-image"></i> Image</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="mediaType" value="none" onchange="toggleMediaFields()" checked>
+                                <span><i class="fas fa-ban"></i> None</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="youtubeField" style="display:none;">
+                        <label class="form-label" for="editYouTube">YouTube Embed URL</label>
+                        <input type="url" id="editYouTube" class="form-input" placeholder="https://www.youtube.com/embed/zuOUN-VSI40">
+                        <small style="color:var(--color-white-dim); opacity:0.6; display:block; margin-top:0.25rem;">
+                            Use the embed URL: https://www.youtube.com/embed/VIDEO_ID
+                        </small>
+                    </div>
+
+                    <div class="form-group" id="imageField" style="display:none;">
+                        <label class="form-label" for="editImage">Image Path</label>
+                        <input type="text" id="editImage" class="form-input" placeholder="assets/news/image.webp">
+                        <div style="margin-top:0.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                            <button type="button" class="btn" onclick="document.getElementById('imageUpload').click()" style="font-size:0.85rem; padding:0.5rem 1rem;">
+                                <i class="fas fa-upload"></i> Upload Image
+                            </button>
+                            <input type="file" id="imageUpload" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+                            <span style="font-size:0.8rem; color:var(--color-white-dim); opacity:0.6; display:flex; align-items:center;">
+                                <i class="fas fa-info-circle"></i> Uploads to assets/news/
+                            </span>
+                        </div>
+                        <small style="color:var(--color-white-dim); opacity:0.6; display:block; margin-top:0.25rem;">
+                            Upload an image or enter a path manually.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Links</label>
+                        <div class="links-manager" id="linksContainer">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <button type="button" class="add-link-btn mt-1" onclick="addLinkField()">
+                            <i class="fas fa-plus"></i> Add Link
+                        </button>
+                    </div>
+
+                    <!-- Preview -->
+                    <div class="preview-section" id="previewSection">
+                        <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                        <div id="previewContent">
+                            <!-- Rendered by JS on form change -->
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success" id="saveBtn">
+                            <i class="fas fa-save"></i> Save Item
+                        </button>
+                        <button type="button" class="btn" onclick="cancelEdit()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="deleteCurrentItem()" id="deleteBtn">
+                            <i class="fas fa-trash"></i> Delete Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script>
+        // ============================================================
+        // STATE
+        // ============================================================
+        let newsData = { items: [] };
+        let hasChanges = false;
+        let editingIndex = -1;
+        let draggedIndex = null;
+
+        // ============================================================
+        // TOAST SYSTEM
+        // ============================================================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // ============================================================
+        // AUTO-SAVE TO BROWSER STORAGE
+        // ============================================================
+        function autoSave() {
+            if (newsData.items.length > 0) {
+                try {
+                    localStorage.setItem('iseered_news_backup', JSON.stringify(newsData));
+                    localStorage.setItem('iseered_news_timestamp', new Date().toISOString());
+                    const indicator = document.getElementById('autoSaveIndicator');
+                    indicator.classList.add('visible');
+                    setTimeout(() => indicator.classList.remove('visible'), 3000);
+                } catch (e) {
+                    // localStorage might be full or unavailable
+                }
+            }
+        }
+
+        function loadAutoSave() {
+            try {
+                const saved = localStorage.getItem('iseered_news_backup');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.items && data.items.length > 0) {
+                        newsData = data;
+                        renderEditor();
+                        updateStatus(true);
+                        document.getElementById('dropZone').style.display = 'none';
+                        document.getElementById('editorSection').classList.add('visible');
+                        document.getElementById('downloadBtn').disabled = false;
+                        document.getElementById('copyBtn').disabled = false;
+                        const timestamp = localStorage.getItem('iseered_news_timestamp') || 'recently';
+                        showToast(`✅ Auto-loaded from browser cache (${timestamp})`, 'success');
+                        return true;
+                    }
+                }
+            } catch (e) {
+                // Invalid stored data
+            }
+            return false;
+        }
+
+        // ============================================================
+        // FILE LOADING
+        // ============================================================
+        function loadJSONFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (!data.items || !Array.isArray(data.items)) {
+                        throw new Error('Invalid news.json format: missing "items" array');
+                    }
+                    newsData = data;
+                    hasChanges = false;
+                    renderEditor();
+                    updateStatus(true);
+                    showToast('✅ News loaded successfully!', 'success');
+                    document.getElementById('dropZone').style.display = 'none';
+                    document.getElementById('editorSection').classList.add('visible');
+                    document.getElementById('downloadBtn').disabled = false;
+                    document.getElementById('copyBtn').disabled = false;
+                    autoSave();
+                } catch (err) {
+                    showToast('❌ Error loading file: ' + err.message, 'error');
+                    console.error(err);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ============================================================
+        // DROP ZONE
+        // ============================================================
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+        });
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.json')) {
+                const input = document.getElementById('fileInput');
+                const dt = new DataTransfer();
+                dt.items.add(file);
+                input.files = dt.files;
+                loadJSONFile({ target: input });
+            } else {
+                showToast('⚠️ Please drop a valid .json file', 'warning');
+            }
+        });
+
+        // ============================================================
+        // RENDER EDITOR
+        // ============================================================
+        function renderEditor() {
+            const list = document.getElementById('newsList');
+            const count = document.getElementById('itemCount');
+
+            if (newsData.items.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <p>No news items yet. Click "Add New" to create one.</p>
+                    </div>
+                `;
+                count.textContent = '0 items';
+                return;
+            }
+
+            list.innerHTML = newsData.items.map((item, index) => `
+                <div class="news-item-card" draggable="true" data-index="${index}">
+                    <div style="display:flex; align-items:center; flex:1; min-width:0;">
+                        <span class="drag-handle"><i class="fas fa-grip-vertical"></i></span>
+                        <div class="item-info" onclick="editItem(${index})" style="cursor:pointer;">
+                            <div class="item-title">${escapeHTML(item.title || 'Untitled')}</div>
+                            <div class="item-meta">${escapeHTML(item.badge || 'No badge')} • ${escapeHTML(item.label || 'No label')}</div>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn btn-primary" onclick="event.stopPropagation(); editItem(${index})" style="padding:0.3rem 0.8rem; font-size:0.75rem;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="event.stopPropagation(); deleteItem(${index})" style="padding:0.3rem 0.8rem; font-size:0.75rem;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            count.textContent = `${newsData.items.length} items`;
+
+            // Setup drag-and-drop
+            setupDragAndDrop();
+        }
+
+        // ============================================================
+        // DRAG AND DROP REORDERING
+        // ============================================================
+        function setupDragAndDrop() {
+            const items = document.querySelectorAll('.news-item-card');
+            
+            items.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    draggedIndex = parseInt(this.dataset.index);
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                item.addEventListener('dragend', function(e) {
+                    this.classList.remove('dragging');
+                });
+
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    const targetIndex = parseInt(this.dataset.index);
+                    if (targetIndex !== draggedIndex) {
+                        // Visual feedback
+                        this.style.borderColor = 'var(--color-red)';
+                    }
+                });
+
+                item.addEventListener('dragleave', function(e) {
+                    this.style.borderColor = 'var(--color-gray)';
+                });
+
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = 'var(--color-gray)';
+                    const targetIndex = parseInt(this.dataset.index);
+                    if (draggedIndex !== null && draggedIndex !== targetIndex) {
+                        reorderItems(draggedIndex, targetIndex);
+                    }
+                    draggedIndex = null;
+                });
+            });
+        }
+
+        function reorderItems(fromIndex, toIndex) {
+            const [removed] = newsData.items.splice(fromIndex, 1);
+            newsData.items.splice(toIndex, 0, removed);
+            hasChanges = true;
+            renderEditor();
+            autoSave();
+            showToast('📦 Item reordered', 'info');
+        }
+
+        // ============================================================
+        // ADD NEW ITEM
+        // ============================================================
+        function addNewItem() {
+            editingIndex = -1;
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('editForm').style.display = 'block';
+            document.getElementById('editForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Reset form
+            document.getElementById('editBadge').value = '';
+            document.getElementById('editLabel').value = '';
+            document.getElementById('editTitle').value = '';
+            document.getElementById('editMeta').value = '';
+            document.getElementById('editDescription').value = '';
+            document.getElementById('editYouTube').value = '';
+            document.getElementById('editImage').value = '';
+
+            document.querySelector('input[name="mediaType"][value="none"]').checked = true;
+            toggleMediaFields();
+
+            document.getElementById('linksContainer').innerHTML = '';
+            addLinkField();
+
+            document.getElementById('saveBtn').innerHTML = '<i class="fas fa-plus"></i> Add Item';
+            document.getElementById('deleteBtn').style.display = 'none';
+            document.getElementById('editForm').querySelector('h3').textContent = 'Add New News Item';
+            updatePreview();
+        }
+
+        // ============================================================
+        // EDIT ITEM
+        // ============================================================
+        function editItem(index) {
+            const item = newsData.items[index];
+            if (!item) return;
+
+            editingIndex = index;
+            document.getElementById('editIndex').value = index;
+            document.getElementById('editForm').style.display = 'block';
+            document.getElementById('editForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            document.getElementById('editBadge').value = item.badge || '';
+            document.getElementById('editLabel').value = item.label || '';
+            document.getElementById('editTitle').value = item.title || '';
+            document.getElementById('editMeta').value = item.meta || '';
+            document.getElementById('editDescription').value = item.description || '';
+
+            const mediaType = item.media?.type || 'none';
+            document.querySelector(`input[name="mediaType"][value="${mediaType}"]`).checked = true;
+            toggleMediaFields();
+
+            if (mediaType === 'youtube') {
+                document.getElementById('editYouTube').value = item.media?.src || '';
+            } else if (mediaType === 'image') {
+                document.getElementById('editImage').value = item.media?.src || '';
+            }
+
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '';
+            if (item.links && item.links.length > 0) {
+                item.links.forEach(link => addLinkField(link.name, link.url));
+            } else {
+                addLinkField();
+            }
+
+            document.getElementById('saveBtn').innerHTML = '<i class="fas fa-save"></i> Update Item';
+            document.getElementById('deleteBtn').style.display = 'inline-block';
+            document.getElementById('editForm').querySelector('h3').textContent = 'Edit News Item';
+            updatePreview();
+        }
+
+        // ============================================================
+        // DELETE ITEM
+        // ============================================================
+        function deleteItem(index) {
+            if (!confirm(`Are you sure you want to delete "${newsData.items[index].title || 'Untitled'}"?`)) return;
+
+            newsData.items.splice(index, 1);
+            hasChanges = true;
+            renderEditor();
+            autoSave();
+
+            if (editingIndex === index || editingIndex > index) {
+                cancelEdit();
+            }
+            showToast('🗑️ Item deleted', 'warning');
+        }
+
+        function deleteCurrentItem() {
+            const index = parseInt(document.getElementById('editIndex').value);
+            if (index >= 0 && index < newsData.items.length) {
+                deleteItem(index);
+            }
+        }
+
+        // ============================================================
+        // SAVE ITEM
+        // ============================================================
+        function saveItem(event) {
+            event.preventDefault();
+
+            const index = parseInt(document.getElementById('editIndex').value);
+            const badge = document.getElementById('editBadge').value.trim();
+            const label = document.getElementById('editLabel').value.trim();
+            const title = document.getElementById('editTitle').value.trim();
+            const meta = document.getElementById('editMeta').value.trim();
+            const description = document.getElementById('editDescription').value.trim();
+
+            if (!badge || !label || !title || !meta || !description) {
+                showToast('⚠️ Please fill in all required fields', 'warning');
+                return;
+            }
+
+            const mediaType = document.querySelector('input[name="mediaType"]:checked').value;
+            let media = { type: mediaType };
+
+            if (mediaType === 'youtube') {
+                const src = document.getElementById('editYouTube').value.trim();
+                if (!src) {
+                    showToast('⚠️ Please enter a YouTube embed URL', 'warning');
+                    return;
+                }
+                media.src = src;
+            } else if (mediaType === 'image') {
+                const src = document.getElementById('editImage').value.trim();
+                if (!src) {
+                    showToast('⚠️ Please enter an image path or upload an image', 'warning');
+                    return;
+                }
+                media.src = src;
+            }
+
+            const linkInputs = document.querySelectorAll('.link-item');
+            const links = [];
+            linkInputs.forEach(input => {
+                const nameInput = input.querySelector('.link-name');
+                const urlInput = input.querySelector('.link-url');
+                const name = nameInput.value.trim();
+                const url = urlInput.value.trim();
+                if (name && url) {
+                    links.push({ name, url });
+                }
+            });
+
+            const item = { badge, label, title, meta, description, media, links };
+
+            if (index >= 0 && index < newsData.items.length) {
+                newsData.items[index] = item;
+                showToast('✅ Item updated successfully!', 'success');
+            } else {
+                newsData.items.push(item);
+                showToast('✅ Item added successfully!', 'success');
+            }
+
+            hasChanges = true;
+            renderEditor();
+            autoSave();
+            cancelEdit();
+        }
+
+        // ============================================================
+        // CANCEL EDIT
+        // ============================================================
+        function cancelEdit() {
+            document.getElementById('editForm').style.display = 'none';
+            editingIndex = -1;
+            document.getElementById('editIndex').value = -1;
+        }
+
+        // ============================================================
+        // LINK MANAGEMENT
+        // ============================================================
+        function addLinkField(name = '', url = '') {
+            const container = document.getElementById('linksContainer');
+            const div = document.createElement('div');
+            div.className = 'link-item';
+            div.innerHTML = `
+                <input type="text" class="link-name" placeholder="Link name (e.g. Spotify)" value="${escapeHTML(name)}">
+                <input type="url" class="link-url" placeholder="URL" value="${escapeHTML(url)}">
+                <span class="remove-link" onclick="this.closest('.link-item').remove(); updatePreview();">
+                    <i class="fas fa-times"></i>
+                </span>
+            `;
+            // Add input listeners for preview
+            div.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
+            container.appendChild(div);
+            updatePreview();
+        }
+
+        // ============================================================
+        // MEDIA FIELDS TOGGLE
+        // ============================================================
+        function toggleMediaFields() {
+            const type = document.querySelector('input[name="mediaType"]:checked').value;
+            document.getElementById('youtubeField').style.display = type === 'youtube' ? 'block' : 'none';
+            document.getElementById('imageField').style.display = type === 'image' ? 'block' : 'none';
+            updatePreview();
+        }
+
+        // ============================================================
+        // IMAGE UPLOAD
+        // ============================================================
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Get file extension
+            const ext = file.name.split('.').pop().toLowerCase();
+            const validExts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+            if (!validExts.includes(ext)) {
+                showToast('⚠️ Please upload a valid image (jpg, png, webp, gif)', 'warning');
+                return;
+            }
+
+            // Set the path
+            const path = `assets/news/${file.name}`;
+            document.getElementById('editImage').value = path;
+            showToast(`✅ Image path set to: ${path}`, 'success');
+            showToast('💡 Remember to upload the image to assets/news/ via FTP', 'info');
+            updatePreview();
+
+            // Show a preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewImg = document.querySelector('.preview-media img');
+                if (previewImg) {
+                    previewImg.src = e.target.result;
+                }
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        // ============================================================
+        // UPDATE PREVIEW
+        // ============================================================
+        function updatePreview() {
+            const preview = document.getElementById('previewContent');
+
+            const badge = document.getElementById('editBadge').value || 'Badge';
+            const label = document.getElementById('editLabel').value || 'Label';
+            const title = document.getElementById('editTitle').value || 'Title';
+            const meta = document.getElementById('editMeta').value || 'Meta';
+            const description = document.getElementById('editDescription').value || 'Description';
+
+            const mediaType = document.querySelector('input[name="mediaType"]:checked').value;
+            let mediaHtml = '';
+
+            if (mediaType === 'youtube') {
+                const src = document.getElementById('editYouTube').value;
+                mediaHtml = src ? `<iframe src="${src}" allowfullscreen></iframe>` :
+                    '<div class="preview-media" style="color:var(--color-white-dim);">Enter YouTube URL</div>';
+            } else if (mediaType === 'image') {
+                const src = document.getElementById('editImage').value;
+                mediaHtml = src ? `<img src="${src}" alt="Preview">` :
+                    '<div class="preview-media" style="color:var(--color-white-dim);">Enter image path or upload</div>';
+            } else {
+                mediaHtml = '<div class="preview-media" style="color:var(--color-white-dim);">No media</div>';
+            }
+
+            const linkInputs = document.querySelectorAll('.link-item');
+            let linksHtml = '';
+            linkInputs.forEach(input => {
+                const name = input.querySelector('.link-name').value.trim();
+                const url = input.querySelector('.link-url').value.trim();
+                if (name && url) {
+                    linksHtml += `<a href="${url}" target="_blank">${escapeHTML(name)}</a>`;
+                }
+            });
+
+            preview.innerHTML = `
+                <div class="preview-card">
+                    <div class="preview-media">${mediaHtml}</div>
+                    <div class="preview-info">
+                        <span class="preview-badge">${escapeHTML(badge)}</span>
+                        <div style="color:var(--color-red); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em;">${escapeHTML(label)}</div>
+                        <div class="preview-title">${escapeHTML(title)}</div>
+                        <div class="preview-meta">${escapeHTML(meta)}</div>
+                        <div class="preview-desc">${escapeHTML(description)}</div>
+                        ${linksHtml ? `<div class="preview-links">${linksHtml}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add event listeners for live preview
+        document.querySelectorAll('#editBadge, #editLabel, #editTitle, #editMeta, #editDescription, #editYouTube, #editImage').forEach(el => {
+            el.addEventListener('input', updatePreview);
+        });
+
+        // ============================================================
+        // DOWNLOAD JSON
+        // ============================================================
+        function downloadJSON() {
+            if (newsData.items.length === 0) {
+                showToast('⚠️ No items to save', 'warning');
+                return;
+            }
+
+            const json = JSON.stringify(newsData, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'news.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            hasChanges = false;
+            showToast('📥 JSON downloaded successfully!', 'success');
+            showToast('💡 Replace your site\'s news.json with this file', 'info');
+            updateStatus(true);
+        }
+
+        // ============================================================
+        // COPY JSON TO CLIPBOARD
+        // ============================================================
+        function copyJSON() {
+            if (newsData.items.length === 0) {
+                showToast('⚠️ No items to copy', 'warning');
+                return;
+            }
+
+            const json = JSON.stringify(newsData, null, 2);
+            navigator.clipboard.writeText(json).then(() => {
+                showToast('📋 JSON copied to clipboard!', 'success');
+            }).catch(() => {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = json;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('📋 JSON copied to clipboard!', 'success');
+            });
+        }
+
+        // ============================================================
+        // UPDATE STATUS
+        // ============================================================
+        function updateStatus(loaded) {
+            const text = document.getElementById('statusText');
+            const badge = document.getElementById('statusBadge');
+
+            if (loaded) {
+                const count = newsData.items.length;
+                text.innerHTML = `<i class="fas fa-check-circle" style="color:#28a745;"></i> Loaded: <strong>${count}</strong> items${hasChanges ? ' (has unsaved changes)' : ''}`;
+                badge.className = `status-badge ${hasChanges ? 'changed' : 'loaded'}`;
+                badge.textContent = `${count} Items${hasChanges ? ' • Changed' : ''}`;
+            } else {
+                text.innerHTML = `<i class="fas fa-circle" style="color:var(--color-gray);"></i> No file loaded. Click "Load" to begin.`;
+                badge.className = 'status-badge empty';
+                badge.textContent = 'Empty';
+            }
+        }
+
+        // ============================================================
+        // UTILITY
+        // ============================================================
+        function escapeHTML(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ============================================================
+        // KEYBOARD SHORTCUTS
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                if (document.getElementById('downloadBtn').disabled === false) {
+                    downloadJSON();
+                }
+            }
+            if (e.key === 'Escape' && document.getElementById('editForm').style.display !== 'none') {
+                cancelEdit();
+            }
+            // Ctrl+Shift+C to copy JSON
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                copyJSON();
+            }
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        console.log('🔥 I See Red Admin Panel v2.0');
+        console.log('📖 Features:');
+        console.log('✅ Auto-saves to browser storage');
+        console.log('✅ Drag to reorder items');
+        console.log('✅ One-click copy to clipboard');
+        console.log('✅ Live preview');
+        console.log('✅ Keyboard shortcuts: Ctrl+S = Download, Escape = Cancel');
+
+        // Try to load auto-save first
+        if (!loadAutoSave()) {
+            // Try to auto-load from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('load') === 'news.json') {
+                fetch('news.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.items) {
+                            newsData = data;
+                            renderEditor();
+                            updateStatus(true);
+                            document.getElementById('dropZone').style.display = 'none';
+                            document.getElementById('editorSection').classList.add('visible');
+                            document.getElementById('downloadBtn').disabled = false;
+                            document.getElementById('copyBtn').disabled = false;
+                            showToast('✅ Auto-loaded news.json from server', 'success');
+                            autoSave();
+                        }
+                    })
+                    .catch(() => {
+                        console.log('Could not auto-load news.json. Please load manually.');
+                    });
+            }
+        }
+
+        // Initialize
+        updateStatus(false);
+        renderEditor();
+        addLinkField();
+
+        console.log('💡 Tip: Drag and drop a news.json file onto the page to start editing!');
+    </script>
+</body>
+</html>

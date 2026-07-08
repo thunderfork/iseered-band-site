@@ -221,35 +221,70 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
 
 /**
  * ============================================================
+ * SMOOTH SCROLL - For anchor links
+ * ============================================================
+ */
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+
+        if (href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const target = document.querySelector(href);
+            if (target) {
+                // Close mobile menu FIRST before calculating offset
+                closeMobileMenu();
+                
+                // Now calculate offset with closed navbar
+                const navHeight = nav ? nav.offsetHeight : 0;
+                const targetPos = target.offsetTop - navHeight;
+                
+                // Small delay to ensure menu is fully closed before scrolling
+                setTimeout(function() {
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    });
+});
+
+/**
+ * ============================================================
  * MOBILE NAVIGATION TOGGLE
  * ============================================================
  */
 const navToggle = document.querySelector('.nav-toggle');
 const navMenus = document.querySelectorAll('.nav-menu');
 
-if (navToggle && navMenus.length) {
-    navToggle.addEventListener('click', function() {
-        const isActive = this.classList.toggle('active');
-        navMenus.forEach(function(menu) {
-            menu.classList.toggle('active', isActive);
-            menu.setAttribute('aria-hidden', !isActive);
-        });
-        this.setAttribute('aria-expanded', isActive);
+function closeMobileMenu() {
+    if (navToggle) {
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navMenus.forEach(function(menu) {
+        menu.classList.remove('active');
+        menu.setAttribute('aria-hidden', 'true');
     });
 }
 
-document.querySelectorAll('.nav-menu a').forEach(function(link) {
-    link.addEventListener('click', function() {
-        if (navToggle) {
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-        }
-        navMenus.forEach(function(menu) {
-            menu.classList.remove('active');
-            menu.setAttribute('aria-hidden', 'true');
-        });
+function toggleMobileMenu() {
+    const isActive = navToggle.classList.toggle('active');
+    navMenus.forEach(function(menu) {
+        menu.classList.toggle('active', isActive);
+        menu.setAttribute('aria-hidden', !isActive);
     });
-});
+    navToggle.setAttribute('aria-expanded', isActive);
+}
+
+if (navToggle && navMenus.length) {
+    navToggle.addEventListener('click', toggleMobileMenu);
+}
+
+// Remove the old link click handler since we handle it in smooth scroll now
+// The old document.querySelectorAll('.nav-menu a') handler is no longer needed
+// but keep it for redundancy or remove it
 
 /* ============================================================ */
 /* === NEWS CAROUSEL START === */
@@ -442,6 +477,63 @@ function initCarousel() {
             resumeAutoPlay();
         }
     });
+
+    // ============================================================
+    // ADD TOUCH SWIPE SUPPORT FOR MOBILE
+    // ============================================================
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isSwiping = false;
+    const SWIPE_THRESHOLD = 50; // minimum distance in pixels to trigger a swipe
+
+    carousel.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchEndX = 0;
+        isSwiping = false;
+        // Pause auto-play when user touches the carousel
+        pauseAutoPlay();
+    }, { passive: true });
+
+    carousel.addEventListener('touchmove', function(e) {
+        if (touchStartX) {
+            const currentX = e.changedTouches[0].screenX;
+            const diff = touchStartX - currentX;
+            // If the user has moved more than 10px, consider it a swipe
+            if (Math.abs(diff) > 10) {
+                isSwiping = true;
+            }
+        }
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', function(e) {
+        if (!touchStartX) return;
+        
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        
+        // Only trigger if it was a swipe (not a tap) and passed the threshold
+        if (isSwiping && Math.abs(diff) > SWIPE_THRESHOLD) {
+            if (diff > 0) {
+                // Swiped left - go to next slide
+                goToNext();
+            } else {
+                // Swiped right - go to previous slide
+                goToPrev();
+            }
+        }
+        
+        // Reset touch values
+        touchStartX = 0;
+        touchEndX = 0;
+        isSwiping = false;
+        
+        // Resume auto-play after a delay
+        scheduleResume();
+    }, { passive: true });
+
+    // ============================================================
+    // END TOUCH SWIPE SUPPORT
+    // ============================================================
 
     // Visibility observer
     const visObserver = new IntersectionObserver((entries) => {

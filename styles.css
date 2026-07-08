@@ -42,6 +42,21 @@ html {
     scroll-snap-stop: always;
 }
 
+/* Disable scroll snap on mobile */
+@media (max-width: 768px) {
+    html {
+        scroll-snap-type: none;
+        scroll-padding-top: 0;
+    }
+    
+    .section,
+    .hero,
+    .footer {
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+    }
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--color-black);
@@ -514,7 +529,7 @@ button {
             "toggle brand ."
             "menu-left menu-left menu-left"
             "menu-right menu-right menu-right";
-        row-gap: var(--spacing-sm);
+        row-gap: var(--spacing-xs);
     }
 
     .nav-menu-left,
@@ -531,7 +546,7 @@ button {
     }
 
     .nav-brand-logo {
-        height: 40px;
+        height: 50px;
         max-width: 180px;
     }
 
@@ -618,7 +633,7 @@ button {
 
 .hero-subtitle {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-red);
@@ -635,6 +650,7 @@ button {
 }
 
 .hero-cta .btn {
+    font-size: 1.25rem;
     width: 100%;
     text-align: center;
 }
@@ -669,7 +685,7 @@ button {
     .hero-cta {
         margin-top: auto;
         grid-template-columns: 1fr;
-        max-width: 100%;
+        max-width: 80%;
         padding-bottom: 1.5rem;
     }
 }
