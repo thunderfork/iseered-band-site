@@ -1,6 +1,5 @@
 /* ============================================================
-   CSS RESET & BASE
-   Resets default browser styles and establishes global variables.
+   CSS RESET & VARIABLES
 ============================================================ */
 *, *::before, *::after {
     margin: 0;
@@ -31,7 +30,16 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px;
     font-size: 16px;
+}
+
+.section,
+.hero,
+.footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 body {
@@ -53,7 +61,6 @@ a {
 
 img {
     max-width: 100%;
-    height: auto;
     display: block;
 }
 
@@ -69,8 +76,7 @@ button {
 }
 
 /* ============================================================
-   SITE BACKGROUND
-   Full-page background with parallax effect
+   BACKGROUND
 ============================================================ */
 .site-background {
     position: fixed;
@@ -83,12 +89,9 @@ button {
     background-position: center 0%;
     background-size: cover;
     background-repeat: no-repeat;
-    will-change: transform;
-    transition: none;
     pointer-events: none;
 }
 
-/* Mobile background image - zoomed out to show full faces */
 @media (max-width: 768px) {
     .site-background {
         background-image: url('assets/images/band-photo-mobile.jpg');
@@ -97,195 +100,23 @@ button {
         background-color: var(--color-black);
     }
 }
+
 /* ============================================================
-   SOCIAL SIDEBAR - Desktop (Recessed, no borders, expands on hover)
+   PAGE CONTENT WRAPPER
 ============================================================ */
-.social-sidebar {
-    position: fixed;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    /* SLOW AND SMOOTH - 1.8s */
-    transition: left 1.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 10px 6px;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-}
-
-/* INVISIBLE HOVER AREA - Opens from further away */
-.social-sidebar::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    right: -80px;
-    bottom: -30px;
-    left: -20px;
-    z-index: -1;
-}
-
-/* Show a subtle red hint on the edge */
-.social-sidebar::before {
-    content: '';
-    position: absolute;
-    right: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 50px;
-    background: var(--color-red);
-    border-radius: 0 4px 4px 0;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-/* Expand and reveal on hover */
-.social-sidebar:hover {
-    left: 0;
-    transform: translateY(-50%) scale(1.02);
-}
-
-.social-sidebar:hover::before {
+#page-content {
     opacity: 0;
+    transition: opacity 1.2s ease;
+    position: relative;
+    z-index: 1;
 }
 
-.social-sidebar a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    font-size: 1.2rem;
-    color: var(--color-white-dim);
-    text-decoration: none;
-    opacity: 0.7;
-}
-
-.social-sidebar:hover a {
-    width: 56px;
-    height: 56px;
-    font-size: 1.6rem;
+#page-content.loaded {
     opacity: 1;
-    color: var(--color-white);
-}
-
-.social-sidebar a:hover {
-    color: var(--color-red);
-    transform: scale(1.15);
-}
-
-/* Add left padding to container on larger screens only */
-@media (min-width: 1200px) {
-    .container {
-        padding-left: calc(var(--spacing-md) + 30px);
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    .container {
-        padding-left: calc(var(--spacing-md) + 20px);
-    }
-}
-
-/* Hide sidebar on smaller screens */
-@media (max-width: 991px) {
-    .social-sidebar {
-        display: none;
-    }
-    
-    .container {
-        padding-left: var(--spacing-md);
-    }
 }
 
 /* ============================================================
-   SOCIAL BOTTOM BAR - Mobile (Fixed at bottom)
-============================================================ */
-.social-bottom-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 12px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.social-bottom-bar a {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: var(--transition);
-    font-size: 1.4rem;
-    color: var(--color-white-dim);
-    text-decoration: none;
-}
-
-.social-bottom-bar a:hover,
-.social-bottom-bar a:active {
-    color: var(--color-red);
-    background: rgba(196, 30, 58, 0.15);
-}
-
-/* Show bottom bar on mobile */
-@media (max-width: 768px) {
-    .social-sidebar {
-        display: none;
-    }
-
-    .social-bottom-bar {
-        display: flex;
-    }
-
-    .container {
-        padding-left: var(--spacing-md);
-        padding-right: var(--spacing-md);
-    }
-
-    .section,
-    .hero {
-        padding-bottom: calc(var(--spacing-md) + 80px);
-    }
-}
-
-/* Hide bottom bar on desktop */
-@media (min-width: 769px) {
-    .social-bottom-bar {
-        display: none !important;
-    }
-}
-
-/* ============================================================
-   CONTACT SECTION SOCIAL ICONS - Keep these as they were
-============================================================ */
-/* These styles already exist in your CSS, no changes needed */
-
-/* ============================================================
-   UTILITY CLASSES
-   Reusable helper classes.
+   CONTAINER & SECTION
 ============================================================ */
 .container {
     width: 100%;
@@ -294,8 +125,8 @@ button {
     padding: 0 var(--spacing-md);
 }
 
-/* Single continuous background - all sections share one background layer */
 .section {
+    min-height: 50vh;
     padding: var(--spacing-md) 0;
     background: rgba(10, 10, 10, 0.75);
     backdrop-filter: blur(2px) saturate(1.1);
@@ -326,6 +157,9 @@ button {
     background: linear-gradient(90deg, var(--color-red), var(--color-red-dark));
 }
 
+/* ============================================================
+   BUTTONS
+============================================================ */
 .btn {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -372,38 +206,8 @@ button {
     border-color: var(--color-red-dark);
 }
 
-.btn-secondary {
-    border-color: var(--color-white-dim);
-}
-
-.btn-secondary:hover {
-    border-color: var(--color-red);
-    background: var(--color-red);
-}
-
-.text-center {
-    text-align: center;
-}
-
-.text-red {
-    color: var(--color-red);
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
 /* ============================================================
-   SKIP LINK
-   Accessibility: allows keyboard users to skip navigation.
+   SKIP LINK & FOCUS
 ============================================================ */
 .skip-link {
     position: absolute;
@@ -421,19 +225,174 @@ button {
     top: 0;
 }
 
-/* ============================================================
-   FOCUS STYLES
-   Enhanced focus visibility for keyboard navigation.
-============================================================ */
 *:focus-visible {
     outline: 3px solid var(--color-red-bright);
     outline-offset: 2px;
     border-radius: 2px;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================================
+   SOCIAL SIDEBAR (Desktop)
+============================================================ */
+.social-sidebar {
+    position: fixed;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    transition: left 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 10px 6px;
+    background: transparent;
+}
+
+.social-sidebar::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -80px;
+    bottom: -30px;
+    left: -20px;
+    z-index: -1;
+}
+
+.social-sidebar::before {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 50px;
+    background: var(--color-red);
+    border-radius: 0 4px 4px 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.social-sidebar:hover {
+    left: 0;
+    transform: translateY(-50%) scale(1.02);
+}
+
+.social-sidebar:hover::before {
+    opacity: 0;
+}
+
+.social-sidebar a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1.2rem;
+    color: var(--color-white-dim);
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.social-sidebar:hover a {
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
+    opacity: 1;
+    color: var(--color-white);
+}
+
+.social-sidebar a:hover {
+    color: var(--color-red);
+    transform: scale(1.15);
+}
+
+@media (max-width: 991px) {
+    .social-sidebar {
+        display: none;
+    }
+}
+
+/* ============================================================
+   SOCIAL BOTTOM BAR (Mobile)
+============================================================ */
+.social-bottom-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-bottom-bar a {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+    font-size: 1.4rem;
+    color: var(--color-white-dim);
+    text-decoration: none;
+}
+
+.social-bottom-bar a:hover,
+.social-bottom-bar a:active {
+    color: var(--color-red);
+    background: rgba(196, 30, 58, 0.15);
+}
+
+@media (max-width: 768px) {
+    .social-sidebar {
+        display: none;
+    }
+
+    .social-bottom-bar {
+        display: flex;
+    }
+
+    .section,
+    .hero {
+        padding-bottom: calc(var(--spacing-md) + 80px);
+    }
+}
+
+
+@media (min-width: 769px) {
+    .social-bottom-bar {
+        display: none !important;
+    }
+}
+
 /* ============================================================
    NAVIGATION
-   Fixed navbar with hamburger menu on mobile.
 ============================================================ */
 .nav {
     position: fixed;
@@ -446,24 +405,17 @@ button {
     -webkit-backdrop-filter: blur(20px) saturate(1.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: var(--spacing-sm) 0;
-    transform: translateY(-100%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
     opacity: 0;
-    visibility: hidden;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0.4s ease,
-                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    transition: none;
 }
 
 .nav.visible {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    pointer-events: auto;
 }
 
-.nav-content {
+.nav-container {
     display: grid;
     grid-template-columns: 1fr auto 1fr auto;
     align-items: center;
@@ -521,7 +473,6 @@ button {
 }
 
 .nav-brand-logo {
-    display: block;
     height: 40px;
     width: auto;
     max-width: 100%;
@@ -534,8 +485,6 @@ button {
     justify-content: center;
     gap: 5px;
     padding: var(--spacing-xs);
-    background: none;
-    border: 0;
 }
 
 .nav-toggle span {
@@ -558,9 +507,65 @@ button {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
+@media (max-width: 768px) {
+    .nav-container {
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-areas:
+            "toggle brand ."
+            "menu-left menu-left menu-left"
+            "menu-right menu-right menu-right";
+        row-gap: var(--spacing-sm);
+    }
+
+    .nav-menu-left,
+    .nav-menu-right {
+        display: none;
+    }
+
+    .nav-menu-left { grid-area: menu-left; }
+    .nav-menu-right { grid-area: menu-right; }
+
+    .nav-brand {
+        grid-area: brand;
+        justify-self: center;
+    }
+
+    .nav-brand-logo {
+        height: 40px;
+        max-width: 180px;
+    }
+
+    .nav-toggle {
+        grid-area: toggle;
+        display: flex;
+        justify-self: start;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md) 0;
+    }
+
+    .nav-menu-right.active {
+        border-top: 1px solid var(--color-gray);
+        padding-top: var(--spacing-md);
+    }
+
+    .nav-menu a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 2rem;
+        letter-spacing: 0.3em;
+        color: var(--color-white);
+    }
+}
+
 /* ============================================================
-   HERO SECTION
-   Full-screen hero with overlay and CTA.
+   HERO
 ============================================================ */
 .hero {
     position: relative;
@@ -571,18 +576,6 @@ button {
     justify-content: center;
     background: transparent;
     z-index: 1;
-}
-
-
-.hero-bg-image {
-    display: none;
-}
-
-.hero-logo {
-    display: block;
-    width: auto;
-    height: auto;
-    margin: 0 auto;
 }
 
 .hero-overlay {
@@ -605,6 +598,13 @@ button {
     padding: var(--spacing-md);
 }
 
+.hero-logo {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
 .hero-title {
     font-family: var(--font-display);
     font-size: clamp(3rem, 12vw, 10rem);
@@ -614,7 +614,6 @@ button {
     margin-bottom: var(--spacing-sm);
     color: var(--color-white);
     text-shadow: 0 0 40px rgba(196, 30, 58, 0.5);
-    animation: fadeInUp 1s ease-out;
 }
 
 .hero-subtitle {
@@ -624,7 +623,6 @@ button {
     text-transform: uppercase;
     color: var(--color-red);
     margin-bottom: var(--spacing-lg);
-    animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .hero-cta {
@@ -634,7 +632,6 @@ button {
     width: 100%;
     max-width: 700px;
     margin: 0 auto;
-    animation: fadeInUp 1s ease-out 0.6s both;
 }
 
 .hero-cta .btn {
@@ -653,17 +650,33 @@ button {
     }
 }
 
-/* ============================================================
-   RELEASE SECTION
-   Displays the latest single/video with streaming links.
-============================================================ */
-.release {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
-    position: relative;
+@media (max-width: 768px) {
+    .hero {
+        align-items: stretch;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 1rem;
+    }
+
+    .hero-cta {
+        margin-top: auto;
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding-bottom: 1.5rem;
+    }
 }
 
+/* ============================================================
+   RELEASE
+============================================================ */
 .release-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -691,6 +704,20 @@ button {
     border: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+.release-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--color-red);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    z-index: 2;
 }
 
 .video-loader {
@@ -721,20 +748,6 @@ button {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
-}
-
-.release-badge {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-    background: var(--color-red);
-    color: var(--color-white);
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.5rem 1rem;
-    z-index: 2;
 }
 
 .release-info {
@@ -793,29 +806,41 @@ button {
     border-bottom-color: var(--color-red);
 }
 
-/* ============================================================
-   TOUR SECTION
-   Uses Bandsintown widget for live show listings.
-============================================================ */
-.tour {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
+@media (max-width: 1024px) {
+    .release-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .release-info {
+        padding: var(--spacing-sm) 0;
+    }
+
+    .release-title {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .release-description {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
 }
 
+/* ============================================================
+   TOUR
+============================================================ */
 .tour-view-all {
     text-align: center;
     margin-top: var(--spacing-lg);
 }
 
 /* ============================================================
-   MERCH SECTION
-   Temporary placeholder until Bandcamp/Shopify integration.
+   MERCH
 ============================================================ */
-.merch {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
+.merch-temp-note {
+    text-align: center;
+    color: var(--color-white-dim);
+    margin-bottom: var(--spacing-lg);
 }
 
 .merch-grid-placeholder {
@@ -841,15 +866,8 @@ button {
 }
 
 /* ============================================================
-   ABOUT SECTION
-   Band info, description, members, and social links.
+   ABOUT
 ============================================================ */
-.about {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
-}
-
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -858,21 +876,19 @@ button {
 }
 
 .about-image {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3 / 2;
     background: linear-gradient(135deg, var(--color-gray), var(--color-black));
     position: relative;
     overflow: hidden;
     border: 2px solid var(--color-red);
     transition: opacity 0.35s ease, transform 0.35s ease;
+    cursor: default;
 }
 
 .about-image::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(45deg, rgba(196, 30, 58, 0.2), transparent);
     z-index: 1;
 }
@@ -886,11 +902,13 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    object-position: top;
+    transition: none;
+    will-change: transform;
 }
 
 .about-image:hover .about-img {
-    transform: scale(1.1);
+    transform: none;
 }
 
 .about-content {
@@ -910,35 +928,6 @@ button {
     line-height: 1.7;
     color: var(--color-white-dim);
     margin-bottom: var(--spacing-sm);
-}
-
-.about-social {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
-    flex-wrap: wrap;
-}
-
-.about-social .social-icon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid var(--color-gray);
-    transition: var(--transition);
-    font-size: 1.3rem;
-    color: var(--color-white-dim);
-    text-decoration: none;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-}
-
-.about-social .social-icon:hover {
-    border-color: var(--color-red);
-    background: var(--color-red);
-    color: var(--color-white);
 }
 
 .about-members {
@@ -982,45 +971,61 @@ button {
     background: var(--color-gray);
     box-shadow: var(--shadow-red);
 }
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        padding: 0;
+    }
+
+    .about-members {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image {
+        max-height: 400px;
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .about-image.is-sticky {
+        position: sticky;
+        top: 105px;
+        z-index: 5;
+        max-height: 40vh;
+    }
+
+    .about-members {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        padding: var(--spacing-sm);
+        border-radius: 4px;
+        margin-top: var(--spacing-sm);
+    }
+
+    .about-member {
+        padding: 0.9rem 0.75rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-image {
+        max-height: 30vh;
+    }
+}
+
 /* ============================================================
-   ABOUT SECTION - Mouse Zoom Effect (Desktop Only)
+   PRESS
 ============================================================ */
-.about-image {
-    aspect-ratio: 3/2;
-    background: linear-gradient(135deg, var(--color-gray), var(--color-black));
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--color-red);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    cursor: default; /* Hides the cursor for a cleaner look */
-}
-
-.about-image .about-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: none; /* Remove the old transition */
-    will-change: transform; /* Performance optimization */
-}
-
-/* Hide the old hover zoom */
-.about-image:hover .about-img {
-    transform: none;
-}
-
-
-
-/* ============================================================
-   PRESS SECTION
-   Cards for press assets: photos, EPK, branding, coverage.
-============================================================ */
-.press {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
-}
-
 .press-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1087,16 +1092,29 @@ button {
     text-align: center;
 }
 
-/* ============================================================
-   CONTACT SECTION
-   Contact info and a functional contact form.
-============================================================ */
-.contact {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px) saturate(1.1);
-    -webkit-backdrop-filter: blur(2px) saturate(1.1);
+.press-note {
+    color: var(--color-white-dim);
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: var(--spacing-md) auto 0;
+    text-align: center;
 }
 
+@media (max-width: 1024px) {
+    .press-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .press-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1355,9 +1373,49 @@ button {
     color: #dc3545;
 }
 
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-email-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-email-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .contact-email-address {
+        font-size: 1.1rem;
+        word-break: break-all;
+    }
+
+    .contact-tips {
+        text-align: center;
+    }
+
+    .contact-tips-list {
+        text-align: left;
+        display: inline-block;
+    }
+
+    .contact-social {
+        justify-content: center;
+    }
+
+    .contact-form {
+        margin-bottom: 70px;
+    }
+}
+
 /* ============================================================
    FOOTER
-   Brand, links, social icons, and newsletter signup.
 ============================================================ */
 .footer {
     background: rgba(10, 10, 10, 0.75);
@@ -1376,13 +1434,7 @@ button {
     margin-bottom: var(--spacing-md);
 }
 
-.footer-brand {
-    display: inline-flex;
-    align-items: center;
-}
-
 .footer-brand-logo {
-    display: block;
     height: 100px;
     width: auto;
     max-width: 90%;
@@ -1394,34 +1446,6 @@ button {
     color: var(--color-white-dim);
     margin-bottom: var(--spacing-md);
     max-width: 400px;
-}
-
-.footer-social {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
-}
-
-.footer-social a {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid var(--color-gray);
-    transition: var(--transition);
-    font-size: 1.2rem;
-    color: var(--color-white-dim);
-    text-decoration: none;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-}
-
-.footer-social a:hover {
-    border-color: var(--color-red);
-    background: var(--color-red);
-    color: var(--color-white);
 }
 
 .footer-title {
@@ -1522,217 +1546,14 @@ button {
     color: var(--color-red);
 }
 
-/* ============================================================
-   RESPONSIVE DESIGN
-   Breakpoints for tablet, mobile, and small devices.
-============================================================ */
-
-/* Tablet and below */
 @media (max-width: 1024px) {
-    .release-grid,
-    .about-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
     .footer-grid {
         grid-template-columns: 1fr 1fr;
-    }
-
-    .press-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
     }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-    /* Navbar */
-    .nav-content {
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-areas:
-            "toggle brand ."
-            "menu-left menu-left menu-left"
-            "menu-right menu-right menu-right";
-        align-items: center;
-        row-gap: var(--spacing-sm);
-    }
-
-    .nav-menu-left,
-    .nav-menu-right {
-        display: none;
-    }
-
-    .nav-menu-left { grid-area: menu-left; }
-    .nav-menu-right { grid-area: menu-right; }
-
-    .nav-brand {
-        grid-area: brand;
-        display: flex;
-        align-items: center;
-        justify-self: center;
-    }
-
-    .nav-brand-logo {
-        height: 40px;
-        width: auto;
-        max-width: 180px;
-        object-fit: contain;
-    }
-
-    .nav-toggle {
-        grid-area: toggle;
-        display: flex;
-        justify-self: start;
-    }
-
-    /* Bigger touch targets for mobile menu links */
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-md);
-        padding: var(--spacing-md) 0;
-    }
-
-    .nav-menu-right.active {
-        border-top: 1px solid var(--color-gray);
-        padding-top: var(--spacing-md);
-    }
-
-    .nav-menu a {
-        width: 100%;
-        text-align: center;
-        padding: 1rem 0;
-        font-size: 2rem;
-        letter-spacing: 0.3em;
-        color: var(--color-white);
-    }
-    /* Hero */
-    .hero {
-        align-items: stretch;
-    }
-
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        width: 100%;
-    }
-
-    .hero-subtitle {
-        margin-bottom: 1rem;
-    }
-
-    .hero-cta {
-        margin-top: auto;
-        grid-template-columns: 1fr;
-        max-width: 100%;
-        padding-bottom: 1rem;
-    }
-
-    /* Release - wider text on mobile */
-    .release-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    .release-info {
-        padding: var(--spacing-sm) 0;
-    }
-
-    .release-title {
-        font-size: clamp(1.8rem, 6vw, 2.5rem);
-    }
-
-    .release-description {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    /* About */
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-content {
-        padding: 0;
-    }
-
-    .about-image {
-        aspect-ratio: 4/3;
-        max-height: 400px;
-        width: 100%;
-        margin-bottom: var(--spacing-sm);
-        transition: none;
-
-    }
-
-    /* Sticky image for mobile - keeps the photo visible while scrolling members */
-    .about-image.is-sticky {
-    position: sticky;
-    top: 105px;
-    z-index: 5;
-    max-height: 40vh;
-}
-
-    .about-members {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xs);
-        position: relative;
-        z-index: 3;
-        background: rgba(10, 10, 10, 0.6);
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        padding: var(--spacing-sm);
-        border-radius: 4px;
-        margin-top: var(--spacing-sm);
-    }
-
-    .about-member {
-        padding: 0.9rem 0.75rem;
-        text-align: center;
-    }
-
-    /* Press */
-    .press-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Contact */
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    .contact-email-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .contact-email-icon {
-        width: 56px;
-        height: 56px;
-    }
-
-    .contact-email-address {
-        font-size: 1.1rem;
-        word-break: break-all;
-    }
-
-    .contact-tips {
-        text-align: center;
-    }
-
-    .contact-tips-list {
-        text-align: left;
-        display: inline-block;
-    }
-
-    .contact-social {
-        justify-content: center;
-    }
-
-    /* Footer - Quick Links and Contact in same row */
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-md);
@@ -1750,38 +1571,9 @@ button {
         flex-direction: column;
         text-align: center;
     }
-
-    /* Section backgrounds on mobile - slightly darker for readability */
-    .section {
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-    }
-
-    .contact-info {
-        background: rgba(10, 10, 10, 0.8);
-    }
 }
 
-/* Small mobile devices */
 @media (max-width: 480px) {
-    .section {
-        padding: var(--spacing-lg) 0;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .btn {
-        padding: 0.875rem 2rem;
-        font-size: 1rem;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
-
     .footer-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -1795,43 +1587,20 @@ button {
         grid-column: 1;
     }
 
-    .about-image {
-        max-height: 30vh;
-        top: 70px;
+    .newsletter-form {
+        flex-direction: column;
     }
-}
-/* ============================================================
-   HERO BACKGROUND - Subtle 3D Perspective Sway
-   Gentle, slow 3D depth effect like a drifting camera
-============================================================ 
-.site-background.is-trembling {
-    animation: subtlePerspectiveSway 16s ease-in-out infinite !important;
-    transform-origin: center center !important;
-    will-change: transform !important;
 }
 
-@keyframes subtlePerspectiveSway {
-    0%, 100% {
-        transform: scale(1.01) translate(0, 0) perspective(1000px) rotateX(0deg) rotateY(0deg);
-    }
-    25% {
-        transform: scale(1.012) translate(1px, 0) perspective(1000px) rotateX(0.4deg) rotateY(-0.6deg);
-    }
-    50% {
-        transform: scale(1.01) translate(0, 0) perspective(1000px) rotateX(0deg) rotateY(0deg);
-    }
-    75% {
-        transform: scale(1.012) translate(-1px, 0) perspective(1000px) rotateX(-0.4deg) rotateY(0.6deg);
-    }
-}
+
 
 /* ============================================================
    ACCESSIBILITY
-   Reduced motion preference and focus styles for keyboard users.
 ============================================================ */
-
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

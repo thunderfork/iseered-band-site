@@ -1,14 +1,227 @@
 /**
  * ============================================================
  * I SEE RED - Website JavaScript
- * Complete functionality for the band's official website.
+ * ============================================================
+ */
+(function() {
+    'use strict';
+
+/**
+ * ============================================================
+ * I SEE RED - Website JavaScript
  * ============================================================
  */
 
 /**
  * ============================================================
- * 1. MOBILE NAVIGATION TOGGLE
- *    Toggles the mobile menu on/off when the hamburger icon is clicked.
+ * PREVENT SCROLL RESTORATION
+ * Forces the page to start at the top on every load
+ * ============================================================
+ */
+
+// Tell the browser not to restore scroll position
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Force scroll to top immediately
+window.scrollTo(0, 0);
+
+// After everything loads, ensure we're at the top
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 50);
+});
+
+/**
+ * ============================================================
+ * PAGE LOAD SEQUENCE
+ * 1. Background fades in from black over 2 seconds
+ * 2. Hero content, social sidebar, and bottom bar fade in together
+ * 3. Navbar continues its existing scroll behavior
+ * ============================================================
+ */
+window.addEventListener('load', function() {
+    var bg = document.querySelector('.site-background');
+    if (bg) {
+        bg.classList.add('loaded');
+    }
+
+    setTimeout(function() {
+        document.body.classList.add('loaded');
+    }, 2000);
+});
+
+/**
+ * ============================================================
+ * PAGE LOAD - Reveal content after page loads
+ * ============================================================
+ */
+function revealPage() {
+    const pageContent = document.getElementById('page-content');
+    if (pageContent) {
+        pageContent.classList.add('loaded');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(revealPage, 300);
+});
+
+window.addEventListener('load', function() {
+    const pageContent = document.getElementById('page-content');
+    if (pageContent && !pageContent.classList.contains('loaded')) {
+        revealPage();
+    }
+});
+
+/**
+ * ============================================================
+ * HERO CONTENT - Fade in on page load (same mechanism as navbar)
+ * ============================================================
+ */
+const heroLogo = document.querySelector('.hero-logo');
+const heroSubtitle = document.querySelector('.hero-subtitle');
+const heroCta = document.querySelector('.hero-cta');
+const heroOverlay = document.querySelector('.hero-overlay');
+const socialSidebar = document.querySelector('.social-sidebar');
+
+let heroCurrentOpacity = 0;
+let heroTargetOpacity = 0;
+let heroIsAnimating = false;
+
+// Set initial state - hidden
+if (heroLogo) heroLogo.style.opacity = '0';
+if (heroSubtitle) heroSubtitle.style.opacity = '0';
+if (heroCta) heroCta.style.opacity = '0';
+if (heroOverlay) heroOverlay.style.opacity = '0';
+if (socialSidebar) socialSidebar.style.opacity = '0';
+
+function updateHero() {
+    heroTargetOpacity = 1;
+    if (!heroIsAnimating) {
+        heroIsAnimating = true;
+        fadeHero();
+    }
+}
+
+function fadeHero() {
+    const diff = heroTargetOpacity - heroCurrentOpacity;
+    const speed = 0.005;
+
+    if (Math.abs(diff) < 0.001) {
+        heroCurrentOpacity = heroTargetOpacity;
+        if (heroLogo) heroLogo.style.opacity = heroTargetOpacity;
+        if (heroSubtitle) heroSubtitle.style.opacity = heroTargetOpacity;
+        if (heroCta) heroCta.style.opacity = heroTargetOpacity;
+        if (heroOverlay) heroOverlay.style.opacity = heroTargetOpacity;
+        if (socialSidebar) socialSidebar.style.opacity = heroTargetOpacity;
+        heroIsAnimating = false;
+        return;
+    }
+
+    heroCurrentOpacity += Math.sign(diff) * Math.min(Math.abs(diff), speed);
+    if (heroLogo) heroLogo.style.opacity = heroCurrentOpacity;
+    if (heroSubtitle) heroSubtitle.style.opacity = heroCurrentOpacity;
+    if (heroCta) heroCta.style.opacity = heroCurrentOpacity;
+    if (heroOverlay) heroOverlay.style.opacity = heroCurrentOpacity;
+    if (socialSidebar) socialSidebar.style.opacity = heroCurrentOpacity;
+
+    requestAnimationFrame(fadeHero);
+}
+// Trigger hero fade-in after 2 second
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(updateHero, 1000);
+});
+
+// Fallback: if load event fires first
+window.addEventListener('load', function() {
+    if (heroLogo && heroLogo.style.opacity === '0') {
+        updateHero();
+    }
+});
+/**
+ * ============================================================
+ * NAVBAR - Fade in on scroll (no flash on load)
+ * ============================================================
+ */
+const nav = document.querySelector('.nav');
+let currentOpacity = 0;
+let targetOpacity = 0;
+let isAnimating = false;
+
+// Set initial state - hidden
+nav.style.opacity = '0';
+nav.style.pointerEvents = 'none';
+
+function updateNav() {
+    const scrollY = window.scrollY;
+    targetOpacity = scrollY > 50 ? 1 : 0;
+    if (!isAnimating) {
+        isAnimating = true;
+        fadeNav();
+    }
+}
+
+function fadeNav() {
+    const diff = targetOpacity - currentOpacity;
+    const speed = 0.02; // ~1 second to fully fade (original speed)
+
+    if (Math.abs(diff) < 0.001) {
+        currentOpacity = targetOpacity;
+        nav.style.opacity = targetOpacity;
+        nav.style.pointerEvents = targetOpacity === 1 ? 'auto' : 'none';
+        if (targetOpacity === 1) {
+            nav.classList.add('visible');
+        } else {
+            nav.classList.remove('visible');
+        }
+        isAnimating = false;
+        return;
+    }
+
+    currentOpacity += Math.sign(diff) * Math.min(Math.abs(diff), speed);
+    nav.style.opacity = currentOpacity;
+    nav.style.pointerEvents = 'none';
+
+    requestAnimationFrame(fadeNav);
+}
+
+// Initial state on load
+window.addEventListener('load', function() {
+    currentOpacity = 0;
+    nav.style.opacity = '0';
+    nav.style.pointerEvents = 'none';
+    updateNav();
+});
+
+/**
+ * ============================================================
+ * SMOOTH SCROLL - For anchor links
+ * ============================================================
+ */
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+
+        if (href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const target = document.querySelector(href);
+            if (target) {
+                const navHeight = nav ? nav.offsetHeight : 0;
+                const targetPos = target.offsetTop - navHeight;
+                window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            }
+        }
+    });
+});
+
+/**
+ * ============================================================
+ * MOBILE NAVIGATION TOGGLE
  * ============================================================
  */
 const navToggle = document.querySelector('.nav-toggle');
@@ -17,30 +230,21 @@ const navMenus = document.querySelectorAll('.nav-menu');
 if (navToggle && navMenus.length) {
     navToggle.addEventListener('click', function() {
         const isActive = this.classList.toggle('active');
-        
-        navMenus.forEach(menu => {
+        navMenus.forEach(function(menu) {
             menu.classList.toggle('active', isActive);
             menu.setAttribute('aria-hidden', !isActive);
         });
-        
         this.setAttribute('aria-expanded', isActive);
     });
 }
 
-/**
- * ============================================================
- * 2. CLOSE MOBILE MENU ON LINK CLICK
- *    Ensures the mobile menu closes after a user selects a nav link.
- * ============================================================
- */
-document.querySelectorAll('.nav-menu a').forEach(link => {
+document.querySelectorAll('.nav-menu a').forEach(function(link) {
     link.addEventListener('click', function() {
         if (navToggle) {
             navToggle.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
         }
-        
-        navMenus.forEach(menu => {
+        navMenus.forEach(function(menu) {
             menu.classList.remove('active');
             menu.setAttribute('aria-hidden', 'true');
         });
@@ -49,83 +253,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 
 /**
  * ============================================================
- * 3. NAVBAR FOLLOWS SCROLL POSITION
- *    Navbar descends naturally as you scroll down, and stays
- *    visible until you scroll back to the top.
- * ============================================================
- */
-const nav = document.querySelector('.nav');
-let isNavVisible = false;
-let lastScrollY = 0;
-
-function updateNavVisibility() {
-    if (!nav) return;
-    
-    const currentScrollY = window.scrollY;
-    
-    // Show navbar when scrolling down past 50px
-    if (currentScrollY > 50 && currentScrollY > lastScrollY) {
-        if (!isNavVisible) {
-            isNavVisible = true;
-            nav.classList.add('visible');
-        }
-    } 
-    // Hide navbar when at the top
-    else if (currentScrollY <= 50) {
-        if (isNavVisible) {
-            isNavVisible = false;
-            nav.classList.remove('visible');
-        }
-    }
-    
-    lastScrollY = currentScrollY;
-}
-
-// Use requestAnimationFrame for smooth performance
-let scrollTicking = false;
-
-window.addEventListener('scroll', function() {
-    if (!scrollTicking) {
-        window.requestAnimationFrame(function() {
-            updateNavVisibility();
-            scrollTicking = false;
-        });
-        scrollTicking = true;
-    }
-});
-
-window.addEventListener('load', updateNavVisibility);
-
-/**
- * ============================================================
- * 4. SMOOTH SCROLL FOR ANCHOR LINKS
- *    Handles internal page links with smooth scrolling,
- *    accounting for the fixed navbar height.
- * ============================================================
- */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-
-        if (href === '#') {
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            const target = document.querySelector(href);
-            if (target) {
-                const navHeight = nav ? nav.offsetHeight : 0;
-                const targetPosition = target.offsetTop - navHeight;
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            }
-        }
-    });
-});
-
-/**
- * ============================================================
- * 5. CONTACT FORM HANDLING
- *    Handles form submission with proper feedback and loading states.
+ * CONTACT FORM
  * ============================================================
  */
 const contactForm = document.getElementById('contactForm');
@@ -134,24 +262,21 @@ const formMessage = document.getElementById('formMessage');
 if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Show loading state
+
         const submitBtn = this.querySelector('.form-submit');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
-        // Clear previous messages
+
         formMessage.className = '';
         formMessage.textContent = '';
         formMessage.style.display = 'none';
-        
-        // Simple client-side validation
+
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const subject = document.getElementById('subject');
         const message = document.getElementById('message');
-        
+
         if (!name.value.trim() || !email.value.trim() || !subject.value.trim() || !message.value.trim()) {
             formMessage.className = 'error';
             formMessage.textContent = 'Please fill in all required fields.';
@@ -160,8 +285,9 @@ if (contactForm) {
             submitBtn.disabled = false;
             return;
         }
-        
-        if (!email.value.includes('@') || !email.value.includes('.')) {
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value.trim())) {
             formMessage.className = 'error';
             formMessage.textContent = 'Please enter a valid email address.';
             formMessage.style.display = 'block';
@@ -169,17 +295,15 @@ if (contactForm) {
             submitBtn.disabled = false;
             return;
         }
-        
+
         try {
             const formData = new FormData(this);
             const response = await fetch(this.action, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             });
-            
+
             if (response.ok) {
                 formMessage.className = 'success';
                 formMessage.textContent = 'Thank you for your message! We will get back to you within 48 hours.';
@@ -201,25 +325,19 @@ if (contactForm) {
 
 /**
  * ============================================================
- * 6. NEWSLETTER FORM HANDLING
- *    NOTE: Newsletter functionality is pending implementation.
- *    Currently shows a demo success message.
+ * NEWSLETTER FORM
  * ============================================================
  */
 const newsletterForm = document.querySelector('.newsletter-form');
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const emailInput = this.querySelector('.newsletter-input');
-        
-        // Validate email
-        if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value.trim())) {
             alert('Please enter a valid email address.');
             return;
         }
-        
-        // TODO: Connect to actual newsletter service when available
         alert('Thank you for subscribing! You\'ll receive our next newsletter soon.');
         this.reset();
     });
@@ -227,54 +345,37 @@ if (newsletterForm) {
 
 /**
  * ============================================================
- * 7. ACTIVE NAV LINK HIGHLIGHTING
- *    Changes the color of the nav link corresponding to the
- *    currently visible section in the viewport.
+ * ACTIVE NAV LINK HIGHLIGHTING
  * ============================================================
  */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
-let activeLinkTicking = false;
-
-function updateActiveNavLink() {
+function updateActiveLink() {
     if (!sections.length || !navLinks.length) return;
-    
-    let current = '';
-    const scrollPosition = window.scrollY + 200;
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+    let current = '';
+    const scrollPos = window.scrollY + 200;
+
+    sections.forEach(function(section) {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
             current = section.getAttribute('id');
         }
     });
 
-    navLinks.forEach(link => {
+    navLinks.forEach(function(link) {
         link.style.color = '';
-        if (link.getAttribute('href') === `#${current}`) {
+        if (link.getAttribute('href') === '#' + current) {
             link.style.color = 'var(--color-red)';
         }
     });
 }
 
-window.addEventListener('scroll', function() {
-    if (!activeLinkTicking) {
-        window.requestAnimationFrame(function() {
-            updateActiveNavLink();
-            activeLinkTicking = false;
-        });
-        activeLinkTicking = true;
-    }
-});
-
 /**
  * ============================================================
- * 8. INTERSECTION OBSERVER - FADE-IN ANIMATION
- *    Applies a subtle fade-in and translate-up animation to
- *    merch items and press cards as they scroll into view.
+ * INTERSECTION OBSERVER - Fade in items on scroll
  * ============================================================
  */
 const observerOptions = {
@@ -282,57 +383,47 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-const animationObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
+const animObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-            // Stop observing once animated
-            animationObserver.unobserve(entry.target);
+            animObserver.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Apply to merch items and press cards
-document.querySelectorAll('.merch-item, .press-card, .merch-grid-placeholder > div').forEach(el => {
+document.querySelectorAll('.merch-item, .press-card, .merch-grid-placeholder > div').forEach(function(el) {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    animationObserver.observe(el);
+    animObserver.observe(el);
 });
 
 /**
  * ============================================================
- * 9. MERCH CAROUSEL - AUTO-SCROLL + DRAG/SWIPE
- *    Each merch row auto-scrolls smoothly. Users can also drag
- *    with mouse or swipe on touch devices to explore items.
- *    Hovering pauses the auto-scroll.
+ * MERCH CAROUSEL
  * ============================================================
  */
 document.querySelectorAll('.merch-carousel').forEach(function(carousel) {
     const track = carousel.querySelector('.merch-track');
     if (!track) return;
-    
+
     let isDown = false;
     let startX = 0;
     let scrollStart = 0;
     let autoScroll = true;
     let isVisible = true;
-    const speed = 0.4; // pixels per frame
+    const speed = 0.4;
 
-    // Check if carousel is visible using IntersectionObserver
-    const visibilityObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
+    const visObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             isVisible = entry.isIntersecting;
         });
     }, { threshold: 0.1 });
-    
-    visibilityObserver.observe(carousel);
 
-    /**
-     * Resets scroll position when reaching the end or start,
-     * creating an infinite-loop effect.
-     */
+    visObserver.observe(carousel);
+
     function resetIfNeeded() {
         const half = track.scrollWidth / 2;
         if (carousel.scrollLeft >= half) {
@@ -342,11 +433,6 @@ document.querySelectorAll('.merch-carousel').forEach(function(carousel) {
         }
     }
 
-    /**
-     * Main animation loop for auto-scrolling.
-     * Uses requestAnimationFrame for smooth 60fps performance.
-     * Only runs when carousel is visible.
-     */
     function tick() {
         if (autoScroll && !isDown && isVisible) {
             carousel.scrollLeft += speed;
@@ -356,15 +442,9 @@ document.querySelectorAll('.merch-carousel').forEach(function(carousel) {
     }
     requestAnimationFrame(tick);
 
-    // Pause auto-scroll on hover (desktop)
-    carousel.addEventListener('mouseenter', function() {
-        autoScroll = false;
-    });
-    carousel.addEventListener('mouseleave', function() {
-        autoScroll = true;
-    });
+    carousel.addEventListener('mouseenter', function() { autoScroll = false; });
+    carousel.addEventListener('mouseleave', function() { autoScroll = true; });
 
-    // Mouse drag interaction
     carousel.addEventListener('mousedown', function(e) {
         isDown = true;
         autoScroll = false;
@@ -372,18 +452,15 @@ document.querySelectorAll('.merch-carousel').forEach(function(carousel) {
         scrollStart = carousel.scrollLeft;
         carousel.classList.add('dragging');
     });
-    
+
     window.addEventListener('mouseup', function() {
         if (isDown) {
             isDown = false;
             carousel.classList.remove('dragging');
-            // Resume auto-scroll after 1.5s of inactivity
-            setTimeout(function() {
-                autoScroll = true;
-            }, 1500);
+            setTimeout(function() { autoScroll = true; }, 1500);
         }
     });
-    
+
     window.addEventListener('mousemove', function(e) {
         if (!isDown) return;
         e.preventDefault();
@@ -392,37 +469,29 @@ document.querySelectorAll('.merch-carousel').forEach(function(carousel) {
         resetIfNeeded();
     });
 
-    // Touch drag/swipe for mobile
     carousel.addEventListener('touchstart', function(e) {
         isDown = true;
         autoScroll = false;
         startX = e.touches[0].pageX;
         scrollStart = carousel.scrollLeft;
     }, { passive: true });
-    
+
     carousel.addEventListener('touchmove', function(e) {
         if (!isDown) return;
         const dx = e.touches[0].pageX - startX;
         carousel.scrollLeft = scrollStart - dx;
         resetIfNeeded();
     }, { passive: true });
-    
+
     carousel.addEventListener('touchend', function() {
         isDown = false;
-        // Resume auto-scroll after 1.5s of inactivity
-        setTimeout(function() {
-            autoScroll = true;
-        }, 1500);
+        setTimeout(function() { autoScroll = true; }, 1500);
     });
 });
 
 /**
  * ============================================================
- * 10. ABOUT SECTION - MEMBER HOVER PHOTO SWAP
- *     Hovering over a band member's name swaps the main
- *     band photo with that member's portrait.
- *     On touch devices, a tap toggles the photo.
- *     Also makes the image sticky only when a member is selected.
+ * ABOUT - MEMBER PHOTO SWAP
  * ============================================================
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -430,29 +499,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const photoWrap = document.querySelector('.about-image');
     const members = document.querySelectorAll('.about-member.member-hover');
     const aboutGrid = document.querySelector('.about-grid');
-    
+
     if (!photo || !photoWrap || !members.length) return;
 
     const defaultPhoto = photo.getAttribute('src');
     let activeMember = null;
 
-    // Preload member photos for instant swapping
     function preload(src) {
         if (!src) return;
         const img = new Image();
         img.src = src;
     }
-    
+
     members.forEach(function(member) {
         preload(member.dataset.photo);
     });
 
-    /**
-     * Swaps the main photo with a cross-fade effect.
-     */
     function setPhoto(src) {
         if (!src || photo.getAttribute('src') === src) return;
-        
         photoWrap.classList.add('fading');
         const next = new Image();
         next.onload = function() {
@@ -462,49 +526,34 @@ document.addEventListener('DOMContentLoaded', function() {
         next.src = src;
     }
 
-    /**
-     * Clears the active member and reverts to the default photo.
-     * Also removes sticky behavior.
-     */
     function clearActive() {
         if (activeMember) {
             activeMember.classList.remove('active');
         }
         activeMember = null;
         setPhoto(defaultPhoto);
-        
-        // Remove sticky behavior when no member is selected
         photoWrap.classList.remove('is-sticky');
     }
 
-    // Detect touch devices (tap instead of hover)
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     members.forEach(function(member) {
-        if (isTouchDevice) {
-            // Tap to toggle on touch devices
+        if (isTouch) {
             member.addEventListener('click', function(e) {
-                // Prevent click from bubbling
                 e.stopPropagation();
-                
                 if (activeMember && activeMember !== member) {
                     activeMember.classList.remove('active');
                 }
-                
                 if (activeMember === member) {
-                    // Toggle off if tapping the same member
                     clearActive();
                 } else {
                     activeMember = member;
                     activeMember.classList.add('active');
                     setPhoto(member.dataset.photo);
-                    
-                    // Make image sticky only when a member is selected
                     photoWrap.classList.add('is-sticky');
                 }
             });
         } else {
-            // Hover behavior for desktop
             member.addEventListener('mouseenter', function() {
                 if (activeMember && activeMember !== member) {
                     activeMember.classList.remove('active');
@@ -512,8 +561,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 activeMember = member;
                 activeMember.classList.add('active');
                 setPhoto(member.dataset.photo);
-                
-                // Make image sticky only when a member is selected
                 photoWrap.classList.add('is-sticky');
             });
 
@@ -521,39 +568,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 const stillHovered = member.matches(':hover');
                 if (!stillHovered && activeMember === member) {
                     clearActive();
-                    // Remove sticky when mouse leaves
                     photoWrap.classList.remove('is-sticky');
                 }
             });
         }
     });
 
-    // Clear active state when tapping/clicking outside the about grid
-    if (aboutGrid) {
-        aboutGrid.addEventListener('click', function(e) {
-            // Only handle clicks that are on the grid background, not on members
-            if (e.target === aboutGrid || e.target.closest('.about-image')) {
-                // Don't clear if clicking the image itself
-                return;
+    if (aboutGrid && isTouch) {
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.about-grid')) {
+                clearActive();
+                photoWrap.classList.remove('is-sticky');
             }
         });
-        
-        // For touch devices, clear when tapping outside
-        if (isTouchDevice) {
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.about-grid')) {
-                    clearActive();
-                    photoWrap.classList.remove('is-sticky');
-                }
-            });
-        }
     }
 });
 
 /**
  * ============================================================
- * 11. VIDEO LOADER HANDLING
- *     Ensures the video loader disappears when the iframe loads.
+ * VIDEO LOADER
  * ============================================================
  */
 document.querySelectorAll('.release-video iframe').forEach(function(iframe) {
@@ -568,173 +601,87 @@ document.querySelectorAll('.release-video iframe').forEach(function(iframe) {
 
 /**
  * ============================================================
- * 12. CONSOLE CLEANUP
- *     Removes console.log statements in production.
- * ============================================================
- */
-// All console.log statements have been removed from production code.
-// To re-enable for debugging, uncomment with caution.
-
-console.log('🚀 I See Red website loaded successfully!');
-
-/**
- * ============================================================
- * 13. PARALLAX BACKGROUND EFFECT - SLOWED DOWN
- *     Moves the background image very slowly as you scroll,
- *     creating a subtle depth effect that reaches full offset
- *     only at the bottom of the page.
+ * PARALLAX BACKGROUND
  * ============================================================
  */
 const siteBg = document.querySelector('.site-background');
 const hero = document.querySelector('.hero');
 
+function updateParallax() {
+    if (!siteBg || !hero) return;
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = Math.min(scrollY / docHeight, 1);
+    const maxOffset = hero.offsetHeight * 0.10;
+    const translateY = progress * maxOffset;
+    siteBg.style.transform = 'translateY(' + translateY + 'px) scale(1.02)';
+}
+
 if (siteBg && hero) {
-    let parallaxTicking = false;
-    
-    function updateParallax() {
-        const scrollY = window.scrollY;
-        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-        
-        // Calculate progress from 0 to 1 based on scroll position
-        const progress = Math.min(scrollY / documentHeight, 1);
-        
-        // Very subtle movement - max offset is 10% of the hero height
-        const maxOffset = hero.offsetHeight * 0.10;
-        const translateY = progress * maxOffset;
-        
-        // Apply transform with a very subtle scale
-        siteBg.style.transform = 'translateY(' + translateY + 'px) scale(1.02)';
-    }
-    
-    window.addEventListener('scroll', function() {
-        if (!parallaxTicking) {
-            window.requestAnimationFrame(function() {
-                updateParallax();
-                parallaxTicking = false;
-            });
-            parallaxTicking = true;
-        }
-    });
-    
-    // Initial update
     updateParallax();
-    
-    // Update on resize
-    window.addEventListener('resize', function() {
-        updateParallax();
-    });
+    window.addEventListener('resize', updateParallax);
 }
 
 /**
  * ============================================================
- * 14. HERO BACKGROUND TREMBLE - Trigger when hero is visible
- *     Adds a subtle trembling effect to the background image
- *     only when the hero section is in view.
+ * CONSOLIDATED SCROLL HANDLER
+ * Runs nav fade, active-link highlight, and parallax off a
+ * single scroll listener / rAF throttle instead of three.
  * ============================================================
- 
-document.addEventListener('DOMContentLoaded', function() {
-    const heroSection = document.querySelector('.hero');
-    const siteBg = document.querySelector('.site-background');
-    
-    if (!heroSection || !siteBg) {
-        console.log('Hero or site-background not found');
-        return;
-    }
-    
-    let isTrembling = false;
-    
-    function startTremble() {
-        if (isTrembling) return;
-        isTrembling = true;
-        siteBg.classList.add('is-trembling');
-        console.log('Tremble started');
-    }
-    
-    function stopTremble() {
-        if (!isTrembling) return;
-        isTrembling = false;
-        siteBg.classList.remove('is-trembling');
-        console.log('Tremble stopped');
-    }
-    
-    // Create an observer to detect when hero is visible
-    const heroObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                // Hero is visible - start tremble
-                startTremble();
-            } else {
-                // Hero is not visible - stop tremble
-                stopTremble();
-            }
+ */
+let scrollTicking = false;
+
+window.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+        requestAnimationFrame(function() {
+            updateNav();
+            updateActiveLink();
+            updateParallax();
+            scrollTicking = false;
         });
-    }, { threshold: 0.1 }); // Trigger when 10% of hero is visible
-    
-    heroObserver.observe(heroSection);
-    
-    // Also start if hero is already visible on load
-    const rect = heroSection.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isVisible) {
-        startTremble();
+        scrollTicking = true;
     }
-    
-    console.log('Hero tremble observer initialized');
 });
 
 /**
  * ============================================================
- * 15. ABOUT IMAGE - MOUSE ZOOM EFFECT (Desktop Only)
- *     Zooms into wherever the mouse is on the image
+ * ABOUT IMAGE - MOUSE ZOOM (Desktop Only)
  * ============================================================
  */
 document.addEventListener('DOMContentLoaded', function() {
     const aboutImage = document.querySelector('.about-image');
     const aboutImg = document.querySelector('.about-img');
-    
-    // Only run on desktop (not touch devices)
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    
-    if (!aboutImage || !aboutImg || isTouchDevice) return;
-    
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    if (!aboutImage || !aboutImg || isTouch) return;
+
     let isHovering = false;
-    let zoomLevel = 1.8; // How much to zoom (1.5 = 150%)
-    
+    const zoomLevel = 1.8;
+
     function updateZoom(e) {
         if (!isHovering) return;
-        
-        // Get mouse position relative to the image
         const rect = aboutImage.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
-        
-        // Calculate transform origin based on mouse position
-        const originX = x * 100;
-        const originY = y * 100;
-        
-        // Apply the zoom
-        aboutImg.style.transformOrigin = originX + '% ' + originY + '%';
+        aboutImg.style.transformOrigin = (x * 100) + '% ' + (y * 100) + '%';
         aboutImg.style.transform = 'scale(' + zoomLevel + ')';
     }
-    
+
     function resetZoom() {
         isHovering = false;
         aboutImg.style.transform = 'scale(1)';
         aboutImg.style.transformOrigin = 'center center';
     }
-    
+
     function startZoom() {
         isHovering = true;
     }
-    
-    // Mouse events
+
     aboutImage.addEventListener('mouseenter', startZoom);
     aboutImage.addEventListener('mouseleave', resetZoom);
     aboutImage.addEventListener('mousemove', updateZoom);
-    
-    // Clean up on window resize
-    window.addEventListener('resize', function() {
-        if (!isHovering) return;
-        // Recalculate on resize
-    });
 });
+
+console.log('🚀 I See Red website loaded successfully!');
+
+})();
