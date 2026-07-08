@@ -625,3 +625,116 @@ if (siteBg && hero) {
     });
 }
 
+/**
+ * ============================================================
+ * 14. HERO BACKGROUND TREMBLE - Trigger when hero is visible
+ *     Adds a subtle trembling effect to the background image
+ *     only when the hero section is in view.
+ * ============================================================
+ 
+document.addEventListener('DOMContentLoaded', function() {
+    const heroSection = document.querySelector('.hero');
+    const siteBg = document.querySelector('.site-background');
+    
+    if (!heroSection || !siteBg) {
+        console.log('Hero or site-background not found');
+        return;
+    }
+    
+    let isTrembling = false;
+    
+    function startTremble() {
+        if (isTrembling) return;
+        isTrembling = true;
+        siteBg.classList.add('is-trembling');
+        console.log('Tremble started');
+    }
+    
+    function stopTremble() {
+        if (!isTrembling) return;
+        isTrembling = false;
+        siteBg.classList.remove('is-trembling');
+        console.log('Tremble stopped');
+    }
+    
+    // Create an observer to detect when hero is visible
+    const heroObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                // Hero is visible - start tremble
+                startTremble();
+            } else {
+                // Hero is not visible - stop tremble
+                stopTremble();
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger when 10% of hero is visible
+    
+    heroObserver.observe(heroSection);
+    
+    // Also start if hero is already visible on load
+    const rect = heroSection.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isVisible) {
+        startTremble();
+    }
+    
+    console.log('Hero tremble observer initialized');
+});
+
+/**
+ * ============================================================
+ * 15. ABOUT IMAGE - MOUSE ZOOM EFFECT (Desktop Only)
+ *     Zooms into wherever the mouse is on the image
+ * ============================================================
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const aboutImage = document.querySelector('.about-image');
+    const aboutImg = document.querySelector('.about-img');
+    
+    // Only run on desktop (not touch devices)
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    
+    if (!aboutImage || !aboutImg || isTouchDevice) return;
+    
+    let isHovering = false;
+    let zoomLevel = 1.8; // How much to zoom (1.5 = 150%)
+    
+    function updateZoom(e) {
+        if (!isHovering) return;
+        
+        // Get mouse position relative to the image
+        const rect = aboutImage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        
+        // Calculate transform origin based on mouse position
+        const originX = x * 100;
+        const originY = y * 100;
+        
+        // Apply the zoom
+        aboutImg.style.transformOrigin = originX + '% ' + originY + '%';
+        aboutImg.style.transform = 'scale(' + zoomLevel + ')';
+    }
+    
+    function resetZoom() {
+        isHovering = false;
+        aboutImg.style.transform = 'scale(1)';
+        aboutImg.style.transformOrigin = 'center center';
+    }
+    
+    function startZoom() {
+        isHovering = true;
+    }
+    
+    // Mouse events
+    aboutImage.addEventListener('mouseenter', startZoom);
+    aboutImage.addEventListener('mouseleave', resetZoom);
+    aboutImage.addEventListener('mousemove', updateZoom);
+    
+    // Clean up on window resize
+    window.addEventListener('resize', function() {
+        if (!isHovering) return;
+        // Recalculate on resize
+    });
+});
