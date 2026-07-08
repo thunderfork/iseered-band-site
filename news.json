@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "badge": "New Single",
+      "media": {
+        "type": "youtube",
+        "src": "https://www.youtube.com/embed/zuOUN-VSI40"
+      },
+      "label": "Out Now",
+      "title": "We, the Void",
+      "meta": "Single • 2026 • 4:23",
+      "description": "The latest single from I See Red's upcoming album, Red is Dead. A crushing blend of modern death metal aggression and atmospheric depth.",
+      "links": [
+        { "name": "Spotify", "url": "https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" },
+        { "name": "Apple Music", "url": "https://music.apple.com/us/artist/i-see-red/1543452295" },
+        { "name": "YouTube", "url": "https://music.youtube.com/channel/UC_uO7e_5PhX8T_izXsSDJhQ" },
+        { "name": "Bandcamp", "url": "https://iseeredgr.bandcamp.com" }
+      ]
+    },
+    {
+      "badge": "Live Show",
+      "media": {
+        "type": "image",
+        "src": "assets/news/isr.webp"
+      },
+      "label": "Wacken, Germany • July 2026",
+      "title": "Live at Wacken Open Air Festival",
+      "meta": "July 29, 2026 • W.E.T. Stage 12:40",
+      "description": "Join I See Red for an exclusive show at Wacken Open Air Festival. Experience the raw power of our live performance and witness the debut of tracks from our upcoming album 'Red is Dead'.",
+      "links": [
+        { "name": "Get Tickets", "url": "https://www.bandsintown.com/a/15655689-i-see-red?noindex=1" },
+        { "name": "Facebook Event", "url": "https://www.facebook.com/iseeredofficial/" }
+      ]
+    },
+    {
+      "badge": "Album Update",
+      "media": {
+        "type": "image",
+        "src": "assets/news/isr.webp"
+      },
+      "label": "Studio Report",
+      "title": "Red is Dead - Album Update",
+      "meta": "July 2026 • Recording",
+      "description": "We've officially wrapped recording for our debut album 'Red is Dead'! Mixing is underway with legendary producer Fotis Benardo. Expect crushing riffs, haunting melodies, and our most ambitious work yet. Pre-orders coming soon.",
+      "links": []
+    }
+  ]
+}

@@ -251,6 +251,563 @@ document.querySelectorAll('.nav-menu a').forEach(function(link) {
     });
 });
 
+/* ============================================================ */
+/* === NEWS CAROUSEL START === */
+/**
+ * ============================================================
+ * NEWS CAROUSEL - Dynamic JSON-driven carousel
+ * ============================================================
+ */
+
+/* === CONFIGURATION === */
+// To change slide duration, update this value (milliseconds)
+const SLIDE_INTERVAL = 5000; // 5 seconds
+const PAUSE_RESUME_DELAY = 5000; // 5 seconds of inactivity before resuming auto-play
+const PROGRESS_UPDATE_INTERVAL = 50; // Update progress every 50ms for smooth animation
+
+/* === STATE === */
+let newsItems = [];
+let currentSlide = 0;
+let autoPlayInterval = null;
+let isPaused = false;
+let isTransitioning = false;
+let userInteracted = false;
+let interactionTimeout = null;
+let isVisible = true;
+let activeVideoIframe = null;
+
+/* === PROGRESS BAR STATE === */
+let progressBar = null;
+let progressTimer = null;
+let progressStartTime = 0;
+let progressPausedTime = 0;
+let progressTotalPaused = 0;
+let progressIsPaused = false;
+let currentProgress = 0;
+let slideDirection = 'next'; // 'next' or 'prev'
+
+/* === DOM REFS === */
+const track = document.querySelector('.news-track');
+const dotsContainer = document.querySelector('.news-dots');
+const prevBtn = document.querySelector('.news-btn-prev');
+const nextBtn = document.querySelector('.news-btn-next');
+const carousel = document.querySelector('.news-carousel');
+const progressTimerDisplay = document.querySelector('.news-progress-timer');
+
+/* === FETCH DATA === */
+async function fetchNews() {
+    try {
+        const response = await fetch('news.json');
+        if (!response.ok) throw new Error('Failed to fetch news data');
+        const data = await response.json();
+        newsItems = data.items || [];
+        if (newsItems.length === 0) throw new Error('No news items found');
+        renderCarousel();
+        initCarousel();
+    } catch (error) {
+        console.error('Error loading news carousel:', error);
+        track.innerHTML = `
+            <div class="news-slide" style="grid-template-columns:1fr; text-align:center; padding:3rem;">
+                <div style="grid-column:1/-1;">
+                    <p style="color:var(--color-red); font-family:var(--font-display); font-size:1.5rem;">
+                        <i class="fas fa-exclamation-triangle"></i> Unable to load news
+                    </p>
+                    <p style="color:var(--color-white-dim);">Please check your connection and try again.</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+/* === RENDER CAROUSEL === */
+function renderCarousel() {
+    // Build slides
+    track.innerHTML = newsItems.map((item, index) => {
+        const mediaHtml = renderMedia(item.media, index);
+        const linksHtml = item.links && item.links.length > 0
+            ? item.links.map(link =>
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" aria-label="${link.name}">${link.name}</a>`
+              ).join('')
+            : '';
+
+        return `
+            <div class="news-slide" role="listitem" aria-label="Slide ${index + 1} of ${newsItems.length}" data-index="${index}">
+                <div class="news-media">
+                    <span class="release-badge">${item.badge}</span>
+                    ${mediaHtml}
+                </div>
+                <div class="news-info">
+                    <p class="news-label">${item.label}</p>
+                    <h2 class="news-title">${item.title}</h2>
+                    <p class="news-meta">${item.meta}</p>
+                    <p class="news-description">${item.description}</p>
+                    ${linksHtml ? `<div class="news-links">${linksHtml}</div>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Build dots
+    dotsContainer.innerHTML = newsItems.map((_, index) =>
+        `<button class="news-dot${index === 0 ? ' active' : ''}" role="tab" aria-label="Go to slide ${index + 1}" data-index="${index}">
+            <span class="dot-progress-ring"></span>
+        </button>`
+    ).join('');
+}
+
+/* === RENDER MEDIA === */
+function renderMedia(media, index) {
+    if (!media || media.type === 'none') {
+        return `
+            <div class="news-media-placeholder">
+                <div class="placeholder-icon"><i class="fas fa-newspaper"></i></div>
+                <div class="placeholder-text">Coming soon</div>
+            </div>
+        `;
+    }
+
+    if (media.type === 'youtube') {
+        return `
+            <div class="news-video" data-index="${index}">
+                <div class="news-video-loader" aria-hidden="true">Loading video...</div>
+                <iframe
+                    data-src="${media.src}"
+                    title="Video for news item ${index + 1}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"
+                    class="news-video-iframe"
+                    data-loaded="false">
+                </iframe>
+            </div>
+        `;
+    }
+
+    if (media.type === 'image') {
+        return `<img src="${media.src}" alt="News image" class="news-image" loading="lazy">`;
+    }
+
+    return '';
+}
+
+/* === INIT CAROUSEL === */
+function initCarousel() {
+    const slides = track.querySelectorAll('.news-slide');
+    if (slides.length === 0) return;
+
+    // Get progress bar reference
+    progressBar = document.querySelector('.news-progress-bar');
+
+    // Set initial positions
+    updateCarousel(0, false, 'next');
+
+    // Add event listeners
+    prevBtn.addEventListener('click', () => goToPrev());
+    nextBtn.addEventListener('click', () => goToNext());
+
+    dotsContainer.querySelectorAll('.news-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.index);
+            const direction = index > currentSlide ? 'next' : 'prev';
+            goToSlide(index, direction);
+        });
+    });
+
+    // Keyboard navigation
+    carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            goToPrev();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            goToNext();
+        }
+    });
+
+    // Pause on focus
+    carousel.addEventListener('focusin', () => pauseAutoPlay());
+    carousel.addEventListener('focusout', () => {
+        setTimeout(() => {
+            if (!carousel.contains(document.activeElement)) {
+                resumeAutoPlay();
+            }
+        }, 100);
+    });
+
+    // Hover pause
+    carousel.addEventListener('mouseenter', () => pauseAutoPlay());
+    carousel.addEventListener('mouseleave', () => {
+        if (!userInteracted) {
+            resumeAutoPlay();
+        }
+    });
+
+    // Visibility observer
+    const visObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isVisible = entry.isIntersecting;
+            if (isVisible && !isPaused && !userInteracted) {
+                startAutoPlay();
+            } else if (!isVisible) {
+                pauseAutoPlay();
+            }
+        });
+    }, { threshold: 0.2 });
+    visObserver.observe(carousel);
+
+    // Start auto-play
+    startAutoPlay();
+
+    // Load first video if applicable
+    loadVideoForSlide(0);
+}
+
+/* === UPDATE CAROUSEL === */
+/* === PROGRESS BAR FIX & SLIDE ANIMATION FIX START === */
+function updateCarousel(index, animate = true, direction = 'next') {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    const slides = track.querySelectorAll('.news-slide');
+    const totalSlides = slides.length;
+
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+
+    // Get current and next slide for animation
+    const currentSlideEl = slides[currentSlide];
+    const nextSlideEl = slides[index];
+
+    // Store direction for animation
+    slideDirection = direction;
+
+    // Remove any existing animation classes
+    slides.forEach(slide => {
+        slide.classList.remove('slide-exit', 'slide-enter-next', 'slide-enter-prev');
+    });
+
+    // Add exit animation class to current slide
+    if (currentSlideEl && animate) {
+        currentSlideEl.classList.add('slide-exit');
+    }
+
+    // Add entry animation class to next slide
+    if (nextSlideEl && animate) {
+        if (direction === 'next') {
+            nextSlideEl.classList.add('slide-enter-next');
+        } else {
+            nextSlideEl.classList.add('slide-enter-prev');
+        }
+    }
+
+    currentSlide = index;
+
+    // Update track position
+    track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // Update dots
+    dotsContainer.querySelectorAll('.news-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+        dot.setAttribute('aria-selected', i === index);
+    });
+
+    // Update ARIA
+    slides.forEach((slide, i) => {
+        slide.setAttribute('aria-hidden', i !== index);
+    });
+
+    // Remove exit animation class after transition
+    if (currentSlideEl) {
+        setTimeout(() => {
+            currentSlideEl.classList.remove('slide-exit');
+        }, 600);
+    }
+
+    // Remove entry animation classes after transition
+    if (nextSlideEl) {
+        setTimeout(() => {
+            nextSlideEl.classList.remove('slide-enter-next', 'slide-enter-prev');
+        }, 600);
+    }
+
+    // Load video for this slide
+    loadVideoForSlide(index);
+
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 600);
+
+    // === PROGRESS BAR FIX: Reset progress properly ===
+    resetProgressBar();
+}
+/* === PROGRESS BAR FIX & SLIDE ANIMATION FIX END === */
+
+/* === LOAD/UNLOAD VIDEOS === */
+function loadVideoForSlide(index) {
+    const slides = track.querySelectorAll('.news-slide');
+    const totalSlides = slides.length;
+
+    // Unload all videos
+    slides.forEach((slide, i) => {
+        const iframe = slide.querySelector('.news-video-iframe');
+        if (iframe && i !== index) {
+            iframe.src = '';
+            iframe.dataset.loaded = 'false';
+            const loader = iframe.closest('.news-video')?.querySelector('.news-video-loader');
+            if (loader) loader.style.display = 'flex';
+            iframe.classList.remove('loaded');
+        }
+    });
+
+    // Load video for current slide
+    const currentSlide = slides[index];
+    if (!currentSlide) return;
+
+    const iframe = currentSlide.querySelector('.news-video-iframe');
+    if (!iframe) return;
+
+    const loader = currentSlide.querySelector('.news-video-loader');
+    const src = iframe.dataset.src;
+
+    if (src && iframe.dataset.loaded === 'false') {
+        iframe.src = src;
+        iframe.dataset.loaded = 'true';
+        iframe.onload = function() {
+            if (loader) loader.style.display = 'none';
+            this.classList.add('loaded');
+        };
+    }
+}
+
+/* === NAVIGATION === */
+/* === PROGRESS BAR FIX START === */
+function goToSlide(index, direction = 'next') {
+    if (isTransitioning || index === currentSlide) return;
+    userInteracted = true;
+    pauseAutoPlay();
+    clearInteractionTimeout();
+    updateCarousel(index, true, direction);
+    scheduleResume();
+}
+/* === PROGRESS BAR FIX END === */
+
+function goToPrev() {
+    const total = newsItems.length;
+    goToSlide((currentSlide - 1 + total) % total, 'prev');
+}
+
+function goToNext() {
+    const total = newsItems.length;
+    goToSlide((currentSlide + 1) % total, 'next');
+}
+
+/* === PROGRESS BAR FIX: Completely rewritten progress system === */
+/* === PROGRESS BAR FIX START === */
+function startProgressBar() {
+    // Clear any existing timer
+    if (progressTimer) {
+        cancelAnimationFrame(progressTimer);
+        progressTimer = null;
+    }
+
+    // Reset progress state
+    currentProgress = 0;
+    progressStartTime = performance.now();
+    progressPausedTime = 0;
+    progressTotalPaused = 0;
+    progressIsPaused = false;
+
+    // Update progress bar
+    updateProgressBar();
+}
+
+function updateProgressBar() {
+    if (!progressBar) return;
+
+    // If paused or transitioning, stop updating
+    if (isPaused || isTransitioning || !isVisible) {
+        // Continue the loop but don't update progress
+        progressTimer = requestAnimationFrame(updateProgressBar);
+        return;
+    }
+
+    const now = performance.now();
+    const elapsed = now - progressStartTime - progressTotalPaused;
+    currentProgress = Math.min((elapsed / SLIDE_INTERVAL) * 100, 100);
+
+    // Update progress bar width with smooth transition
+    progressBar.style.width = currentProgress + '%';
+
+    // Update timer display
+    if (progressTimerDisplay) {
+        const remaining = Math.max(0, (SLIDE_INTERVAL - elapsed) / 1000);
+        progressTimerDisplay.textContent = Math.ceil(remaining) + 's';
+    }
+
+    // Check if we've reached 100%
+    if (currentProgress >= 100) {
+        // Reset and advance to next slide
+        if (!isPaused && !isTransitioning && isVisible && !userInteracted) {
+            goToNext();
+        }
+        return;
+    }
+
+    // Continue the animation loop
+    progressTimer = requestAnimationFrame(updateProgressBar);
+}
+
+function resetProgressBar() {
+    // Cancel current animation frame
+    if (progressTimer) {
+        cancelAnimationFrame(progressTimer);
+        progressTimer = null;
+    }
+
+    // Reset progress state
+    currentProgress = 0;
+    progressStartTime = performance.now();
+    progressPausedTime = 0;
+    progressTotalPaused = 0;
+    progressIsPaused = false;
+
+    // Reset bar width immediately (no transition for instant reset)
+    if (progressBar) {
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        // Force reflow to ensure the reset takes effect
+        void progressBar.offsetHeight;
+        progressBar.style.transition = 'width 0.3s linear';
+    }
+
+    // Reset timer display
+    if (progressTimerDisplay) {
+        progressTimerDisplay.textContent = Math.ceil(SLIDE_INTERVAL / 1000) + 's';
+    }
+
+    // Restart the progress animation if not paused
+    if (!isPaused && isVisible && !userInteracted) {
+        startProgressBar();
+    }
+}
+
+function pauseProgressBar() {
+    if (progressIsPaused) return;
+    progressIsPaused = true;
+    
+    // Record the time when paused
+    if (progressStartTime > 0) {
+        progressPausedTime = performance.now();
+    }
+}
+
+function resumeProgressBar() {
+    if (!progressIsPaused) return;
+    progressIsPaused = false;
+    
+    // Add the paused duration to total paused time
+    if (progressPausedTime > 0) {
+        progressTotalPaused += performance.now() - progressPausedTime;
+        progressPausedTime = 0;
+    }
+    
+    // Resume the animation
+    if (progressTimer) {
+        cancelAnimationFrame(progressTimer);
+        progressTimer = null;
+    }
+    progressTimer = requestAnimationFrame(updateProgressBar);
+}
+/* === PROGRESS BAR FIX END === */
+
+/* === AUTO-PLAY === */
+function startAutoPlay() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+    if (newsItems.length <= 1) return;
+
+    // Clear any existing auto-play interval
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+    }
+
+    // Start progress bar
+    if (!isPaused && isVisible) {
+        startProgressBar();
+    }
+
+    // Set up auto-play interval
+    autoPlayInterval = setInterval(() => {
+        if (!isPaused && isVisible && !isTransitioning && !userInteracted) {
+            goToNext();
+        }
+    }, SLIDE_INTERVAL);
+}
+
+function pauseAutoPlay() {
+    isPaused = true;
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+    }
+    pauseProgressBar();
+}
+
+function resumeAutoPlay() {
+    if (userInteracted) return;
+    isPaused = false;
+    if (!autoPlayInterval && newsItems.length > 1) {
+        startAutoPlay();
+    }
+    resumeProgressBar();
+}
+
+function scheduleResume() {
+    clearInteractionTimeout();
+    interactionTimeout = setTimeout(() => {
+        userInteracted = false;
+        isPaused = false;
+        if (!autoPlayInterval && newsItems.length > 1) {
+            startAutoPlay();
+        }
+        resumeProgressBar();
+    }, PAUSE_RESUME_DELAY);
+}
+
+function clearInteractionTimeout() {
+    if (interactionTimeout) {
+        clearTimeout(interactionTimeout);
+        interactionTimeout = null;
+    }
+}
+
+/* === CLEANUP === */
+function cleanupCarousel() {
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+    }
+    if (progressTimer) {
+        cancelAnimationFrame(progressTimer);
+        progressTimer = null;
+    }
+    clearInteractionTimeout();
+}
+
+/* === INIT === */
+document.addEventListener('DOMContentLoaded', function() {
+    fetchNews();
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', cleanupCarousel);
+
+/* === END NEWS CAROUSEL === */
+/**
+ * ============================================================ */
+
 /**
  * ============================================================
  * CONTACT FORM
@@ -584,20 +1141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/**
- * ============================================================
- * VIDEO LOADER
- * ============================================================
- */
-document.querySelectorAll('.release-video iframe').forEach(function(iframe) {
-    iframe.addEventListener('load', function() {
-        const loader = this.parentElement.querySelector('.video-loader');
-        if (loader) {
-            loader.style.display = 'none';
-        }
-        this.style.opacity = '1';
-    });
-});
+
 
 /**
  * ============================================================
@@ -685,3 +1229,4 @@ document.addEventListener('DOMContentLoaded', function() {
 console.log('🚀 I See Red website loaded successfully!');
 
 })();
+

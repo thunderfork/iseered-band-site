@@ -84,6 +84,7 @@
             <a href="https://www.youtube.com/@iseered-ls6zk" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
             <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+            <a href="https://music.amazon.com/artists/B08PQHDG1Y/i-see-red" target="_blank" rel="noopener noreferrer" aria-label="Amazon Music"><i class="fab fa-amazon"></i></a>
             <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fab fa-bandcamp"></i></a>
         </div>
 
@@ -94,6 +95,7 @@
             <a href="https://www.youtube.com/@iseered-ls6zk" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
             <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+            <a href="https://music.amazon.com/artists/B08PQHDG1Y/i-see-red" target="_blank" rel="noopener noreferrer" aria-label="Amazon Music"><i class="fab fa-amazon"></i></a>
             <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fab fa-bandcamp"></i></a>
         </div>
 
@@ -104,9 +106,9 @@
         <nav class="nav" role="navigation" aria-label="Main navigation">
             <div class="container nav-container">
                 <ul class="nav-menu nav-menu-left" id="main-menu">
-                    <li><a href="#release">News</a></li>
-                    <li><a href="#tour">Live</a></li>
+                    <li><a href="#news">News</a></li>
                     <li><a href="#merch">Merch</a></li>
+                    <li><a href="#tour">Live</a></li>
                 </ul>
                 <a href="#" class="nav-brand" aria-label="I See Red home">
                     <img src="assets/images/logo_white.png" alt="I See Red" class="nav-brand-logo">
@@ -137,46 +139,82 @@
                     </h1>
                     <p class="hero-subtitle">Melodic Death Metal from Athens, Greece</p>
                     <div class="hero-cta">
-                        <a href="#release" class="btn">Listen Now</a>
+                        <a href="#news" class="btn">Listen Now</a>
                         <a href="#tour" class="btn">Get Tickets</a>
                         <a href="#merch" class="btn">Merch</a>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== RELEASE ===== -->
-            <section class="section release" id="release" aria-label="Current Release">
+            <!-- ============================================================ -->
+            <!-- ===== NEWS CAROUSEL ===== -->
+            <!-- ============================================================ -->
+            <section class="section news" id="news" aria-label="Latest News">
                 <div class="container">
-                    <h2 class="section-title">Latest Release</h2>
-                    <div class="release-grid">
-                        <div class="release-media">
-                            <span class="release-badge">New Single</span>
-                            <div class="release-video">
-                                <div class="video-loader" aria-hidden="true">Loading video...</div>
-                                <iframe
-                                    src="https://www.youtube.com/embed/zuOUN-VSI40"
-                                    title="I See Red - We, the Void (Official Video)"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen
-                                    loading="lazy"
-                                    onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';">
-                                </iframe>
+                    <h2 class="section-title">Latest News</h2>
+                    
+                    <!-- Carousel Container -->
+                    <div class="news-carousel" role="region" aria-roledescription="carousel" aria-label="Latest news carousel">
+                        
+                        <!-- === PROGRESS BAR FIX START === -->
+                        <!-- Progress Bar -->
+                        <div class="news-progress-wrapper">
+                            <div class="news-progress" role="progressbar" aria-label="Time until next slide">
+                                <div class="news-progress-bar"></div>
+                            </div>
+                            <div class="news-progress-label">
+                                <span class="news-progress-text">Next slide in</span>
+                                <span class="news-progress-timer">5s</span>
                             </div>
                         </div>
-                        <div class="release-info">
-                            <p class="release-label">Out Now</p>
-                            <h2 class="release-title">We, the Void</h2>
-                            <p class="release-meta">Single • 2026 • 4:23</p>
-                            <p class="release-description">
-                                The latest single from I See Red's upcoming album, Red is Dead. A crushing blend of modern death metal aggression and atmospheric depth.
-                            </p>
-                            <div class="release-links">
-                                <a href="https://open.spotify.com/artist/1yibziitCge1Mpgqj1mxcq" target="_blank" rel="noopener noreferrer" aria-label="Spotify">Spotify</a>
-                                <a href="https://music.apple.com/us/artist/i-see-red/1543452295" target="_blank" rel="noopener noreferrer" aria-label="Apple Music">Apple Music</a>
-                                <a href="https://music.youtube.com/channel/UC_uO7e_5PhX8T_izXsSDJhQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube Music">YouTube</a>
-                                <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">Bandcamp</a>
+                        <!-- === PROGRESS BAR FIX END === -->
+                        
+                        <!-- Carousel Track -->
+                        <div class="news-track-wrapper">
+                            <div class="news-track" role="list">
+                                <!-- Items will be rendered by JavaScript -->
                             </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="news-controls">
+                            <button class="news-btn news-btn-prev" aria-label="Previous slide">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            
+                            <div class="news-dots" role="tablist" aria-label="Slide indicators">
+                                <!-- Dots will be rendered by JavaScript -->
+                            </div>
+                            
+                            <button class="news-btn news-btn-next" aria-label="Next slide">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== END NEWS CAROUSEL ===== -->
+            <!-- ============================================================ -->
+
+            <!-- ===== MERCH ===== -->
+            <section class="section merch" id="merch" aria-label="Merchandise">
+                <div class="container">
+                    <h2 class="section-title">Merch</h2>
+                    <p class="merch-temp-note">
+                        Merch store coming soon! In the meantime, check out our music on <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a>.
+                    </p>
+                    <div class="merch-grid-placeholder">
+                        <div>
+                            <i class="fas fa-compact-disc"></i>
+                            <p>Visit our <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a> for music</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-tshirt"></i>
+                            <p>Merch store coming soon</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>Check <a href="#tour" style="color:var(--color-red);">tour dates</a> for merch at shows</p>
                         </div>
                     </div>
                 </div>
@@ -231,30 +269,6 @@
                         data-play-my-city-cta-icon="true"
                         data-follow-section-cta-icon="true">
                     </a>
-                </div>
-            </section>
-
-            <!-- ===== MERCH ===== -->
-            <section class="section merch" id="merch" aria-label="Merchandise">
-                <div class="container">
-                    <h2 class="section-title">Merch</h2>
-                    <p class="merch-temp-note">
-                        Merch store coming soon! In the meantime, check out our music on <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a>.
-                    </p>
-                    <div class="merch-grid-placeholder">
-                        <div>
-                            <i class="fas fa-compact-disc"></i>
-                            <p>Visit our <a href="https://iseeredgr.bandcamp.com" target="_blank" rel="noopener noreferrer" style="color:var(--color-red);">Bandcamp</a> for music</p>
-                        </div>
-                        <div>
-                            <i class="fas fa-tshirt"></i>
-                            <p>Merch store coming soon</p>
-                        </div>
-                        <div>
-                            <i class="fas fa-ticket-alt"></i>
-                            <p>Check <a href="#tour" style="color:var(--color-red);">tour dates</a> for merch at shows</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -455,9 +469,9 @@
                     <div>
                         <h4 class="footer-title">Quick Links</h4>
                         <ul class="footer-links">
-                            <li><a href="#release">Latest Release</a></li>
-                            <li><a href="#tour">Tour Dates</a></li>
+                            <li><a href="#news">Latest News</a></li>                            
                             <li><a href="#merch">Merch Store</a></li>
+                            <li><a href="#tour">Tour Dates</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#press">Press Assets</a></li>
                         </ul>
