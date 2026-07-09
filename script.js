@@ -198,8 +198,7 @@ window.addEventListener('load', function() {
 
 /**
  * ============================================================
- * SMOOTH SCROLL - For anchor links
- * ============================================================
+ * SMOOTH SCROLL - For anchor links * ============================================================
  */
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
@@ -207,30 +206,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         const href = this.getAttribute('href');
 
         if (href === '#') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            const target = document.querySelector(href);
-            if (target) {
-                const navHeight = nav ? nav.offsetHeight : 0;
-                const targetPos = target.offsetTop - navHeight;
-                window.scrollTo({ top: targetPos, behavior: 'smooth' });
-            }
-        }
-    });
-});
-
-/**
- * ============================================================
- * SMOOTH SCROLL - For anchor links
- * ============================================================
- */
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-
-        if (href === '#') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Close mobile menu before scrolling
+            closeMobileMenu();
+            setTimeout(function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
         } else {
             const target = document.querySelector(href);
             if (target) {
@@ -1016,7 +996,15 @@ function updateActiveLink() {
 
     navLinks.forEach(function(link) {
         link.style.color = '';
-        if (link.getAttribute('href') === '#' + current) {
+        const href = link.getAttribute('href');
+        
+        // Handle Home link (#)
+        if (href === '#') {
+            // Highlight Home when at the top of the page (no section active)
+            if (current === '' && window.scrollY < 200) {
+                link.style.color = 'var(--color-red)';
+            }
+        } else if (href === '#' + current) {
             link.style.color = 'var(--color-red)';
         }
     });
@@ -1281,6 +1269,112 @@ window.addEventListener('scroll', function() {
 
 /**
  * ============================================================
+ * GALLERY LIGHTBOX
+ * ============================================================
+ */
+(function initGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    const counter = document.getElementById('lightboxCounter');
+    
+    let currentIndex = 0;
+    const imageUrls = [];
+
+    // Build image array from gallery
+    galleryItems.forEach(item => {
+        const img = item.querySelector('img');
+        if (img) {
+            imageUrls.push(img.src);
+        }
+    });
+
+    function openLightbox(index) {
+        if (!lightbox || !lightboxImg) return;
+        currentIndex = index;
+        lightboxImg.src = imageUrls[index];
+        lightboxImg.alt = galleryItems[index]?.querySelector('img')?.alt || 'Gallery image';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        updateCounter();
+    }
+
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+        lightboxImg.src = imageUrls[currentIndex];
+        lightboxImg.alt = galleryItems[currentIndex]?.querySelector('img')?.alt || 'Gallery image';
+        updateCounter();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        lightboxImg.src = imageUrls[currentIndex];
+        lightboxImg.alt = galleryItems[currentIndex]?.querySelector('img')?.alt || 'Gallery image';
+        updateCounter();
+    }
+
+    function updateCounter() {
+        if (counter) {
+            counter.textContent = `${currentIndex + 1} / ${imageUrls.length}`;
+        }
+    }
+
+    // Click to open
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+        // Keyboard accessibility
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
+    });
+
+    // Close button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeLightbox);
+    }
+
+    // Nav buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', showPrev);
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', showNext);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox || !lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+
+    // Click outside to close
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
+})();
+
+/**
+ * ============================================================
  * ABOUT IMAGE - MOUSE ZOOM (Desktop Only)
  * ============================================================
  */
@@ -1321,4 +1415,3 @@ document.addEventListener('DOMContentLoaded', function() {
 console.log('🚀 I See Red website loaded successfully!');
 
 })();
-

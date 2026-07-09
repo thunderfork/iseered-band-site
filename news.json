@@ -21,15 +21,15 @@
       "badge": "Live Show",
       "media": {
         "type": "image",
-        "src": "assets/news/isr.webp"
+        "src": "assets/news/wacken-2026.jpg"
       },
       "label": "Wacken, Germany • July 2026",
       "title": "Live at Wacken Open Air Festival",
-      "meta": "July 29, 2026 • W.E.T. Stage 12:40",
+      "meta": "July 29, 2026 • W.E.T. Stage 12:40pm",
       "description": "Join I See Red for an exclusive show at Wacken Open Air Festival. Experience the raw power of our live performance and witness the debut of tracks from our upcoming album 'Red is Dead'.",
       "links": [
         { "name": "Get Tickets", "url": "https://www.bandsintown.com/a/15655689-i-see-red?noindex=1" },
-        { "name": "Facebook Event", "url": "https://www.facebook.com/iseeredofficial/" }
+        { "name": "Wacken Open Air", "url": "https://www.wacken.com/en/tickets-shop/woa-2026-tickets/" }
       ]
     },
     {

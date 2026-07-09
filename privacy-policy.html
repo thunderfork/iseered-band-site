@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Privacy Policy for I See Red - Melodic Death Metal from Athens, Greece" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Privacy Policy | I See Red" />
+    <meta property="og:description" content="Privacy Policy for I See Red - Melodic Death Metal from Athens, Greece" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thunderfork.github.io/iseered-band-site/privacy-policy.html" />
+    <meta property="og:image" content="https://thunderfork.github.io/iseered-band-site/assets/images/band-photo-red2.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Privacy Policy | I See Red" />
+    <meta name="twitter:description" content="Privacy Policy for I See Red" />
+    <meta name="twitter:image" content="https://thunderfork.github.io/iseered-band-site/assets/images/band-photo-red2.png" />
+
+    <meta name="theme-color" content="#c41e3a" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+
+    <title>Privacy Policy | I See Red</title>
+    <link rel="canonical" href="https://thunderfork.github.io/iseered-band-site/privacy-policy.html" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Metal+Mania&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+        /* ============================================================
+           OVERRIDE SCROLL SNAP FOR LEGAL PAGES
+        ============================================================ */
+        html {
+            scroll-snap-type: none !important;
+        }
+
+        .section,
+        .hero,
+        .footer {
+            scroll-snap-align: none !important;
+            scroll-snap-stop: normal !important;
+        }
+
+        /* ============================================================
+           OVERRIDE NAVBAR FADE FOR LEGAL PAGES - Always visible
+        ============================================================ */
+        .nav {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transition: none !important;
+        }
+
+        .nav.visible {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        /* ============================================================
+           LEGAL PAGE SPECIFIC STYLES
+        ============================================================ */
+        .legal-content {
+            padding: var(--spacing-lg) 0;
+            min-height: 70vh;
+        }
+
+        .legal-content .container {
+            max-width: 900px;
+        }
+
+        .legal-card {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(4px) saturate(1.1);
+            -webkit-backdrop-filter: blur(4px) saturate(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .legal-card h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-xs);
+            border-bottom: 3px solid var(--color-red);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .legal-card .legal-meta {
+            color: var(--color-white-dim);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .legal-card .legal-meta .badge {
+            background: var(--color-red);
+            color: var(--color-white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .legal-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: var(--spacing-xs);
+        }
+
+        .legal-card h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .legal-card p {
+            color: var(--color-white-dim);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .legal-card ul,
+        .legal-card ol {
+            color: var(--color-white-dim);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+            padding-left: var(--spacing-md);
+        }
+
+        .legal-card ul {
+            list-style: disc;
+        }
+
+        .legal-card ol {
+            list-style: decimal;
+        }
+
+        .legal-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-card li::marker {
+            color: var(--color-red);
+        }
+
+        .legal-card a {
+            color: var(--color-red);
+            transition: var(--transition);
+        }
+
+        .legal-card a:hover {
+            color: var(--color-red-bright);
+            text-decoration: underline;
+        }
+
+        .legal-card strong {
+            color: var(--color-white);
+        }
+
+        .legal-card .updated-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(196, 30, 58, 0.15);
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--color-white-dim);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .legal-card .updated-badge i {
+            color: var(--color-red);
+        }
+
+        @media (max-width: 768px) {
+            .legal-card {
+                padding: var(--spacing-md);
+            }
+
+            .legal-card h1 {
+                font-size: 1.8rem;
+            }
+
+            .legal-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .legal-content {
+                padding: var(--spacing-md) 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-card {
+                padding: var(--spacing-sm);
+            }
+
+            .legal-card h1 {
+                font-size: 1.5rem;
+            }
+
+            .legal-card .legal-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BACKGROUND ===== -->
+    <div class="site-background" aria-hidden="true"></div>
+
+    <!-- ===== PAGE CONTENT ===== -->
+    <div id="page-content">
+
+        <!-- ===== SKIP LINK ===== -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+
+        <!-- ===== NAVIGATION ===== -->
+        <nav class="nav visible" role="navigation" aria-label="Main navigation">
+            <div class="container nav-container">
+                <ul class="nav-menu nav-menu-left" id="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#news">News</a></li>
+                    <li><a href="index.html#merch">Merch</a></li>
+                    <li><a href="index.html#tour">Tour</a></li>
+                </ul>
+                <a href="index.html" class="nav-brand" aria-label="I See Red home">
+                    <img src="assets/images/logo_white.png" alt="I See Red" class="nav-brand-logo">
+                </a>
+                <ul class="nav-menu nav-menu-right">
+                    <li><a href="index.html#about">Band</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="index.html#press">Press</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation menu</span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main id="main-content">
+            <section class="legal-content" aria-label="Privacy Policy">
+                <div class="container">
+                    <div class="legal-card">
+                        <div class="updated-badge">
+                            <i class="fas fa-clock"></i>
+                            <span>Last updated: <strong>July 9, 2026</strong></span>
+                        </div>
+
+                        <h1>Privacy Policy</h1>
+
+                        <div class="legal-meta">
+                            <span><strong>Service:</strong> I See Red website</span>
+                            <span><strong>Operator:</strong> we</span>
+                            <span class="badge">Effective: July 9, 2026</span>
+                        </div>
+
+                        <h2>Introduction</h2>
+                        <p>
+                            I See Red ("we," "us," or "our") operates <a href="https://thunderfork.github.io/iseered-band-site/" target="_blank" rel="noopener noreferrer">https://thunderfork.github.io/iseered-band-site/</a>
+                            and provides services through our Website. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Website.
+                        </p>
+                        <p>
+                            By accessing or using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with any part of this policy, you must not use our services.
+                        </p>
+
+                        <h2>Information We Collect</h2>
+                        <p>We collect the following types of personal information:</p>
+                        <ul>
+                            <li><strong>Names</strong> – when you provide them via contact forms or newsletter sign-ups</li>
+                            <li><strong>Email addresses</strong> – when you subscribe to our newsletter, contact us, or make a purchase</li>
+                            <li><strong>Usage Data</strong> – information about how you interact with our Website (e.g., pages visited, time spent, referring URLs)</li>
+                            <li><strong>Device Information</strong> – browser type, operating system, IP address, and similar technical data</li>
+                        </ul>
+                        <p>
+                            We do not collect sensitive personal data (such as racial or ethnic origin, political opinions, religious beliefs, or health information) unless you voluntarily provide it and we have your explicit consent.
+                        </p>
+
+                        <h2>How We Use Your Information</h2>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide, operate, and maintain our services</li>
+                            <li>Improve, personalize, and expand our services</li>
+                            <li>Understand and analyze how you use our services</li>
+                            <li>Communicate with you for customer service, updates, and marketing (where permitted)</li>
+                            <li>Process transactions and send related information</li>
+                            <li>Comply with legal obligations and enforce our policies</li>
+                            <li>Prevent fraud and enhance security</li>
+                        </ul>
+
+                        <h2>Legal Basis for Processing (GDPR / EU/EEA Users)</h2>
+                        <p>If you are located in the European Union or European Economic Area, we process your personal data based on one or more of the following legal grounds:</p>
+                        <ul>
+                            <li><strong>Consent</strong> – you have given us clear consent to process your data for a specific purpose (e.g., marketing emails)</li>
+                            <li><strong>Contract</strong> – processing is necessary for the performance of a contract with you (e.g., fulfilling a merchandise order)</li>
+                            <li><strong>Legal obligation</strong> – processing is necessary to comply with a legal or regulatory obligation</li>
+                            <li><strong>Legitimate interests</strong> – processing is necessary for our legitimate business interests (e.g., improving our services, preventing fraud) and does not override your rights</li>
+                        </ul>
+
+                        <h2>Data Retention</h2>
+                        <p>
+                            We retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.
+                        </p>
+                        <ul>
+                            <li><strong>Newsletter subscribers</strong>: data is retained until you unsubscribe or request deletion</li>
+                            <li><strong>Contact form submissions</strong>: retained for up to 12 months for customer service purposes</li>
+                            <li><strong>Transaction data</strong>: retained for 7 years to comply with tax and accounting laws</li>
+                        </ul>
+
+                        <h2>Your Rights Under GDPR (EU/EEA Users)</h2>
+                        <p>If you are located in the European Union or European Economic Area, you have the following rights under the General Data Protection Regulation (GDPR):</p>
+                        <ul>
+                            <li><strong>Right of Access</strong> – you can request copies of your personal data</li>
+                            <li><strong>Right to Rectification</strong> – you can request correction of inaccurate or incomplete data</li>
+                            <li><strong>Right to Erasure</strong> – you can request deletion of your personal data ("right to be forgotten")</li>
+                            <li><strong>Right to Restrict Processing</strong> – you can request that we limit how we use your data</li>
+                            <li><strong>Right to Data Portability</strong> – you can request transfer of your data to another organization</li>
+                            <li><strong>Right to Object</strong> – you can object to our processing of your personal data</li>
+                            <li><strong>Right to Withdraw Consent</strong> – where we rely on consent, you can withdraw it at any time</li>
+                            <li><strong>Rights Related to Automated Decision-Making</strong> – you have rights regarding automated decisions that significantly affect you</li>
+                        </ul>
+                        <p>To exercise these rights, please contact us at <a href="mailto:iseeredgr@gmail.com">iseeredgr@gmail.com</a>. We will respond to your request within one month.</p>
+                        <p>
+                            You also have the right to lodge a complaint with your local data protection authority if you believe your rights have been violated.
+                        </p>
+
+                        <h2>Children's Privacy</h2>
+                        <p>
+                            Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
+                            If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:iseeredgr@gmail.com">iseeredgr@gmail.com</a>
+                            and we will take steps to delete that information as required by applicable law (including COPPA in the United States).
+                        </p>
+                        <p>
+                            In certain countries (such as EU Member States), the minimum age for data processing may be up to 16 years depending on local digital consent laws.
+                            We will comply with the age requirements applicable in your jurisdiction.
+                        </p>
+
+                        <h2>Data Security</h2>
+                        <p>
+                            We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+                            These include encryption (HTTPS), access controls, regular security reviews, and secure data storage practices.
+                        </p>
+                        <p>
+                            However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
+                            In the event of a data breach, we will notify affected users and relevant authorities as required by applicable law.
+                        </p>
+
+                        <h2>International Data Transfers</h2>
+                        <p>
+                            Your information may be transferred to and processed in countries other than your country of residence, including the United States and Greece.
+                            These countries may have different data protection laws than your country of residence.
+                        </p>
+                        <p>
+                            When we transfer your data internationally, we ensure appropriate safeguards are in place to protect your information in accordance with applicable laws.
+                            For transfers from the EU/EEA to non-adequate countries, we rely on Standard Contractual Clauses (SCCs) approved by the European Commission.
+                        </p>
+
+                        <h2>Cookies and Tracking Technologies</h2>
+                        <p>
+                            We use cookies and similar tracking technologies to analyze traffic, remember your preferences, and provide a better user experience.
+                            For detailed information about the cookies we use and how you can manage your preferences, please see our <a href="cookie-policy.html">Cookie Policy</a>.
+                        </p>
+
+                        <h2>Third-Party Services and Links</h2>
+                        <p>
+                            Our services may contain links to third-party websites, applications, or services that are not owned or controlled by us.
+                            We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
+                        </p>
+                        <p>
+                            <strong>Third-Party Embeds</strong>: We may embed third-party content such as YouTube videos, Google Maps, or social media widgets.
+                            These third parties may collect data about you according to their own privacy policies. We are not responsible for data collection by embedded third-party services.
+                        </p>
+                        <p>
+                            <strong>Payment Processors</strong>: If you make a purchase, payment information is processed by our third-party payment providers.
+                            We do not store your payment card details. Please review the privacy policies of our payment processors for information on how they handle your data.
+                        </p>
+                        <p>
+                            We encourage you to review the privacy policies of any third-party services you interact with through our Website.
+                        </p>
+
+                        <h2>Changes to This Privacy Policy</h2>
+                        <p>
+                            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+                        </p>
+                        <p>
+                            <strong>For material changes</strong> (such as changes to the categories of data we collect, how we use your data, or your rights), we will provide advance notice via:
+                        </p>
+                        <ul>
+                            <li>Email to the address associated with your account or subscription</li>
+                            <li>Prominent notice on our Website</li>
+                        </ul>
+                        <p>
+                            We will provide at least 30 days' notice for material changes, or such longer period as required by applicable law.
+                            By continuing to access or use our services after the changes take effect, you agree to be bound by the revised policy.
+                            If you do not agree to the new policy, you must stop using our services.
+                        </p>
+
+                        <h2>Contact Us</h2>
+                        <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+                        <ul>
+                            <li><strong>Email:</strong> <a href="mailto:iseeredgr@gmail.com">iseeredgr@gmail.com</a></li>
+                            <li><strong>Website:</strong> <a href="https://thunderfork.github.io/iseered-band-site/" target="_blank" rel="noopener noreferrer">https://thunderfork.github.io/iseered-band-site/</a></li>
+                        </ul>
+                        <p>For EU/EEA users, you can also contact your local data protection authority.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <a href="index.html" class="footer-brand" aria-label="I See Red home">
+                            <img src="assets/images/logo_white.png" alt="I See Red" class="footer-brand-logo">
+                        </a>
+                        <p class="footer-description">
+                            Modern melodic death metal pushing boundaries and crushing stages across Europe. Stay updated with the latest releases, tour dates, and exclusive merch drops.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#news">Latest News</a></li>
+                            <li><a href="index.html#merch">Merch Store</a></li>
+                            <li><a href="index.html#tour">Tour Dates</a></li>
+                            <li><a href="index.html#about">Band</a></li>
+                            <li><a href="index.html#gallery">Gallery</a></li>
+                            <li><a href="index.html#press">Press Assets</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-title">Contact</h4>
+                        <ul class="footer-links">
+                            <li><a href="mailto:iseeredgr@gmail.com">Email Us</a></li>
+                            <li><a href="index.html#contact">Contact Form</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-title">Newsletter</h4>
+                        <p class="footer-newsletter-text">
+                            Subscribe for exclusive updates, early access to tickets, and special merch drops.
+                        </p>
+                        <form class="newsletter-form" aria-label="Newsletter signup">
+                            <input type="email" class="newsletter-input" placeholder="Your email" required />
+                            <button type="submit" class="newsletter-btn">→</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2026 I See Red. All rights reserved.</p>
+                    <div class="footer-legal">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-conditions.html">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div><!-- /page-content -->
+
+    <script src="script.js"></script>
+</body>
+</html>
