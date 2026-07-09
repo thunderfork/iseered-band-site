@@ -30,7 +30,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: none;
     scroll-padding-top: 80px;
     font-size: 16px;
 }
@@ -263,7 +263,7 @@ button {
 ============================================================ */
 .social-sidebar {
     position: fixed;
-    left: -20px;
+    left: 0px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 999;
@@ -271,8 +271,7 @@ button {
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    transition: left 1.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+   
     padding: 10px 6px;
     background: transparent;
 }
